@@ -4,7 +4,7 @@ public class AIHoming : MonoBehaviour
 
     Transform playerTr;//プレイヤーのTransform
 
-    [SerializeField] float speed = 3f;  //敵の動くスピード
+    [SerializeField] float speed = 1f;  //敵の動くスピード
 
     //=== 追加===
     [Header("Enemy Status")]
@@ -65,6 +65,12 @@ public class AIHoming : MonoBehaviour
     {
         Debug.Log("敵を倒した!");
 
+        //===【追加】Spawnerに自分が倒された場合を伝えて、複製を依頼巣r===
+       // if(EnemySpawner.Instance != null)
+        {
+         //   EnemySpawner.Instance.OnEnemyDefeated(transform.position);
+        }
+
         Destroy(gameObject);
     }
 
@@ -85,7 +91,8 @@ public class AIHoming : MonoBehaviour
             }
 
             //敵を消す
-            Destroy(gameObject);
+            //===【追加】 Destroy(gameObject);の代わりに　die();を呼ぶ===
+            Die();
         }
     }
 
