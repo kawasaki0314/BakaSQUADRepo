@@ -70,5 +70,17 @@ private void SpawnEnemy()
     Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
     }
 
+    //敵が倒されたときに、敵から呼ばれる窓口関数
+    public void OnEnemyDefeated(Vector2 defeatedPosition)
+    {
+        //倒された場所の「ちょっとだけランダムにずらした位置」を計算
+        Vector2 randomOffset = Random.insideUnitCircle * 1f;//1マス以内のズレ
+        Vector2 spawnPosition = defeatedPosition + randomOffset;
+
+        //敵が倒されたその場所に、新しく複製する！
+        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+        Debug.Log("倒された敵の近くに、新しい敵を補充しました！");
+    }
+
 }
 

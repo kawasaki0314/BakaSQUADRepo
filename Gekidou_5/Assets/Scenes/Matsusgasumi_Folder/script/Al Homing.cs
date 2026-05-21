@@ -48,7 +48,7 @@ public class AIHoming : MonoBehaviour
     }
 
 
-    //ダメージを受ける関数
+    //ダメージを受ける関数(ここがHP0で消滅するコアの部分です)
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
@@ -90,9 +90,12 @@ public class AIHoming : MonoBehaviour
                 playerHealth.TakeDamage(attackPower);
             }
 
-            //敵を消す
-            //===【追加】 Destroy(gameObject);の代わりに　die();を呼ぶ===
-            Die();
+            //【修正】プレイヤーに当たった時は、Die()を呼ばずに
+            //自分自身も1ダメージ受ける（爆発）か、あるいは何もせず通り過ぎるようにします。
+            //もし当たったら即消滅させたいなら　Die();のままでOKですが、
+            //「HPが0になったとた時だけ消滅」に統一するなら、敵自身にダメージを与えます。
+            TakeDamage(1);
+            
         }
     }
 
