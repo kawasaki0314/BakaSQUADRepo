@@ -1,4 +1,3 @@
-﻿
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
@@ -15,12 +14,10 @@ public class PlayerMove : MonoBehaviour
     {
         return lastDir;
     }
-
     public float blinkCooldown = 3.0f; // クールダウンタイム
     private float cooldownTimer = 0f;
 
     private bool isBlinking = false;
-
     void Update()
     {
         Vector2 move = Vector2.zero;
@@ -40,6 +37,7 @@ public class PlayerMove : MonoBehaviour
             move.x -= 1;
             transform.localScale = new Vector3(-1, 1, 1);
         }
+        // Dを押すと右移動,右を向く
         else if (Keyboard.current.dKey.isPressed)
         {
             move.x += 1;
@@ -51,6 +49,7 @@ public class PlayerMove : MonoBehaviour
         {
             move.y += 1;
         }
+        // Sを押すと下移動
         else if (Keyboard.current.sKey.isPressed)
         {
             move.y -= 1;
