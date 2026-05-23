@@ -2,16 +2,29 @@ using System.Collections;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
-public class EnemySpawner : MonoBehaviour
+public class Enemyspawner : MonoBehaviour
 {
-
+    //【追加】これがないとAIHoming側から「Enemyspawner.Instance」で呼べません
+    public static Enemyspawner Instance { get; private set; }
     //ここ(関数の外)に書くことで、スクリプト内のどこからでも使えるようになります!
-    [SerializeField] GameObject enemyPrefab;
-    [SerializeField] float spawnInterVal = 2.0f; //  少し間隔を広げて2秒ごとに設定
+    [SerializeField] GameObject EnemyPrefab;
+    [SerializeField] float SpawnInterVal = 2.0f; //  少し間隔を広げて2秒ごとに設定
 
     //===追加===
     [SerializeField] int maxEnemyCount = 15;//画面に存在できる敵の最大数
 
+    //ゲーム開始時に実体を登録
+    private void Awake()
+    {
+        if(Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
@@ -26,7 +39,7 @@ private IEnumerator SpawnRoutine()
  while (true)
 
     {
-      yield return new WaitForSeconds(spawnInterVal);
+      yield return new WaitForSeconds(SpawnInterVal);
 
         //タグを使って、今画面にいる敵の数を数える
         int currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
@@ -60,14 +73,14 @@ private void SpawnEnemy()
 
 {
 
-    if (enemyPrefab == null) return; //これなら正常に見つかる!//半径5マスの円の中のランダムな位置を計算
-    Vector2 randomOffset = Random.insideUnitCircle * 5f;
+    if (EnemyPrefab == null) return; //これなら正常に見つかる!//半径10マスの円の中のランダムな位置を計算
+    Vector2 randomOffset = Random.insideUnitCircle * 10f;
 
     Vector2 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
 
 
     //計算したランダム位置に複製
-    Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
+    Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
     }
 
     //敵が倒されたときに、敵から呼ばれる窓口関数
@@ -78,8 +91,8 @@ private void SpawnEnemy()
         Vector2 spawnPosition = defeatedPosition + randomOffset;
 
         //敵が倒されたその場所に、新しく複製する！
-        Instantiate(enemyPrefab, spawnPosition, Quaternion.identity);
-        Debug.Log("倒された敵の近くに、新しい敵を補充しました！");
+        Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
+        Debug.Log("【テスト】敵の近くに新しく複製しました！");
     }
 
 }

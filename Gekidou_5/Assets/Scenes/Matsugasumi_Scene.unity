@@ -451,6 +451,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerHealth
   maxHP: 100
+  attackPower: 1
+  attackRadius: 3
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  attackInterval: 1
 --- !u!212 &665397476
 SpriteRenderer:
   serializedVersion: 2
@@ -519,7 +525,7 @@ Transform:
   m_GameObject: {fileID: 665397473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.26, y: 3.41, z: 0}
+  m_LocalPosition: {x: -3.1, y: 2.68, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -751,11 +757,11 @@ GameObject:
   m_Component:
   - component: {fileID: 1969061229}
   - component: {fileID: 1969061228}
-  - component: {fileID: 1969061227}
-  - component: {fileID: 1969061226}
   - component: {fileID: 1969061225}
   - component: {fileID: 1969061224}
-  m_Layer: 0
+  - component: {fileID: 1969061230}
+  - component: {fileID: 1969061231}
+  m_Layer: 6
   m_Name: Square
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -835,36 +841,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &1969061226
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969061223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a91830d32ea1bca4cb272ea0d0e67e8b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawner
-  enemyPrefab: {fileID: 1969061223}
-  spawnInterVal: 2
-  maxEnemyCount: 15
---- !u!114 &1969061227
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1969061223}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e95adb570b44e49a3a5642ea6f1f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIHoming
-  speed: 3
-  maxHP: 3
-  attackPower: 1
 --- !u!212 &1969061228
 SpriteRenderer:
   serializedVersion: 2
@@ -933,12 +909,42 @@ Transform:
   m_GameObject: {fileID: 1969061223}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.48, y: -3.04, z: 0}
+  m_LocalPosition: {x: 0.76, y: -3.16, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1969061230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969061223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e95adb570b44e49a3a5642ea6f1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIHoming
+  speed: 1
+  maxHP: 3
+  attackPower: 1
+--- !u!114 &1969061231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1969061223}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a91830d32ea1bca4cb272ea0d0e67e8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemyspawner
+  EnemyPrefab: {fileID: 0}
+  SpawnInterVal: 2
+  maxEnemyCount: 15
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

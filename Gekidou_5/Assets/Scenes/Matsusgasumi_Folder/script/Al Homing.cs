@@ -4,7 +4,7 @@ public class AIHoming : MonoBehaviour
 
     Transform playerTr;//プレイヤーのTransform
 
-    [SerializeField] float speed = 1f;  //敵の動くスピード
+    [SerializeField] float speed = 2f;  //敵の動くスピード
 
     //=== 追加===
     [Header("Enemy Status")]
@@ -15,7 +15,7 @@ public class AIHoming : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //===【修正】ここで、現在のHPを最大HPと同じ値に初期化します。
+        //現在のHPを最大HPと同じ値に初期化します。
         currentHP = maxHP;
 
         //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
@@ -66,9 +66,9 @@ public class AIHoming : MonoBehaviour
         Debug.Log("敵を倒した!");
 
         //===【追加】Spawnerに自分が倒された場合を伝えて、複製を依頼巣r===
-       // if(EnemySpawner.Instance != null)
+        if (Enemyspawner.Instance != null)
         {
-         //   EnemySpawner.Instance.OnEnemyDefeated(transform.position);
+            Enemyspawner.Instance.OnEnemyDefeated(transform.position);
         }
 
         Destroy(gameObject);
@@ -90,12 +90,10 @@ public class AIHoming : MonoBehaviour
                 playerHealth.TakeDamage(attackPower);
             }
 
-            //【修正】プレイヤーに当たった時は、Die()を呼ばずに
+
             //自分自身も1ダメージ受ける（爆発）か、あるいは何もせず通り過ぎるようにします。
-            //もし当たったら即消滅させたいなら　Die();のままでOKですが、
-            //「HPが0になったとた時だけ消滅」に統一するなら、敵自身にダメージを与えます。
             TakeDamage(1);
-            
+
         }
     }
 
