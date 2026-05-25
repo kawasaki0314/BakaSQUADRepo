@@ -1,5 +1,6 @@
 using UnityEngine;
-public class AIHoming : MonoBehaviour
+
+public class AlHoming2 : MonoBehaviour
 {
     Transform playerTr;//プレイヤーのTransform
     [SerializeField] float speed = 2f;  //敵の動くスピード
@@ -8,14 +9,13 @@ public class AIHoming : MonoBehaviour
     [Header("Enemy Status")]
     [SerializeField] int maxHP = 3; //敵の最大HP
     [SerializeField] int attackPower = 1;　//敵の攻撃力
-
     int currentHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         //現在のHPを最大HPと同じ値に初期化します。
         currentHP = maxHP;
-        
+
         //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
@@ -31,12 +31,11 @@ public class AIHoming : MonoBehaviour
     }
 
     // Update is called once per frame
-    //物理移動は　Update　ではなく　FixedPdate で行うのがUnityの鉄則!
-    private void Update()
+    void Update()
     {
-     // プレイヤーが見つかっていない、または距離が0.1f未満なら処理しない
+        // プレイヤーが見つかっていない、または距離が0.1f未満なら処理しない
 
-    if (playerTr == null || Vector2.Distance(transform.position, playerTr.position) < 0.1f)
+        if (playerTr == null || Vector2.Distance(transform.position, playerTr.position) < 0.1f)
             return;
 
 
@@ -44,12 +43,9 @@ public class AIHoming : MonoBehaviour
         //プレイヤーに向けて進む
 
         transform.position = Vector2.MoveTowards(transform.position,
-        playerTr.position,//Vector3は自動的にVector2として計算されます
+        playerTr.position,//Vector3は自動的にVector2に移動
         speed * Time.deltaTime);
     }
-
-
-    //ダメージを受ける関数(ここがHP0で消滅するコアの部分です)
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
@@ -94,9 +90,8 @@ public class AIHoming : MonoBehaviour
 
 
             //自分自身も1ダメージ受ける（爆発）か、あるいは何もせず通り過ぎるようにします。
-             TakeDamage(1);
+            TakeDamage(1);
 
         }
     }
-
 }
