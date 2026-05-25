@@ -1,23 +1,21 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour
+public class Cam : MonoBehaviour
 {
+    private GameObject player;
+    
 
-    public GameObject player;
-
-    Vector3 prePlayerPos; //前フレームでのプレイヤーの座標位置
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-     
-
-    // Update is called once per frame
-
-    void Update()
-
+    // Use this for initialization
+    void Start()
     {
-      if(player.transform.position != prePlayerPos)
-        {
-            transform.position = new Vector3(player.transform.position.x, player.transform.position.y, -10);
-            prePlayerPos = player.transform.position;
-        }
+       // player = GameObject.FindGameObjectWithTag("Player").transform;
+      
+    }
+
+    private void Update()
+    {
+        
     }
 }

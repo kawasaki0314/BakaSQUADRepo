@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
+    float HeelItem = 1.1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
