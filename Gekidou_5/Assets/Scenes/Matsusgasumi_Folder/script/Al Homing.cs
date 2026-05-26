@@ -5,7 +5,6 @@ public class AIHoming : MonoBehaviour
     Transform playerTr;//プレイヤーのTransform
     [SerializeField] float speed = 2f;  //敵の動くスピード
 
-    //=== 追加===
     [Header("Enemy Status")]
     [SerializeField] int maxHP = 3; //敵の最大HP
     [SerializeField] int attackPower = 1;　//敵の攻撃力
@@ -58,6 +57,8 @@ public class AIHoming : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
+        //  追加
+        Debug.Log("敵の残りHP: " + currentHP);
 
         //HPが0以下なら死亡
         if (currentHP <= 0)
@@ -127,7 +128,7 @@ public class AIHoming : MonoBehaviour
     }
 
     //プレイヤーが離れたらタイマーをリセット（スペルを修正しました）
-    private void OnTriggerEx2D(Collider2D collision)
+    private void OnTriggerEt2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
