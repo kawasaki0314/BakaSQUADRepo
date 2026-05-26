@@ -1,0 +1,97 @@
+using UnityEngine;
+
+public class AlHoming2 : MonoBehaviour
+{
+    Transform playerTr;//プレイヤーのTransform
+    [SerializeField] float speed = 2f;  //敵の動くスピード
+
+    //=== 追加===
+    [Header("Enemy Status")]
+    [SerializeField] int maxHP = 3; //敵の最大HP
+    [SerializeField] int attackPower = 1;　//敵の攻撃力
+    int currentHP;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        //現在のHPを最大HPと同じ値に初期化します。
+        currentHP = maxHP;
+
+        //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+
+        //2. 小文字の「playerObj」がちゃんと見つかったか確認
+        if (playerObj != null)
+        {
+            playerTr = playerObj.transform;
+        }
+        else
+        {
+            Debug.LogError("タグ'Player'が見つかりません。インスペクターで設定を確認してください。");
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        // プレイヤーが見つかっていない、または距離が0.1f未満なら処理しない
+
+        if (playerTr == null || Vector2.Distance(transform.position, playerTr.position) < 0.1f)
+            return;
+
+
+
+        //プレイヤーに向けて進む
+
+        transform.position = Vector2.MoveTowards(transform.position,
+        playerTr.position,//Vector3は自動的にVector2に移動
+        speed * Time.deltaTime);
+    }
+    public void TakeDamage(int damage)
+    {
+        currentHP -= damage;
+
+        //HPが0以下なら死亡
+        if (currentHP <= 0)
+        {
+            Die();
+        }
+    }
+
+    //死亡処理
+    void Die()
+    {
+        Debug.Log("敵を倒した!");
+
+        //===【追加】Spawnerに自分が倒された場合を伝えて、複製を依頼巣r===
+        // if (Enemyspawner.Instance != null)
+        {
+            //            Enemyspawner.Instance.OnEnemyDefeated(transform.position);
+        }
+
+        Destroy(gameObject);
+    }
+
+    //プレイヤーに当たった時
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //当たった相手のタグが「Player」のとき
+        if (collision.CompareTag("Player"))
+        {
+            Debug.Log("プレイヤーに当たりました!");
+
+            //プレイヤー側のコンポーネントを取得
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+
+            //コンポーネントがちゃんと取得できていればダメージを与える
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackPower);
+            }
+
+
+            //自分自身も1ダメージ受ける（爆発）か、あるいは何もせず通り過ぎるようにします。
+            TakeDamage(1);
+
+        }
+    }
+}

@@ -1,10 +1,8 @@
 using UnityEngine;
 public class AIHoming : MonoBehaviour
 {
-
     Transform playerTr;//プレイヤーのTransform
-
-    [SerializeField] float speed = 1f;  //敵の動くスピード
+    [SerializeField] float speed = 2f;  //敵の動くスピード
 
     //=== 追加===
     [Header("Enemy Status")]
@@ -15,9 +13,9 @@ public class AIHoming : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //===【修正】ここで、現在のHPを最大HPと同じ値に初期化します。
+        //現在のHPを最大HPと同じ値に初期化します。
         currentHP = maxHP;
-
+        
         //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
@@ -33,22 +31,25 @@ public class AIHoming : MonoBehaviour
     }
 
     // Update is called once per frame
+    //物理移動は　Update　ではなく　FixedPdate で行うのがUnityの鉄則!
     private void Update()
     {
-        //プレイヤーが見つかっていない、または距離が0.1f未満なら処理しない
-        if (playerTr == null || Vector2.Distance(transform.position, playerTr.position) < 0.1f)
+     // プレイヤーが見つかっていない、または距離が0.1f未満なら処理しない
+
+    if (playerTr == null || Vector2.Distance(transform.position, playerTr.position) < 0.1f)
             return;
 
-        //プレイヤーに向けて進む
-        transform.position = Vector2.MoveTowards(
-            transform.position,
-            playerTr.position,//Vector3は自動的にVector2として計算されます
-            speed * Time.deltaTime);
 
+
+        //プレイヤーに向けて進む
+
+        transform.position = Vector2.MoveTowards(transform.position,
+        playerTr.position,//Vector3は自動的にVector2として計算されます
+        speed * Time.deltaTime);
     }
 
 
-    //ダメージを受ける関数
+    //ダメージを受ける関数(ここがHP0で消滅するコアの部分です)
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
@@ -66,9 +67,9 @@ public class AIHoming : MonoBehaviour
         Debug.Log("敵を倒した!");
 
         //===【追加】Spawnerに自分が倒された場合を伝えて、複製を依頼巣r===
-       // if(EnemySpawner.Instance != null)
+        // if (Enemyspawner.Instance != null)
         {
-         //   EnemySpawner.Instance.OnEnemyDefeated(transform.position);
+            //            Enemyspawner.Instance.OnEnemyDefeated(transform.position);
         }
 
         Destroy(gameObject);
@@ -77,6 +78,7 @@ public class AIHoming : MonoBehaviour
     //プレイヤーに当たった時
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        //当たった相手のタグが「Player」のとき
         if (collision.CompareTag("Player"))
         {
             Debug.Log("プレイヤーに当たりました!");
@@ -90,9 +92,10 @@ public class AIHoming : MonoBehaviour
                 playerHealth.TakeDamage(attackPower);
             }
 
-            //敵を消す
-            //===【追加】 Destroy(gameObject);の代わりに　die();を呼ぶ===
-            Die();
+
+            //自分自身も1ダメージ受ける（爆発）か、あるいは何もせず通り過ぎるようにします。
+             TakeDamage(1);
+
         }
     }
 
