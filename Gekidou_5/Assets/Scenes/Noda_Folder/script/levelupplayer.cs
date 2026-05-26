@@ -17,7 +17,7 @@ public class levelupplayer : MonoBehaviour
         UpdateUI();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))//スペースキーを押した時検知する
         {
@@ -46,7 +46,7 @@ public class levelupplayer : MonoBehaviour
         currentlevel++; //レベルアップ
 
         //次のレベルへの必要経験値を増やす
-        maxexp = Mathf.RoundToInt(maxexp * 1.12f);
+        maxexp = Mathf.RoundToInt(maxexp * 1.48f);
 
         UpdateUI();
 
