@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 public class AIHoming : MonoBehaviour
 {
@@ -8,6 +9,8 @@ public class AIHoming : MonoBehaviour
     [Header("Enemy Status")]
     [SerializeField] int maxHP = 3; //敵の最大HP
     [SerializeField] int attackPower = 1;　//敵の攻撃力
+    [SerializeField] float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
+    float attackTimer = 0f;
 
     int currentHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -15,7 +18,7 @@ public class AIHoming : MonoBehaviour
     {
         //現在のHPを最大HPと同じ値に初期化します。
         currentHP = maxHP;
-        
+
         //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
@@ -34,13 +37,15 @@ public class AIHoming : MonoBehaviour
     //物理移動は　Update　ではなく　FixedPdate で行うのがUnityの鉄則!
     private void Update()
     {
-     // プレイヤーが見つかっていない、または距離が0.1f未満なら処理しない
+        //攻撃タイマーを常に進める（プレイヤーに触れる間だけカウントしたい場合は、下に 移動させてもOK)
+        attackTimer += Time.deltaTime;
+    }
 
-    if (playerTr == null || Vector2.Distance(transform.position, playerTr.position) < 0.1f)
-            return;
-
-
-
+    //毎フレームのタイマー更新は　Update で行う
+    private void FixedUpdate()
+    {
+        //プレイヤーが見つかっていないなら処理しない（距離制限は削除）
+        if (playerTr == null) return;
         //プレイヤーに向けて進む
 
         transform.position = Vector2.MoveTowards(transform.position,
@@ -65,38 +70,68 @@ public class AIHoming : MonoBehaviour
     void Die()
     {
         Debug.Log("敵を倒した!");
-
-        //===【追加】Spawnerに自分が倒された場合を伝えて、複製を依頼巣r===
-        // if (Enemyspawner.Instance != null)
-        {
-            //            Enemyspawner.Instance.OnEnemyDefeated(transform.position);
-        }
-
+        // Spawnrの処理が必要ならここに書く
         Destroy(gameObject);
-    }
 
-    //プレイヤーに当たった時
+    }
+    //プレイヤーに当たった瞬間（最初の1発）
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        //当たった相手のタグが「Player」のとき
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("プレイヤーに当たりました!");
+            Debug.Log("プレイヤーに当たりました！");
 
-            //プレイヤー側のコンポーネントを取得
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-
-            //コンポーネントがちゃんと取得できていればダメージを与える
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackPower);
             }
+        }
+    }
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            attackTimer += Time.deltaTime;
+        }
 
+        if (attackTimer >= attackInterval)
+        {
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(attackPower);
+                //タイマーリセット
+                attackTimer = 0f;
 
-            //自分自身も1ダメージ受ける（爆発）か、あるいは何もせず通り過ぎるようにします。
-             TakeDamage(1);
-
+            }
         }
     }
 
-}
+    //プレイヤーに触れ続けている間（2発目以降の継続ダメージ）
+    private void OntriggerStay2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            //インターバル以上の時間が経っていたら攻撃
+            if (attackTimer >= attackInterval)
+            {
+                playerHealth.TakeDamage(attackPower);
+                Debug.Log("継続ダメージを与えました！");
+
+                //タイマーリセット
+                attackTimer = 0f;
+            }
+        }
+    }
+
+    //プレイヤーが離れたらタイマーをリセット（スペルを修正しました）
+    private void OnTriggerEx2D(Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            attackTimer = 0f;
+        }
+    }
+}  
