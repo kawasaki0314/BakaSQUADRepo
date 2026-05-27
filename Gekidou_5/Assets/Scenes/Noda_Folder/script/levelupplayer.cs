@@ -1,6 +1,9 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.Collections;
+using System.Collections.Generic;
+
 
 public class levelupplayer : MonoBehaviour
 {
@@ -8,13 +11,19 @@ public class levelupplayer : MonoBehaviour
     public int currentexp = 0; // 初期経験値
     public int maxexp = 100; //必要経験値
 
+    public Image healthImage; //体力表示
+    public int maxHP; //最大体力
+    private int hp; //体力
+
+
     [SerializeField]private int expPerKeyPress = 10;  //1会押すたびにもらえる経験値の量
     [SerializeField]private Slider expSlider;         //InspectorでSliderをドラッグ&ドロップ
     [SerializeField]private TextMeshProUGUI levelText;//InspectorでTMPをドラッグ&ドロップ
 
-    private void start()
+    private void Start()
     {
         UpdateUI();
+        hp = maxHP;
     }
 
     private void Update()
@@ -22,6 +31,15 @@ public class levelupplayer : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Space))//スペースキーを押した時検知する
         {
             Addexperience(expPerKeyPress);
+        }
+
+        if(Input.GetMouseButtonDown(0))
+        {
+            damage(10);
+        }
+        if (Input.GetMouseButtonDown(1))
+        {
+            heal(10);
         }
     }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -66,5 +84,17 @@ public class levelupplayer : MonoBehaviour
         {
             levelText.text = "Level:" + currentlevel; //レベルの表示
         }
+    }
+
+    public void damage(int damage) //ダメージの定義
+    {
+        hp -= damage;
+        healthImage.fillAmount = (float)hp / maxHP;
+    }
+
+    public void heal(int heal) //体力回復の定義
+    {
+        hp += heal;
+        healthImage.fillAmount = (float)hp / maxHP;
     }
 }

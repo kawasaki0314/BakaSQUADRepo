@@ -8,78 +8,31 @@ public class Enemyspawner : MonoBehaviour
     //   public static Enemyspawner Instance { get; private set; }
     //ここ(関数の外)に書くことで、スクリプト内のどこからでも使えるようになります!
     [SerializeField] GameObject EnemyPrefab;
-    [SerializeField] float SpawnInterVal = 2.0f; //  少し間隔を広げて2秒ごとに設定
+    [Header("Initial Settings")]
+    [SerializeField] int initialSpawnCount = 15;//最初に何匹だしておくか
+    //[SerializeField] float SpawnInterVal = 2.0f; //  少し間隔を広げて2秒ごとに設定
 
-    //===追加===
-    [SerializeField] int maxEnemyCount = 15;//画面に存在できる敵の最大数
-    /*
-    //ゲーム開始時に実体を登録
-    private void Awake()
-    {
-        if (Instance == null)
-        {
-            Instance = this;
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
-    }
-    */
+    
+  
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
-        // 定期生成を行うコルーチンを開始
-        StartCoroutine(SpawnRoutine());
-    }
-
-    //2. 足りなかったコルーチン本体です
-    private IEnumerator SpawnRoutine()
-
-    {
-        while (true)
-
+        //ゲーム開始時に、指定した数だけ敵を生み出す
+        for (int i = 0; i < initialSpawnCount; i ++)
         {
-            yield return new WaitForSeconds(SpawnInterVal);
-
-            //タグを使って、今画面にいる敵の数を数える
-            int currentEnemyCount = GameObject.FindGameObjectsWithTag("Enemy").Length;
-
-
-            //もし最大数を超えていたら、この回はスポンをスキップする
-            if (currentEnemyCount >= maxEnemyCount)
-
-            {
-                continue;
-            }
-
-
-            //最大数に余裕がある分だけ、あるいは最大5匹生み出す
-            for (int i = 0; i < 5; i++)
-
-            {
-                //生成する直前にもう一度上限チェック
-                if (GameObject.FindGameObjectsWithTag("Enemy").Length >= maxEnemyCount) break;
-
-                SpawnEnemy();
-
-            }
-
+            SpawnEnemy();
         }
-
     }
 
-    //3. 足りなかった「実際に敵を生み出す処理」です
-    private void SpawnEnemy()
+    
 
+    //ランダムな位置に敵を１匹生成する
+    private void SpawnEnemy()
     {
 
-        if (EnemyPrefab == null) return; //これなら正常に見つかる!//半径10マスの円の中のランダムな位置を計算
+       if (EnemyPrefab == null) return; //これなら正常に見つかる!//半径10マスの円の中のランダムな位置を計算
         Vector2 randomOffset = Random.insideUnitCircle * 10f;
-
-        Vector2 spawnPosition = transform.position + new Vector3(randomOffset.x, randomOffset.y, 0);
-
-
+        Vector2 spawnPosition = (Vector2)transform.position + randomOffset;
         //計算したランダム位置に複製
         Instantiate(EnemyPrefab, spawnPosition, Quaternion.identity);
     }
