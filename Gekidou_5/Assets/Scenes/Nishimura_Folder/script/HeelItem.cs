@@ -1,8 +1,8 @@
 using UnityEngine;
 
-public class SpeedUp : MonoBehaviour
+public class HeelItem : MonoBehaviour
 {
-    float speedup = 1.1f;
+    public float playerhp = 1.1f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
