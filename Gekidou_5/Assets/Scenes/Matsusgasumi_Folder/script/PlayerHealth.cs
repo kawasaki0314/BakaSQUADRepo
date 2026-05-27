@@ -37,22 +37,21 @@ public class PlayerHealth : MonoBehaviour
     void Attack()
     {
         // 自分の周りの範囲内にいる敵のコライダーをすべて検知する
+        // 1. 範囲内の敵をすべて取得
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius, EnemyLayer);
 
-        // 範囲内に敵が1匹もいなければ、ログも出さずに処理を終える（スッキリさせるため）
-        if (hitEnemies.Length == 0) return;
+        // デバッグ用：何匹検知したかコンソールに出す
+        if (hitEnemies.Length > 0) Debug.Log(hitEnemies.Length + "匹の敵を検知！");
 
-        Debug.Log("自動攻撃が発動！");
-
-        // 検知した敵すべてにダメージを与える
-        foreach (Collider2D Enemy in hitEnemies)
+        foreach (Collider2D enemyCollider in hitEnemies)
         {
-            AIHoming EnemyScript = Enemy.GetComponent<AIHoming>();
+            // 2. AIHomingスクリプトを取得
+            AIHoming enemyScript = enemyCollider.GetComponent<AIHoming>();
 
-            if (EnemyScript != null)
+            if (enemyScript != null)
             {
-                EnemyScript.TakeDamage(attackPower);
-                Debug.Log($"{Enemy.name} に自動で {attackPower} のダメージを与えた！");
+                // 3. ダメージ関数を呼ぶ
+                enemyScript.TakeDamage(attackPower);
             }
         }
     }

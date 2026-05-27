@@ -26,8 +26,15 @@ public class EnemySpawn : MonoBehaviour
     private void Awake()
     {
         //シングルトンの初期化
-        if (Instance == null) Instance = this;
-        else Destroy(gameObject);
+        if (Instance == null)
+        {
+            Instance = this;
+            //シーンを跨がない場合は DontDestroyOnLoad は不要です
+        }
+        else
+        {
+            Destroy(gameObject);//重複を防ぐ
+        }
     }
 
     private void Start()
@@ -35,55 +42,63 @@ public class EnemySpawn : MonoBehaviour
         //ゲーム開始時に通常の敵を初期数だけ生成する（これで画面に出るようになります！）
         for (int i = 0; i < initialSpawnCount; i++)
         {
-            /*Vector2 randomOffset = Random.insideUnitCircle * 10f;
-            Vector2 spawnPosition = (Vector2)transform.position + randomOffset;
-            SpawnspecificEnemy(false, spawnPosition);//falseなので通常敵*/
+            //広い範囲（例：-10から-10）を指定します
+            float randomX = Random.Range(-10f, 10f);
+            float randomY = Random.Range(-10f, 10f);
 
-            int spawnPosX = Random.Range(0, 4);
-            int spawnPosY = Random.Range(0, 4);
-            GameObject obj =Instantiate(regularEnemyprefab);
-            obj.transform.position = new Vector2(spawnPosX, spawnPosY);
+            Vector2 randomPos = new Vector2(randomX, randomY);
 
+            SpawnspecificEnemy(false, randomPos);
 
         }
     }
     //敵を生成する関数（引数でどっちの敵か指定する）
     private void SpawnspecificEnemy(bool isSpecial, Vector2 position)
     {
+        GameObject prefabToSpawn = isSpecial ? specialEnemyprefab : regularEnemyprefab;
 
-       if (isSpecial)
+        // もしプレハブが空っぽ（消えている）なら、処理を中断する
+        if (prefabToSpawn == null)
         {
-            //特定のキャラの場合、上限に達していたら生成をキャンセルする
-            if(currentSpecialCount >= maxSpecialEnemyCount)
-            {
-                Debug.Log("特定のキャラが上限に達しているため、生成をスキップしました。");
-                return;
-            }
-            Instantiate(specialEnemyprefab, position, Quaternion.identity);
-            currentSpecialCount++;//カウントアップ
+            Debug.LogError("プレハブが設定されていません！インスペクターを確認してください。");
+            return;
         }
-       else
+
+        if (isSpecial)
         {
+            if (currentSpecialCount >= maxSpecialEnemyCount) return;
             Instantiate(specialEnemyprefab, position, Quaternion.identity);
             currentSpecialCount++;
         }
+        else
+        {
+            Instantiate(regularEnemyprefab, position, Quaternion.identity);
+            currentRegularCount++;
+        }
+
     }
-    //敵が倒されたとき（敵側からよばれる）
+    //敵が死んだときに「敵自身から」呼ばれる関数
     public void OnEnemyDefeated(bool isSpecial, Vector2 defeatedPosition)
     {
+        //新しく出す場所を少しずらす
+        Vector2 spawnPosition = defeatedPosition + Random.insideUnitCircle * 1.5f;
+
         if(isSpecial)
         {
-            currentSpecialCount--;//特定のキャラが倒されたので数を減らす
-
-            //倒されたので、また近くに同じ特定のキャラを1匹補充する（上限以下なので確実に生成される）
-            Vector2 spawnPosition = defeatedPosition + Random.insideUnitCircle * 1f;
+            currentSpecialCount--;
             SpawnspecificEnemy(true, spawnPosition);
         }
         else
         {
             currentRegularCount--;
-            //通常の敵の補充処理...
+            //通常敵が倒されたときも補充する
+            SpawnspecificEnemy(false, spawnPosition);
         }
-    }
+
+        Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}特殊：{currentSpecialCount}");
+    }    
+        
+        
+    
 
 }
