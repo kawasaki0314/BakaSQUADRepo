@@ -5,6 +5,7 @@ public class BOoss : MonoBehaviour
 {
     Transform playerTr;//プレイヤーのtrasform
     [SerializeField] float speed = 2;
+    [SerializeField] private float rotationSpeed = 90f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
@@ -19,5 +20,6 @@ public class BOoss : MonoBehaviour
             return;
 
         transform.position = Vector2.MoveTowards(transform.position, new Vector2(playerTr.position.x, playerTr.position.y), speed * Time.deltaTime);
+        transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
     }
 }
