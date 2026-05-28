@@ -385,7 +385,7 @@ GameObject:
   - component: {fileID: 665397476}
   - component: {fileID: 665397475}
   - component: {fileID: 665397474}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn
   regularEnemyprefab: {fileID: 761651464}
-  specialEnemyprefab: {fileID: 0}
+  specialEnemyprefab: {fileID: 761651464}
   initialSpawnCount: 15
   maxSpecialEnemyCount: 20
 --- !u!1660057539 &9223372036854775807
