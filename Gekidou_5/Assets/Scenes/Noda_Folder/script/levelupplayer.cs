@@ -33,11 +33,11 @@ public class levelupplayer : MonoBehaviour
             Addexperience(expPerKeyPress);
         }
 
-        if(Input.GetKeyDown(KeyCode.S))
+        if(Input.GetKeyDown(KeyCode.Z))//Zキーでダメージを受け、体力ゲージが減少する
         {
             damage(10);
         }
-        if (Input.GetKeyDown(KeyCode.D))
+        if (Input.GetKeyDown(KeyCode.X))//Xキーで回復し、体力ゲージの復元が可能
         {
             heal(10);
         }
@@ -47,7 +47,7 @@ public class levelupplayer : MonoBehaviour
     {
         //レベルアップ
         currentexp += amount;
-        Debug.Log($"{amount}の経験値を獲得！現在の経験値:{currentexp}/{maxexp}");
+        Debug.Log($"{amount}の経験値を獲得！現在の経験値:{currentexp}/{maxexp}");//ログで確認可能
 
         while(currentexp >= maxexp)
         {
@@ -89,12 +89,24 @@ public class levelupplayer : MonoBehaviour
     public void damage(int damage) //ダメージの定義
     {
         hp -= damage;
+        // hpの値を 0 から maxHP の間に制限する
+        hp = Mathf.Clamp(hp, 0, maxHP); 
+        
         healthImage.fillAmount = (float)hp / maxHP;
+
+        Debug.Log($"ダメージを{damage}受けた！現在のHP:{hp}/{maxHP}");//ダメージログの表示
+
     }
 
     public void heal(int heal) //体力回復の定義
     {
         hp += heal;
+        // hpの値を 0 から maxHP の間に制限する
+        hp = Mathf.Clamp(hp, 0, maxHP); 
+        
         healthImage.fillAmount = (float)hp / maxHP;
+
+        Debug.Log($"体力を{heal}回復した！現在のHP:{hp}/{maxHP}");//回復ログの表示
+
     }
 }
