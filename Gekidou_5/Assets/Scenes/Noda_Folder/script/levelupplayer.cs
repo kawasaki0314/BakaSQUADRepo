@@ -33,11 +33,11 @@ public class levelupplayer : MonoBehaviour
             Addexperience(expPerKeyPress);
         }
 
-        if(Input.GetMouseButtonDown(0))
+        if(Input.GetKeyDown(KeyCode.S))
         {
             damage(10);
         }
-        if (Input.GetMouseButtonDown(1))
+        if (Input.GetKeyDown(KeyCode.D))
         {
             heal(10);
         }

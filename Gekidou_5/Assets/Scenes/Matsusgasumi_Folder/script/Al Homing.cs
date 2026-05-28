@@ -70,10 +70,29 @@ public class AIHoming : MonoBehaviour
     //死亡処理
     void Die()
     {
-        Debug.Log("敵を倒した!");
-        // Spawnrの処理が必要ならここに書く
+        // EnemySpawnクラスのInstance（自分自身）を直接呼ぶ
+        // ※もしクラス名が EnemySpeawn なら、ここも EnemySpeawn に合わせる
+        Debug.Log("敵を倒した!スポナーに補充を頼みます。");
+        // 【修正】まず最初に、確実に自分を消す予約を入れる
+        // Destroyは関数の最後に実行されるので、上に書いても大丈夫です
         Destroy(gameObject);
 
+        //Instance(シングルトン)を使ってスポナーに報告
+        //EnemySpawnのInstance(さっきAwakeで作ったやつ)を直接呼ぶ
+        if (EnemySpawn.Instance != null)
+        {
+            //倒された場所を伝えて補充してもらうう
+            EnemySpawn.Instance.OnEnemyDefeated(false, transform.position);
+           // Debug.Log("補充依頼しました");
+        }
+        else
+        {
+            //もしこれが出たら、Spawner側のAwakeが動いていない証拠です
+            Debug.LogError("スポナーのInstanceが見つかりません！Spawnerオブジェクトにスクリプトを付け直してください");
+
+        }
+       
+        Destroy(gameObject);
     }
     //プレイヤーに当たった瞬間（最初の1発）
     private void OnTriggerEnter2D(Collider2D collision)
