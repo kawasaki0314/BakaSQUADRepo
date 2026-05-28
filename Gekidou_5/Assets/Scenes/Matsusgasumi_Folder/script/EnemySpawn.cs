@@ -81,7 +81,7 @@ public class EnemySpawn : MonoBehaviour
     public void OnEnemyDefeated(bool isSpecial, Vector2 defeatedPosition)
     {
         //新しく出す場所を少しずらす
-        Vector2 spawnPosition = defeatedPosition + Random.insideUnitCircle * 1.5f;
+        Vector2 spawnPosition = defeatedPosition + Random.insideUnitCircle * 10f;
 
         if(isSpecial)
         {

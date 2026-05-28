@@ -8,7 +8,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Player Attack settings")]
     [SerializeField] int attackPower = 5;      // プレイヤーの攻撃力
-    [SerializeField] float attackRadius = 3.0f; // 攻撃が届く範囲（自動なので少し広めの3.0がオススメ）
+    [SerializeField] float attackRadius = 2.0f; // 攻撃が届く範囲（自動なので少し広めの3.0がオススメ）
     [SerializeField] LayerMask EnemyLayer;      // 敵のレイヤー（Enemy）
     [SerializeField] float attackInterval = 1.0f; // 攻撃の間隔（何秒に1回攻撃するか）
 
