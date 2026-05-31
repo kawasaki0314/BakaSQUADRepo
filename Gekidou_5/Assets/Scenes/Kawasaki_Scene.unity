@@ -138,7 +138,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerAttack
   attackPrefab: {fileID: 8315443207280939135, guid: 3910d7f2afdebac49a7009031c8935da, type: 3}
   orbitPrefab: {fileID: 3820847121941978884, guid: 0309175be00d52e468daff399363bb01, type: 3}
-  BulletPrefab: {fileID: 3646140967540807233, guid: cea84921299c21448826c60b1c2f487e, type: 3}
+  bulletPrefab: {fileID: 3646140967540807233, guid: cea84921299c21448826c60b1c2f487e, type: 3}
   attackOffset: 1
   shootInterval: 2
 --- !u!114 &1872364375
@@ -170,6 +170,7 @@ GameObject:
   - component: {fileID: 1953837893}
   - component: {fileID: 1953837892}
   - component: {fileID: 1953837891}
+  - component: {fileID: 1953837896}
   m_Layer: 0
   m_Name: DammyEnemy
   m_TagString: Enemy
@@ -336,6 +337,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1953837896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1953837890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cc268070b30a574b9260dea75e6e127, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHp
+  maxHp: 3
 --- !u!1 &2043663693
 GameObject:
   m_ObjectHideFlags: 0
