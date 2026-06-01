@@ -17,26 +17,24 @@ public class AIHoming2 : MonoBehaviour
     {
         //現在のHPを最大HPと同じ値に初期化します。
         currentHP = maxHP;
+        FindPlayer();
+        
+    }
 
-        //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
+    //プレイヤーを探す処理を共通化
+    void FindPlayer()
+    {
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-
-        //2. 小文字の「playerObj」がちゃんと見つかったか確認
-        if (playerObj != null)
+        if(playerObj != null)
         {
             playerTr = playerObj.transform;
         }
-        else
-        {
-            Debug.LogError("タグ'Player'が見つかりません。インスペクターで設定を確認してください。");
-        }
     }
-
     // Update is called once per frame
     //物理移動は　Update　ではなく　FixedPdate で行うのがUnityの鉄則!
     private void Update()
     {
-        //攻撃タイマーを常に進める（プレイヤーに触れる間だけカウントしたい場合は、下に 移動させてもOK)
+        //タイマーは常に進める
         attackTimer += Time.deltaTime;
     }
 
@@ -44,17 +42,10 @@ public class AIHoming2 : MonoBehaviour
     private void FixedUpdate()
     {
         //もしプレイヤーが見つからなかっていなければ、その場で探す
-        if(playerTr != null)
+        if(playerTr == null)
         {
-            GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-            if(playerObj != null)
-            {
-                playerTr = playerObj.transform;
-            }
-            else
-            {
-                return;//プレイヤーがいないなら何もしない
-            }
+            FindPlayer();
+            return;//見つかるまで以下の処理はしない
         }
 
         //プレイヤーに向けて移動する
@@ -70,7 +61,6 @@ public class AIHoming2 : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHP -= damage;
-        //  追加
         Debug.Log("敵の残りHP: " + currentHP);
 
         //HPが0以下なら死亡
@@ -88,8 +78,7 @@ public class AIHoming2 : MonoBehaviour
         Debug.Log("敵を倒した!スポナーに補充を頼みます。");
         // 【修正】まず最初に、確実に自分を消す予約を入れる
         // Destroyは関数の最後に実行されるので、上に書いても大丈夫です
-        Destroy(gameObject);
-
+       
         //Instance(シングルトン)を使ってスポナーに報告
         //EnemySpawnのInstance(さっきAwakeで作ったやつ)を直接呼ぶ
         if (EnemySpawn2.Instance != null)
@@ -112,12 +101,13 @@ public class AIHoming2 : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            Debug.Log("プレイヤーに当たりました！");
+            Debug.Log("プレイヤーに接触！");
 
             PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackPower);
+                attackTimer = 0f;//接触週刊にタイマーリセット
             }
         }
     }
@@ -125,46 +115,27 @@ public class AIHoming2 : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            attackTimer += Time.deltaTime;
-        }
-
-        if (attackTimer >= attackInterval)
-        {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
+            //Upbateでも進めていますが、念のためここにもチャック
+            if(attackTimer >= attackInterval)
             {
-                playerHealth.TakeDamage(attackPower);
-                //タイマーリセット
-                attackTimer = 0f;
-
-            }
-        }
-    }
-
-    //プレイヤーに触れ続けている間（2発目以降の継続ダメージ）
-    private void OntriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            //インターバル以上の時間が経っていたら攻撃
-            if (attackTimer >= attackInterval)
-            {
-                playerHealth.TakeDamage(attackPower);
-                Debug.Log("継続ダメージを与えました！");
-
-                //タイマーリセット
-                attackTimer = 0f;
+                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(attackPower);
+                    Debug.Log("継続ダメージを与えました！");
+                    attackTimer = 0f;
+                }
             }
         }
     }
 
     //プレイヤーが離れたらタイマーをリセット（スペルを修正しました）
-    private void OnTriggerEt2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
-            attackTimer = 0f;
+            Debug.Log("プレイヤーが離れました");
+            attackTimer = 0f;//離れたらリセット
         }
     }
 }
