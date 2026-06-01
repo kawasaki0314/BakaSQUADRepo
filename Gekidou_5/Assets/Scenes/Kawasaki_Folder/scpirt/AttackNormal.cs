@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Attack1 : MonoBehaviour
+public class AttackNormal : MonoBehaviour
 {
     public float lifeTime = 0.1f; // 攻撃の存在時間
 

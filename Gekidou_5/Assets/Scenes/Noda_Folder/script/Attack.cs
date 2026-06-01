@@ -15,7 +15,7 @@ public class Attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.A))
+        if(Input.GetKeyDown(KeyCode.C))//Cキーを押すと攻撃のアニメーションを流すができる
         {
             anim.SetTrigger("attack");
         }
