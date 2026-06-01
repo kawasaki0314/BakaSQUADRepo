@@ -13,7 +13,7 @@ public class levelupplayer : MonoBehaviour
 
     public Image healthImage; //体力表示
     public int maxHP; //最大体力
-    private int hp; //体力
+    public int hp; //体力
 
 
     [SerializeField]private int expPerKeyPress = 10;  //1会押すたびにもらえる経験値の量
