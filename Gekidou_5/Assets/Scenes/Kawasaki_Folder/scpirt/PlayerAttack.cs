@@ -83,7 +83,7 @@ public class PlayerAttack : MonoBehaviour
         AttackNormal normalScript = attackObj.GetComponent<AttackNormal>();
         if (normalScript != null)
         {
-            normalScript.attackPower = this.normalAttackPower;
+            //normalScript.attackPower = this.normalAttackPower;
         }
     }
 
@@ -109,7 +109,7 @@ public class PlayerAttack : MonoBehaviour
             atk.player = transform;// playerを中心にする
             atk.SetStartingAngle(angle); // 180度をセット
 
-            atk.attackPower = this.orbitAttackPower;
+            //atk.attackPower = this.orbitAttackPower;
         }
     }
 
@@ -138,7 +138,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 bullet.SetDirection(fireDir);
 
-                bullet.attackPower = this.bulletAttackPower;
+                //bullet.attackPower = this.bulletAttackPower;
             }
         }
     }
