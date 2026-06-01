@@ -14,7 +14,7 @@ public class EnemySpawn2 : MonoBehaviour
     [SerializeField] int maxSpecialEnemyCount = 20;
 
     [Header("Timer Settings")]
-    [SerializeField] float delaySeconds = 30f; // 何秒後に登場させるか（インスペクターで変更可能）
+    [SerializeField] float delaySeconds = 3f; // 何秒後に登場させるか（インスペクターで変更可能）
 
     private int currentRegularCount = 0;
     private int currentSpecialCount = 0;
@@ -35,7 +35,7 @@ public class EnemySpawn2 : MonoBehaviour
     private IEnumerator SpawnAfterDelay()
     {
         // 指定した秒数だけ待機
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(3f);
 
         // 待機が終わった後に、元の生成処理を実行
         for (int i = 0; i < initialSpawnCount; i++)
