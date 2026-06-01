@@ -88,25 +88,37 @@ public class levelupplayer : MonoBehaviour
 
     public void damage(int damage) //ダメージの定義
     {
+        if(hp <= 0)
+        {
+            Debug.Log("やめて！もう城之内くんのライフポイントはゼロよ！");//オーバーキル
+            return;//これ以降の処理をスキップし、処理を終了させる
+        }
+
         hp -= damage;
         // hpの値を 0 から maxHP の間に制限する
         hp = Mathf.Clamp(hp, 0, maxHP); 
         
         healthImage.fillAmount = (float)hp / maxHP;
-
+        
+        //体力がゼロの場合もこれは表示可能
         Debug.Log($"ダメージを{damage}受けた！現在のHP:{hp}/{maxHP}");//ダメージログの表示
 
     }
 
     public void heal(int heal) //体力回復の定義
     {
+        if(hp >= 100)
+        {
+            Debug.Log("既に体力は全開だ！");//回復のしすぎ
+            return;//処理のスキップをし、強制終了
+        }
+
         hp += heal;
         // hpの値を 0 から maxHP の間に制限する
         hp = Mathf.Clamp(hp, 0, maxHP); 
         
-        healthImage.fillAmount = (float)hp / maxHP;
+        healthImage.fillAmount = (float)hp / maxHP;//UI上で表示
 
         Debug.Log($"体力を{heal}回復した！現在のHP:{hp}/{maxHP}");//回復ログの表示
-
     }
 }
