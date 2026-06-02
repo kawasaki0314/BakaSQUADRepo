@@ -45,8 +45,10 @@ public class AIHoming2 : MonoBehaviour
         if(playerTr == null)
         {
             FindPlayer();
-            return;//見つかるまで以下の処理はしない
         }
+
+        // それでも見つからなければ、ここで処理を中断して次のフレームを待つ
+        if (playerTr == null) return;
 
         //プレイヤーに向けて移動する
         //speedが小さすぎると動いて見えないので、インスペクターで「5」くらいにしてみてください

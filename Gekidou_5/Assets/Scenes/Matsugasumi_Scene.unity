@@ -1022,8 +1022,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn2
   regularEnemyprefab: {fileID: 7123478603682011902, guid: 192ed3618815f4a4ebc3239852b3f067, type: 3}
   specialEnemyprefab: {fileID: 7123478603682011902, guid: 192ed3618815f4a4ebc3239852b3f067, type: 3}
-  initialSpawnCount: 15
-  maxSpecialEnemyCount: 20
+  initialSpawnCount: 6
+  maxSpecialEnemyCount: 10
   delaySeconds: 3
 --- !u!114 &2085143773
 MonoBehaviour:
