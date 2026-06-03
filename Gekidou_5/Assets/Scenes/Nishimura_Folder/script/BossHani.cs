@@ -19,8 +19,8 @@ public class BossHani : MonoBehaviour
         if(other.gameObject.tag == "Player")
         {
             //levelupplayer player = other.gameObject.GetComponent<levelupplayer>();
-           // player.hp -= 10;
-           // Debug.Log("10ダメージ受けた");
+            //player.hp -= 10;
+            //Debug.Log("10ダメージ受けた");
         }
     }
 }
