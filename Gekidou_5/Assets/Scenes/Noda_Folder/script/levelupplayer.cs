@@ -26,7 +26,7 @@ public class levelupplayer : MonoBehaviour
         hp = maxHP;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         if(Input.GetKeyDown(KeyCode.Space))//スペースキーを押した時検知する
         {
