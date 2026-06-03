@@ -1,40 +1,23 @@
 using UnityEngine;
-
+using System.Collections;
 public class Enemy : MonoBehaviour
 {
-    [Header("Enemy HP Settings")]
-    public int maxHp = 3;  // エネミーの最大HP
-    private int nowHp;     // 現在のHP
-
+    private Rigidbody2D rb;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        // ゲーム開始時にHPを満タンにする
-        nowHp = maxHp;
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    // ダメージを受ける関数（プレイヤーの攻撃から呼び出される）
-    public void TakeDamage(int damage)
+    public void Knockback(Vector2 dir, float power)
     {
-        nowHp -= damage;
-        Debug.Log($"【エネミー】ダメージを {damage} 受けた！ 残りHP: {nowHp}");
-
-        // HPが0以下になったら消滅
-        if (nowHp <= 0)
-        {
-            Die();
-        }
+        rb.AddForce(dir * power, ForceMode2D.Impulse);
+        StartCoroutine(StopAfterTime());
     }
 
-    void Die()
+    IEnumerator StopAfterTime()
     {
-        Debug.Log("エネミーを倒した！");
-
-        PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
-        if (playerLevel != null)
-        {
-            playerLevel.GainExp(3); // 敵を1体倒したら経験値を「3」手に入れる
-        }
-
-        Destroy(gameObject); // エネミーのオブジェクトを削除
+        yield return new WaitForSeconds(0.1f);
+        rb.linearVelocity = Vector2.zero;
     }
 }

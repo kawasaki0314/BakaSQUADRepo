@@ -4,27 +4,23 @@ using UnityEngine.InputSystem;
 public class PlayerAttack : MonoBehaviour
 {
     [Header("Prefabs")]
-    public GameObject attackPrefab; // 近接攻撃
-    public GameObject orbitPrefab; // 回転攻撃
-    public GameObject bulletPrefab; // 射撃攻撃
-
-    [Header("Player Stats (Level Up)")]
-    public int normalAttackPower = 1; // 近接攻撃の威力
-    public int orbitAttackPower = 1; // 回転攻撃の威力
-    public int bulletAttackPower = 1; // 射撃攻撃の威力
+    public GameObject attackPrefab; // 攻撃プレハブ
+    public GameObject orbitPrefab; // 攻撃プレハブ2
+    public GameObject BulletPrefab; // 攻撃プレハブ3
 
     [Header("Attack Settings")]
-    public float attackOffset = 1.5f; // 近接攻撃を前に出す距離
+
+    public float attackOffset = 1.5f; // 攻撃1を前に出す距離
 
     [Header("Auto Shoot Settings")]
-    public float shootInterval = 2f; // 自動で射撃攻撃を出す間隔
-    private float shootTimer = 0f; // 射撃攻撃のタイマー
+    public float shootInterval = 2f; // 自動で攻撃3を出す間隔
+    private float shootTimer = 0f; // 自動攻撃のタイマー
 
     private PlayerMove playerMove;
 
     private float playTime = 0f; // 時間管理
 
-    // 回転攻撃を一度だけ生成するためのフラグ
+    // 一度だけ生成するためのフラグ
     private bool orbitSpawned = false;
 
     void Start()
@@ -34,7 +30,7 @@ public class PlayerAttack : MonoBehaviour
 
     void Update()
     {
-        // 時間の更新
+        // 経過時間を増やす
         playTime += Time.deltaTime;
 
         // 一定時間で回転攻撃を出す(1回のみ)
@@ -44,27 +40,23 @@ public class PlayerAttack : MonoBehaviour
             SpawnOrbitAttack();
         }
 
-        // 自動で十字型に射撃攻撃を出す
+        // 自動で十字型に攻撃3を出す
         shootTimer += Time.deltaTime;
-        if (shootTimer >= shootInterval)
+        if(shootTimer >= shootInterval)
         {
             shootTimer = 0f; // タイマーリセット
             AutoShoot();
         }
 
-        // 左クリックで近接攻撃
+        // 左クリックで攻撃
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Attack();
         }
     }
 
-    void Attack() // 近接攻撃の処理
-    {
-
-        if (attackPrefab == null) return;
-
-        // プレイヤーの向いている方向を取得
+    void Attack() // 通常攻撃の処理
+    {   // プレイヤーの向いている方向を取得
         Vector2 dir = playerMove.GetLastDir();
 
         // 攻撃の位置決定
@@ -78,44 +70,35 @@ public class PlayerAttack : MonoBehaviour
         Quaternion rot = Quaternion.Euler(0, 0, angle);
 
         // 攻撃の生成
-        GameObject attackObj = Instantiate(attackPrefab, spawnPos, rot);
+        Instantiate(attackPrefab, spawnPos, rot);
+    }
 
-        AttackNormal normalScript = attackObj.GetComponent<AttackNormal>();
-        if (normalScript != null)
+    void SpawnOrbitAttack() // 回転攻撃の処理
+    {
+        // 1個目の攻撃を生成(0度の位置からスタート)
+        GameObject orbit1 = Instantiate(orbitPrefab, transform.position,
+            Quaternion.identity);
+        AttackOrbit atk1 = orbit1.GetComponent<AttackOrbit>();
+        if (atk1 != null)
         {
-            normalScript.attackPower = this.normalAttackPower;
+            atk1.player = transform;// playerを中心にする
+            atk1.SetStartingAngle(0f); // 0度をセット
+        }
+        
+        // 2個目の攻撃を生成(180度の位置からスタート)
+        GameObject orbit2 = Instantiate(orbitPrefab, transform.position,
+            Quaternion.identity);
+        AttackOrbit atk2 = orbit2.GetComponent<AttackOrbit>();
+        if (atk2 != null)
+        {
+            atk2.player = transform;// playerを中心にする
+            atk2.SetStartingAngle(180f); // 180度をセット
         }
     }
 
-    void SpawnOrbitAttack() // 回転攻撃
+    void AutoShoot()
     {
-        if (orbitPrefab == null) return;
-
-        // 0度の位置に攻撃オブジェクトを生成
-        CreatOrbit(0f);
-
-        CreatOrbit(180f);
-    }
-
-    void CreatOrbit(float angle)
-    {
-        GameObject orbit = Instantiate(orbitPrefab, transform.position,
-           Quaternion.identity);
-
-        AttackOrbit atk = orbit.GetComponent<AttackOrbit>();
-
-        if (atk != null)
-        {
-            atk.player = transform;// playerを中心にする
-            atk.SetStartingAngle(angle); // 180度をセット
-
-            atk.attackPower = this.orbitAttackPower;
-        }
-    }
-
-    void AutoShoot() // 十字型に射撃攻撃を出す
-    {
-        if (bulletPrefab == null) return;
+        if (BulletPrefab == null) return;
 
         // 十字の4方向のベクトル配置
         Vector2[] ShootDirections =
@@ -130,16 +113,16 @@ public class PlayerAttack : MonoBehaviour
         foreach (Vector2 fireDir in ShootDirections)
         {
             // 弾をプレイヤーの位置に生成
-            GameObject bulletObj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            GameObject bulletObj = Instantiate(BulletPrefab, transform.position, Quaternion.identity);
 
             // 弾のスクリプトを取得して方向を設定
             AttackBullet bullet = bulletObj.GetComponent<AttackBullet>();
-            if (bullet != null)
+            if(bullet != null)
             {
                 bullet.SetDirection(fireDir);
-
-                bullet.attackPower = this.bulletAttackPower;
             }
         }
     }
+
 }
+

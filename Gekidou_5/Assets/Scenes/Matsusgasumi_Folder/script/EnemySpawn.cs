@@ -2,7 +2,7 @@ using NUnit.Framework.Constraints;
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EnemySpawn : MonoBehaviour
 {
@@ -23,14 +23,6 @@ public class EnemySpawn : MonoBehaviour
     //各キャラクターの現在の出現数を数える変数
     private int currentRegularCount = 0;
     private int currentSpecialCount = 0;//このキャラの現在の数
-
-    //プレイヤーの場所を基準にするための変数
-    private Transform playerTransform;
-
-    //画面外から出現させるための距離設定
-    [Header("Spawn Distance")]
-    [SerializeField] float misSpawnDistance = 12f;  //最低でもこのくらい離す（画面外）
-    [SerializeField] float maxSpawnDistance = 15f;  //最大でもこのくらいの距離（遠すぎない）
     private void Awake()
     {
         //シングルトンの初期化
@@ -47,45 +39,18 @@ public class EnemySpawn : MonoBehaviour
 
     private void Start()
     {
-        //プレイヤーにタグで見つける
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
-        if(playerObj != null)
+        //ゲーム開始時に通常の敵を初期数だけ生成する（これで画面に出るようになります！）
+        for (int i = 0; i < initialSpawnCount; i++)
         {
-            playerTransform = playerObj.transform;
-        }
-        else
-        {
-            Debug.LogError("enemySpawn: タグ'Player'が見つかりません!");
-        }
+            //広い範囲（例：-10から-10）を指定します
+            float randomX = Random.Range(-10f, 10f);
+            float randomY = Random.Range(-10f, 10f);
 
-        //ゲーム開始時に通常の敵を初期化数だけ生成する
-        for(int i = 0; i < initialSpawnCount; i++)
-        {
-            //最初からプレイヤーの画面外に配置する
-            Vector2 spawnPos = GetRandomSpawnPosition();
-            SpawnspecificEnemy(false, spawnPos);
+            Vector2 randomPos = new Vector2(randomX, randomY);
+
+            SpawnspecificEnemy(false, randomPos);
+
         }
-    }
-
-    //プレイヤーの周囲（画面外）のランダムな位置を計算する関数
-    private Vector2 GetRandomSpawnPosition()
-    {
-        //もしプレイヤーが見つかっていない場合は、原点（0,0)を基準にする
-        Vector2 basePosition = Vector2.zero;
-        if(playerTransform != null)
-        {
-            basePosition = playerTransform.position;
-        }
-        //ランダムな方向（角度）を決める
-        float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
-        //画面外になるようなランダムな距離を決める
-        float distance = Random.Range(misSpawnDistance, maxSpawnDistance);
-
-        //方向と距離から、位置（X, Y)を計算
-        float spawnX = basePosition.x + Mathf.Cos(angle) * distance;
-        float spawnY = basePosition.y + Mathf.Sin(angle) * distance;
-
-        return new Vector2(spawnX, spawnY);
     }
     //敵を生成する関数（引数でどっちの敵か指定する）
     private void SpawnspecificEnemy(bool isSpecial, Vector2 position)
@@ -115,8 +80,8 @@ public class EnemySpawn : MonoBehaviour
     //敵が死んだときに「敵自身から」呼ばれる関数
     public void OnEnemyDefeated(bool isSpecial, Vector2 defeatedPosition)
     {
-        //敵が死んだときの補充も、現在のプレイヤーの画面外にする
-        Vector2 spawnPosition = GetRandomSpawnPosition();
+        //新しく出す場所を少しずらす
+        Vector2 spawnPosition = defeatedPosition + Random.insideUnitCircle * 10f;
 
         if(isSpecial)
         {

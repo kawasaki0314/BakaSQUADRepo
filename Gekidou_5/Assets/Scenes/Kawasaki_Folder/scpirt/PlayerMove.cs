@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float playerSpeed = 2f; // 移動速度
+    public float speed = 2f; // 移動速度
 
     public float blinkDistance = 7.5f; // ブリンクの距離
     public float blinkDuration = 0.3f; // 時間
@@ -66,8 +66,9 @@ public class PlayerMove : MonoBehaviour
         // ブリンク中は通常移動しない
         if (!isBlinking)
         {
-            transform.position += (Vector3)(move * playerSpeed * Time.deltaTime);
+            transform.position += (Vector3)(move * speed * Time.deltaTime);
         }
+
         // 右クリックでブリンク
         if (Mouse.current.rightButton.wasPressedThisFrame &&
             lastDir != Vector2.zero &&
