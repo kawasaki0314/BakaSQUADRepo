@@ -73,10 +73,20 @@ public class AIHoming : MonoBehaviour
         // EnemySpawnクラスのInstance（自分自身）を直接呼ぶ
         // ※もしクラス名が EnemySpeawn なら、ここも EnemySpeawn に合わせる
         Debug.Log("敵を倒した!スポナーに補充を頼みます。");
-        // 【修正】まず最初に、確実に自分を消す予約を入れる
-        // Destroyは関数の最後に実行されるので、上に書いても大丈夫です
-        Destroy(gameObject);
-
+        /*
+        //画面内からプレイヤーのレベルスクリプトを探して、経験値を手渡す
+        PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
+        if(playerLevel != null)
+        {
+            playerLevel.GainExp(3);//敵を1体倒したら経験値「３」手に入れる設定
+            Debug.Log("プレイヤーに経験値を３あたえました！");
+        }
+        else
+        {
+            //もしもこのエラーが出てたら、プレイヤーに「PlayerLevel」スクリプトが付いているか確認してください
+            Debug.LogWarning("PlayerLevelスクリプトは見つかりません！経験値が加算さrませんでした。");
+        }
+        */
         //Instance(シングルトン)を使ってスポナーに報告
         //EnemySpawnのInstance(さっきAwakeで作ったやつ)を直接呼ぶ
         if (EnemySpawn.Instance != null)
@@ -90,8 +100,10 @@ public class AIHoming : MonoBehaviour
             //もしこれが出たら、Spawner側のAwakeが動いていない証拠です
             Debug.LogError("スポナーのInstanceが見つかりません！Spawnerオブジェクトにスクリプトを付け直してください");
 
+
         }
        
+        //じぶんおｗ消去する処理は、すべての報告や処理が「終わったら最後」に1回だけ書くのが鉄則！
         Destroy(gameObject);
     }
     //プレイヤーに当たった瞬間（最初の1発）

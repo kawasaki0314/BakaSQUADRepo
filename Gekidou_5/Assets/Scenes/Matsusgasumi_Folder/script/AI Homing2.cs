@@ -3,7 +3,7 @@ using UnityEngine;
 public class AIHoming2 : MonoBehaviour
 {
     Transform playerTr;//プレイヤーのTransform
-    [SerializeField] float speed = 5f;  //敵の動くスピード
+    [SerializeField] float speed = 15f;  //敵の動くスピード
 
     [Header("Enemy Status")]
     [SerializeField] int maxHP = 3; //敵の最大HP
@@ -17,7 +17,7 @@ public class AIHoming2 : MonoBehaviour
     {
         //現在のHPを最大HPと同じ値に初期化します。
         currentHP = maxHP;
-        FindPlayer();
+        FindPlayer();//生まれた瞬間に一度探す
         
     }
 
@@ -27,7 +27,7 @@ public class AIHoming2 : MonoBehaviour
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if(playerObj != null)
         {
-            playerTr = playerObj.transform;
+           playerTr = playerObj.transform;
         }
     }
     // Update is called once per frame
@@ -41,17 +41,15 @@ public class AIHoming2 : MonoBehaviour
     //毎フレームのタイマー更新は　Update で行う
     private void FixedUpdate()
     {
-        //もしプレイヤーが見つからなかっていなければ、その場で探す
+        //プレイヤーが見つかっていない、または見失った場合は「毎回」探す
         if(playerTr == null)
         {
             FindPlayer();
         }
-
-        // それでも見つからなければ、ここで処理を中断して次のフレームを待つ
+        //それでも見つからない時だけ処理をスキップする
         if (playerTr == null) return;
 
-        //プレイヤーに向けて移動する
-        //speedが小さすぎると動いて見えないので、インスペクターで「5」くらいにしてみてください
+        //プレイヤーに向けて移動する（time.fixedDeltaTimeを使用）
         transform.position = Vector2.MoveTowards(
             transform.position,
             playerTr.position,
