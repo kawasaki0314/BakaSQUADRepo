@@ -8,6 +8,9 @@ TagManager:
   - Button
   - levelupplayer
   - Ground
+  - SpeedUpItem
+  - AttackUpItem
+  - HeelItem
   layers:
   - Default
   - TransparentFX

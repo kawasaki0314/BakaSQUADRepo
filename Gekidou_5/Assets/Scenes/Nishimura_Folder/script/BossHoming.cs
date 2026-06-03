@@ -6,11 +6,12 @@ public class BOoss : MonoBehaviour
     Transform playerTr;//プレイヤーのtrasform
     [SerializeField] float speed = 2;
     [SerializeField] private float rotationSpeed = 90f;
-
+    public int BossHp = 1000;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         playerTr = GameObject.FindGameObjectWithTag("Player").transform;
+        //BossHp = BossHp * currentlevel;
     }
 
     // Update is called once per frame
