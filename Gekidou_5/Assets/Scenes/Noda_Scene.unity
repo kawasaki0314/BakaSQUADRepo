@@ -291,6 +291,7 @@ MonoBehaviour:
   maxexp: 100
   healthImage: {fileID: 1059096116}
   maxHP: 100
+  hp: 0
   expPerKeyPress: 10
   expSlider: {fileID: 2107897219}
   levelText: {fileID: 449316297}
@@ -1591,6 +1592,6 @@ SceneRoots:
   - {fileID: 993142639}
   - {fileID: 957472044}
   - {fileID: 1460220382}
-  - {fileID: 835668631}
   - {fileID: 2089294448}
   - {fileID: 869341428}
+  - {fileID: 835668631}

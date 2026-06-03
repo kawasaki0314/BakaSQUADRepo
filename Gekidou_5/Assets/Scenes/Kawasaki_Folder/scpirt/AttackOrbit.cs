@@ -7,6 +7,10 @@ public class AttackOrbit : MonoBehaviour
     public float distance = 2.5f; // 回転半径
     public float speed = 180f; // 回転速度
 
+    // 攻撃力を受け取るため
+    [HideInInspector]
+    public int attackPower;
+
     private float angle = 0f; // 現在の角度
 
     public void SetStartingAngle(float startAngle) // 開始角度をセットするための関数
@@ -34,10 +38,23 @@ public class AttackOrbit : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D other)
     {
+        // ぶつかった相手がプレイヤー自身、処理を無視する
+        if (other.CompareTag("Player"))
+        {
+            return;
+        }
+
         // Enemyタグに当たった場合
         if (other.CompareTag("Enemy"))
         {
-            Debug.Log("ヒット!");
+            // 当たった相手からEnemyスクリプトを取得する
+            Enemy enemy = other.GetComponent<Enemy>();
+
+            // 渡された攻撃力分のダメージを与える
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackPower);
+            }
         }
     }
 }
