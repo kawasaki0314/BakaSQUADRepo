@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - Button
+  - levelupplayer
+  - Ground
+  - SpeedUpItem
+  - AttackUpItem
+  - HeelItem
   layers:
   - Default
   - TransparentFX
@@ -14,7 +19,7 @@ TagManager:
   - Water
   - UI
   - Enemy
-  - 
+  - Player
   - 
   - 
   - 
