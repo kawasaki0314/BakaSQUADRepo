@@ -1331,7 +1331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 046e754f003e6e74bb600c6b6e0c4dc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMove
-  speed: 4
+  playerSpeed: 3
   blinkDistance: 7.5
   blinkDuration: 0.3
   blinkCooldown: 3
@@ -3865,7 +3865,7 @@ MonoBehaviour:
   m_BlendUpdateMethod: 1
   m_DefaultBlend:
     m_Style: 1
-    m_Time: 2
+    m_Time: 9
     m_CustomCurve:
       serializedVersion: 2
       m_Curve: []
@@ -3891,6 +3891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1df14baf31e89594a91f5f7798932b3f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerCamera
+  player: {fileID: 210212284}
 --- !u!114 &699802854
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7819,6 +7820,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BOoss
   speed: 2
   rotationSpeed: 90
+  BossHp: 1000
 --- !u!212 &1487734711
 SpriteRenderer:
   serializedVersion: 2
@@ -7866,7 +7868,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
@@ -8494,7 +8496,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6226415, g: 0.249644, b: 0.249644, a: 1}
@@ -9861,7 +9863,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6132076, g: 0.55274105, b: 0.34420612, a: 1}
@@ -10866,6 +10868,8 @@ MonoBehaviour:
   specialEnemyprefab: {fileID: 321739127192385401, guid: daf3db2e7d21e4348a5c7f1d35ac75c7, type: 3}
   initialSpawnCount: 15
   maxSpecialEnemyCount: 20
+  misSpawnDistance: 12
+  maxSpawnDistance: 15
 --- !u!4 &2020901494
 Transform:
   m_ObjectHideFlags: 0

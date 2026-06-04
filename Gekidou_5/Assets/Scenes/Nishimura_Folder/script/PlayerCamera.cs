@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class Cam : MonoBehaviour
 {
-    private GameObject player;
-    
+    public GameObject player;
+    Vector3 prePlayerPos;
+
+
 
     // Use this for initialization
     void Start()
     {
-       // player = GameObject.FindGameObjectWithTag("Player").transform;
-      
+
+    
     }
 
-    private void Update()
+    void Update()
     {
-        
+        if (player.transform.position != prePlayerPos)
+        {
+            transform.position = new Vector3(player.transform.position.x + 0, player.transform.position.y + 0, -10);
+            prePlayerPos = player.transform.position;
+        }
     }
 }
