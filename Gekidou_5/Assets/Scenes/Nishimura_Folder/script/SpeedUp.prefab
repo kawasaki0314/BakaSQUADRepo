@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3281258555687753391}
   - component: {fileID: 3991493646678450203}
-  - component: {fileID: 174365531119389130}
-  - component: {fileID: 5014150448747386965}
   - component: {fileID: 180976203088659110}
   - component: {fileID: 3612662236330279304}
+  - component: {fileID: 4018889695016821724}
   m_Layer: 0
   m_Name: SpeedUp
   m_TagString: SpeedUpItem
@@ -95,35 +94,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &174365531119389130
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8203498364048792888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ef2ea9ada4a54d48bac5ac4e1aa58a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
---- !u!114 &5014150448747386965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8203498364048792888}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff53facfce01fcb44b8b38fa08b4624c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemManager
-  itemprefab: {fileID: 8203498364048792888}
-  xLimit: 8
-  yLimit: 4
-  spanMin: 1
-  spanMax: 1
 --- !u!58 &180976203088659110
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -187,3 +157,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &4018889695016821724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203498364048792888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b087136fa6e7f148940041e169578f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemZentai

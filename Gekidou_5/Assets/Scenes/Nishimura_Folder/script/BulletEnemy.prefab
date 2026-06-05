@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1848154827047029209}
   - component: {fileID: 3262038943222226008}
   - component: {fileID: 6757701654414395329}
-  - component: {fileID: 6405047592966228744}
   m_Layer: 0
   m_Name: BulletEnemy
   m_TagString: Untagged
@@ -107,19 +106,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletEnemy
   moveSpeed: 5
   lifeTime: 10
---- !u!114 &6405047592966228744
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 669377359713742962}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 669377359713742962}
-  shootInterval: 2
-  bulletSpeed: 5
-  randomAngle: 30

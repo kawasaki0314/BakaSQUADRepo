@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 6899602491022376892}
   - component: {fileID: 1814364321394540719}
-  - component: {fileID: 1747371311483899991}
-  - component: {fileID: 5889202082573798583}
   - component: {fileID: 1824604351602431720}
   - component: {fileID: 2083919768550067747}
+  - component: {fileID: 8102422926019388425}
   m_Layer: 0
   m_Name: HeelItem
   m_TagString: HeelItem
@@ -95,35 +94,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &1747371311483899991
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503838146002230707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ef2ea9ada4a54d48bac5ac4e1aa58a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Item
---- !u!114 &5889202082573798583
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 503838146002230707}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff53facfce01fcb44b8b38fa08b4624c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::ItemManager
-  itemprefab: {fileID: 503838146002230707}
-  xLimit: 8
-  yLimit: 4
-  spanMin: 1
-  spanMax: 1
 --- !u!58 &1824604351602431720
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -187,3 +157,15 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &8102422926019388425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 503838146002230707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b087136fa6e7f148940041e169578f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::ItemZentai

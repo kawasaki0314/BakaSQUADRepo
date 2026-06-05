@@ -3,6 +3,8 @@ using UnityEngine;
 public class ItemManager : MonoBehaviour
 {
     public GameObject itemprefab;
+    public GameObject itemprefab1;
+    public GameObject itemprefab2;
 
     [SerializeField] float xLimit = 8.0f;//x座標の制限
     [SerializeField] float yLimit = 4.0f;//y座標の制限
@@ -11,6 +13,7 @@ public class ItemManager : MonoBehaviour
     [SerializeField] float spanMin = 3.0f;//生成間隔の最小値
     [SerializeField] float spanMax = 6.0f;//生成間隔の最大値
     float delta = 0f;//経過時間
+    float SpawnerIndex = 0;
 
     //[SerializeField]はUnityエディタ上で変数を編集できるようにするための属性です。これにより、spanMinやspanMaxなどの値をエディタ上で簡単に調整できます。
 
@@ -25,6 +28,8 @@ public class ItemManager : MonoBehaviour
         this.delta += Time.deltaTime;//Delta値を秒ごとに増やすコード
         if (this.delta >= this.span)//spanの値を超えるごとに実行されるコード
         {
+            
+           
             this.delta = 0f;//上のコードが実行されたときDeltaの値を0にするコード
             span = Random.Range(spanMin, spanMax);//spanの値をspanMinからspanMaxの中からランダムに生成するコード
             GameObject obj = Instantiate(itemprefab);//itemprefabを生成してobjに代入するコード
