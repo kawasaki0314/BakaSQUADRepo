@@ -11,6 +11,7 @@ public class AIHoming : MonoBehaviour
     [SerializeField] float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     float attackTimer = 0f;
 
+
     int currentHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
