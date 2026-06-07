@@ -31,6 +31,11 @@ public class EnemySpawn : MonoBehaviour
     [Header("Spawn Distance")]
     [SerializeField] float misSpawnDistance = 12f;  //最低でもこのくらい離す（画面外）
     [SerializeField] float maxSpawnDistance = 15f;  //最大でもこのくらいの距離（遠すぎない）
+
+    [Header("Global Wave Limits")]
+    [SerializeField] float waveTimeLimit = 30f; //全員が消えるまでの制限時間（例: 30秒)
+    private float waveTimer = 0;
+    private bool waveEnded = false;  //二重に消滅処理を防ぐフラグ 
     private void Awake()
     {
         //シングルトンの初期化
@@ -133,7 +138,41 @@ public class EnemySpawn : MonoBehaviour
         Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}特殊：{currentSpecialCount}");
     }    
         
-        
+        private void Update()
+    {
+        if (waveEnded) return;//すでに終わっていれば何もしない
+
+        waveTimer += Time.deltaTime;
+
+        if(waveTimer >= waveTimeLimit)
+        {
+            EndWaveAndCleaeEnemies();
+        }
+    }
     
+    //時間が来たらすべての敵を消去する関数
+    private void EndWaveAndCleaeEnemies()
+    {
+        waveEnded = true;
+        Debug.Log("制限時間になりました！すべての敵は消去します。");
+
+        //1.画面内にいるすべての「AlHoming」スクリプトが付いたオブジェクトを探してリストする
+        AIHoming[] allEnemis = FindObjectsByType<AIHoming>(FindObjectsSortMode.None);
+        
+        //2.ループ処理で、見つかった敵すべてに「Disappear()」を実行させる
+        foreach (AIHoming enemy in allEnemis)
+        {
+            if(enemy != null)
+            {
+                enemy.Disapear();
+            }
+        }
+
+        //3.カウントをリセット(必要に応じて)
+        currentRegularCount = 0;
+        currentSpecialCount = 0;
+
+        Debug.Log("すべての敵を消去が完了しました。");
+    }
 
 }

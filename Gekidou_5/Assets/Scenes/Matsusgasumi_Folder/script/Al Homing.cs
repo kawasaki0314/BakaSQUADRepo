@@ -167,4 +167,13 @@ public class AIHoming : MonoBehaviour
             attackTimer = 0f;
         }
     }
+    //スポナーから一斉に消されるための関数
+    public void Disapear()
+    {
+        Debug.Log("時間切れのため、一斉に消滅します。");
+
+        //一斉に消える時は、個別に補充(OnEnemyDefeated)を呼ばす
+        //そのまま自分自身を消去します(そうしないと消えた瞬間新しい敵が湧いてしまうため)
+        Destroy(gameObject);
+    }
 }  
