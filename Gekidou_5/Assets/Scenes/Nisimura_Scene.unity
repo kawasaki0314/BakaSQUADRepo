@@ -461,7 +461,7 @@ GameObject:
   - component: {fileID: 275881975}
   - component: {fileID: 275881974}
   - component: {fileID: 275881973}
-  - component: {fileID: 275881972}
+  - component: {fileID: 275881976}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -484,22 +484,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1092061123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &275881972
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 275881970}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 669377359713742962, guid: 0fd12f77d4429d64ab74fb11d5e9ca3f, type: 3}
-  shootInterval: 2
-  bulletSpeed: 5
-  randomAngle: 30
 --- !u!58 &275881973
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -530,7 +514,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -622,6 +606,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &275881976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 275881970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shooter
+  bulletPrefab: {fileID: 5201659645070602948, guid: 16ffac02d1f3fdf4eae1edd44debd7d6, type: 3}
+  shootInterval: 2
+  bulletSpeed: 5
+  randomAngle: 30
 --- !u!1 &547834635
 GameObject:
   m_ObjectHideFlags: 0
@@ -1012,7 +1012,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1065,7 +1065,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
   m_Color: {r: 0.6226415, g: 0.249644, b: 0.249644, a: 1}
@@ -1089,8 +1089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 669377359713742962, guid: 0fd12f77d4429d64ab74fb11d5e9ca3f, type: 3}
-  shootInterval: 2
+  bulletPrefab: {fileID: 5201659645070602948, guid: 16ffac02d1f3fdf4eae1edd44debd7d6, type: 3}
+  shootInterval: 2.34
   bulletSpeed: 5
   randomAngle: 30
 --- !u!1 &1092061117
@@ -1294,7 +1294,7 @@ GameObject:
   - component: {fileID: 1110859846}
   - component: {fileID: 1110859845}
   - component: {fileID: 1110859844}
-  - component: {fileID: 1110859843}
+  - component: {fileID: 1110859847}
   m_Layer: 0
   m_Name: Circle
   m_TagString: Untagged
@@ -1317,22 +1317,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1092061123}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1110859843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1110859841}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 669377359713742962, guid: 0fd12f77d4429d64ab74fb11d5e9ca3f, type: 3}
-  shootInterval: 2
-  bulletSpeed: 5
-  randomAngle: 30
 --- !u!58 &1110859844
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -1363,7 +1347,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1455,6 +1439,22 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1110859847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110859841}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Shooter
+  bulletPrefab: {fileID: 5201659645070602948, guid: 16ffac02d1f3fdf4eae1edd44debd7d6, type: 3}
+  shootInterval: 2
+  bulletSpeed: 5
+  randomAngle: 30
 --- !u!1 &1143069510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5565471357008706502, guid: ba9baab07d9ef4a429c71d44268c539a, type: 3}
@@ -1650,7 +1650,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1754,7 +1754,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 669377359713742962, guid: 0fd12f77d4429d64ab74fb11d5e9ca3f, type: 3}
+  bulletPrefab: {fileID: 5201659645070602948, guid: 16ffac02d1f3fdf4eae1edd44debd7d6, type: 3}
   shootInterval: 2
   bulletSpeed: 5
   randomAngle: 30

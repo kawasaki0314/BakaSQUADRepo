@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class ItemManager : MonoBehaviour
 {
-    public GameObject itemprefab;
-    public GameObject itemprefab1;
-    public GameObject itemprefab2;
+
+
+    public GameObject[] itemprefab;
+   
 
     [SerializeField] float xLimit = 8.0f;//x座標の制限
     [SerializeField] float yLimit = 4.0f;//y座標の制限
@@ -32,11 +33,34 @@ public class ItemManager : MonoBehaviour
            
             this.delta = 0f;//上のコードが実行されたときDeltaの値を0にするコード
             span = Random.Range(spanMin, spanMax);//spanの値をspanMinからspanMaxの中からランダムに生成するコード
-            GameObject obj = Instantiate(itemprefab);//itemprefabを生成してobjに代入するコード
-            float px = Random.Range(-xLimit, xLimit);//指定したx座標の中からランダムに値を生成するコード
-            float py = Random.Range(-yLimit, yLimit);//指定したy座標の中からランダムに値を生成するコード
+            //GameObject obj = Instantiate(itemprefab);//itemprefabを生成してobjに代入するコード
+            //GameObject obj1 = Instantiate(itemprefab1);//itemprefabを生成してobjに代入するコード
+            //GameObject obj2 = Instantiate(itemprefab2);//itemprefabを生成してobjに代入するコード
+            //float px = Random.Range(-xLimit, xLimit);//指定したx座標の中からランダムに値を生成するコード
+            //float px1 = Random.Range(-xLimit, xLimit);//指定したx座標の中からランダムに値を生成するコード
+            //float px2 = Random.Range(-xLimit, xLimit);//指定したx座標の中からランダムに値を生成するコード
+            //float py = Random.Range(-yLimit, yLimit);//指定したy座標の中からランダムに値を生成するコード
+            //float py1 = Random.Range(-yLimit, yLimit);//指定したy座標の中からランダムに値を生成するコード
+            //float py2 = Random.Range(-yLimit, yLimit);//指定したy座標の中からランダムに値を生成するコード
 
-            obj.transform.position = new Vector3(px, py, 0);//上で生成したobjの位置をpxとpyの値にするコード
+            //obj.transform.position = new Vector3(px, py, 0);//上で生成したobjの位置をpxとpyの値にするコード
+            //obj1.transform.position = new Vector3(px1, py1, 0);//上で生成したobjの位置をpxとpyの値にするコード
+            //obj2.transform.position = new Vector3(px2, py2, 0);//上で生成したobjの位置をpxとpyの値にするコード
+
+            //for(int i = 0; i < itemprefab.Length; i++)
+            //{
+            //    GameObject obj = Instantiate(itemprefab[i]);
+            //    float px = Random.Range(-xLimit, xLimit);
+            //    float py = Random.Range(-yLimit, yLimit);
+            //    obj.transform.position = new Vector3(px, py, 0);
+            //}
+            
+            int i = Random.Range(0, 3);
+            GameObject obj = Instantiate(itemprefab[i]);
+            float px = Random.Range(-xLimit, xLimit);
+            float py = Random.Range(-yLimit, yLimit);
+            obj.transform.position = new Vector3(px, py, 0);
+
         }
     }
 }

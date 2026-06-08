@@ -14,7 +14,7 @@ public class Shooter : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        Debug.Log("Bullethan: Start");
     }
 
     // Update is called once per frame
@@ -25,6 +25,14 @@ public class Shooter : MonoBehaviour
         {
             timer = 0f;
             Shoot();
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Debug.Log("Shooter: OnTriggerEnter2D");
+            Destroy(gameObject);
         }
     }
     void Shoot()
