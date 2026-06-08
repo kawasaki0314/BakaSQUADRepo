@@ -27,14 +27,9 @@ public class Shooter : MonoBehaviour
             Shoot();
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log("Shooter: OnTriggerEnter2D");
-            Destroy(gameObject);
-        }
-    }
+ 
+      
+    
     void Shoot()
     {
         int bulletCount = Random.Range(2, 5);
