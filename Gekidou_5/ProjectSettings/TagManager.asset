@@ -11,6 +11,9 @@ TagManager:
   - SpeedUpItem
   - AttackUpItem
   - HeelItem
+  - AttackNormal
+  - AttackBullet
+  - AttackOrbit
   layers:
   - Default
   - TransparentFX

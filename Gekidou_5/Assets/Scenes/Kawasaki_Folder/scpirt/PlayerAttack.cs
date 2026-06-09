@@ -1,3 +1,4 @@
+using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -141,5 +142,27 @@ public class PlayerAttack : MonoBehaviour
                 bullet.attackPower = this.bulletAttackPower;
             }
         }
+    }
+
+    public void StartPowerUpBuff(int amount, float duration)
+    {
+        StartCoroutine(PowerUpRoutine(amount, duration));
+    }
+
+    private System.Collections.IEnumerator PowerUpRoutine(int amount, float duration)
+    {
+        Debug.Log($"バフ発動、攻撃力が{amount}アップした");
+
+        normalAttackPower += amount;
+        orbitAttackPower += amount;
+        bulletAttackPower += amount;
+
+        yield return new WaitForSeconds(duration);
+
+        normalAttackPower -= amount;
+        orbitAttackPower -= amount;
+        bulletAttackPower -= amount;
+
+        Debug.Log("バフ効果が切れた");
     }
 }

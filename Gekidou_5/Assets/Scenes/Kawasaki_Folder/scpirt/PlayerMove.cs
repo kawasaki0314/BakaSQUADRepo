@@ -104,4 +104,22 @@ public class PlayerMove : MonoBehaviour
         transform.position = end;
         isBlinking = false;
     }
+
+         public void StartSpeedUpBuff(int amount, float duration)
+    {
+        StartCoroutine(SpeedUpRoutine(amount, duration));
+    }
+
+    private System.Collections.IEnumerator SpeedUpRoutine(int amount, float duration)
+    {
+        Debug.Log($"バフ発動、移動速度が{amount}アップした");
+
+        playerSpeed += amount;
+
+        yield return new WaitForSeconds(duration);
+
+        playerSpeed -= amount;
+
+        Debug.Log("バフ効果が切れた");
+    }
 }
