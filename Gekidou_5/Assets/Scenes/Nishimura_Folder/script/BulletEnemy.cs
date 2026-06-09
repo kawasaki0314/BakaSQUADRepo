@@ -9,7 +9,7 @@ public class BulletEnemy : MonoBehaviour
     private Vector2 direction;
     [SerializeField] float lifeTime = 10f;
     [SerializeField] int BossDamege = 1;
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
 
@@ -18,6 +18,7 @@ public class BulletEnemy : MonoBehaviour
     {
         Destroy(gameObject, 3f);
         rb = GetComponent<Rigidbody2D>();
+        
     }
     public void Initialize(Vector2 dir, float speed)
     {
@@ -28,14 +29,16 @@ public class BulletEnemy : MonoBehaviour
     void Update()
     {
         rb.linearVelocity = direction * moveSpeed;
-
+       
         transform.position += (Vector3)(direction * moveSpeed * Time.deltaTime);
     }
-    public void OnTriggerEnter2D(Collider2D other)
+     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(other.CompareTag("Player"))
+        
+
+        if(collision.CompareTag("Player"))
         {
-            levelupplayer player = other.GetComponent<levelupplayer>();
+            levelupplayer player = collision.GetComponent<levelupplayer>();
             player.hp -= BossDamege;
             Destroy(gameObject);
             Debug.Log("当たった!");
