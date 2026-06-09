@@ -271,6 +271,77 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 314413647}
   m_CullTransparentMesh: 1
+--- !u!1 &553635902
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 553635905}
+  - component: {fileID: 553635904}
+  - component: {fileID: 553635903}
+  m_Layer: 0
+  m_Name: EnemySpawn3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &553635903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553635902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08036d30f8f35c444b23eb49a0978d0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn3
+  regularEnemyprefab: {fileID: 0}
+  specialEnemyprefab: {fileID: 0}
+  initialSpawnCount: 15
+  maxSpecialEnemyCount: 20
+  misSpawnDistance: 12
+  maxSpawnDistance: 15
+  waveTimeLimit: 300
+--- !u!114 &553635904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553635902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d02b8b8c868204aa2f2f2780d07997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIHoming3
+  speed: 2
+  maxHP: 3
+  attackPower: 1
+  attackInterval: 1
+  enemyBulletPrefab: {fileID: 6056328613159487194, guid: b61165451f76d0f43b3e540cbee13ebf, type: 3}
+  shotInteval: 2
+  bulletSpeed: 5
+--- !u!4 &553635905
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553635902}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -43.62348, y: 16.05789, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &652683307
 GameObject:
   m_ObjectHideFlags: 0
@@ -480,7 +551,7 @@ Transform:
   m_GameObject: {fileID: 665397473}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.17, y: 0.13, z: 0}
+  m_LocalPosition: {x: -7.19, y: 2.23, z: 0}
   m_LocalScale: {x: 1, y: 1.0000324, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -828,6 +899,7 @@ MonoBehaviour:
   maxSpecialEnemyCount: 20
   misSpawnDistance: 12
   maxSpawnDistance: 15
+  waveTimeLimit: 30
 --- !u!50 &2000251981
 Rigidbody2D:
   serializedVersion: 5
@@ -1041,7 +1113,10 @@ MonoBehaviour:
   specialEnemyprefab: {fileID: 7123478603682011902, guid: 192ed3618815f4a4ebc3239852b3f067, type: 3}
   initialSpawnCount: 16
   maxSpecialEnemyCount: 20
-  delaySeconds: 15
+  delaySeconds: 30
+  misSpawnDistance: 12
+  maxSpawnDistance: 15
+  waveTimeLimit: 300
 --- !u!114 &2085143776
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1068,3 +1143,4 @@ SceneRoots:
   - {fileID: 1830155979}
   - {fileID: 2000251979}
   - {fileID: 2085143774}
+  - {fileID: 553635905}

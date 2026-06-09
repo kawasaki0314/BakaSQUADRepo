@@ -1,0 +1,28 @@
+using UnityEngine;
+
+public class EnemyBullet : MonoBehaviour
+{
+    [SerializeField] int damage = 1; //弾の攻撃力
+    [SerializeField] float lifeTime = 5f;  //消滅するまでの時間（秒）
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        //５秒経ったら画面外にいなくても自動で消えるようにする（メモリ対策）
+        Destroy(gameObject, lifeTime);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        //プレイヤーに当たったら
+        if(collision.CompareTag("Player"))
+        {
+            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            if(playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);//ダメージを与える
+            }
+            Destroy(gameObject);//弾を消す
+        }
+        //もし壁などに当たって消したい場合は、ここに障害物のタグ判定を追加してもOK!
+    }
+}
