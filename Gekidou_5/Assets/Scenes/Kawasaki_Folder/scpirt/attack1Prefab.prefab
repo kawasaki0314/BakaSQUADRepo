@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6617360274323096272}
   m_Layer: 0
   m_Name: attack1Prefab
-  m_TagString: Untagged
+  m_TagString: AttackNormal
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attack1
   lifeTime: 0.1
+  attackPower: 0
 --- !u!61 &6617360274323096272
 BoxCollider2D:
   m_ObjectHideFlags: 0

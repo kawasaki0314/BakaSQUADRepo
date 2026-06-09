@@ -11,13 +11,11 @@ public class PowerUpItem : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             PlayerAttack playerAttack = other.GetComponent<PlayerAttack>();
-            if(playerAttack != null)
+            if (playerAttack != null)
             {
-               // playerAttack.StartPowerUpBuff(powerValue, duration);
+                playerAttack.StartPowerUpBuff(powerValue, duration);
                 Destroy(gameObject);
             }
-            
-       
         }
     }
 }
