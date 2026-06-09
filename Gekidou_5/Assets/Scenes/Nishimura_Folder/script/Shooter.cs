@@ -8,7 +8,7 @@ public class Shooter : MonoBehaviour
     [SerializeField]float shootInterval = 2f;
     [SerializeField] float bulletSpeed = 5f;
     [SerializeField]float randomAngle = 30f;
-    
+    [SerializeField] int BossDamege = 1;
     private float timer = 0f;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -45,5 +45,19 @@ public class Shooter : MonoBehaviour
             BulletEnemy bulletScript = bullet.GetComponent<BulletEnemy>();
             bulletScript.Initialize(direction,bulletSpeed);
         }
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        Debug.Log("OmTriggerEnter2D呼ばれた!相手:" + collision.gameObject.name);
+
+        if (collision.CompareTag("Player"))
+        {
+            levelupplayer player = collision.GetComponent<levelupplayer>();
+            player.hp -= BossDamege;
+            Destroy(gameObject);
+            Debug.Log("当たった!");
+
+        }
+
     }
 }
