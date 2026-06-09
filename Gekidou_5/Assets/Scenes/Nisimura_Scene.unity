@@ -622,6 +622,7 @@ MonoBehaviour:
   shootInterval: 2
   bulletSpeed: 5
   randomAngle: 30
+  BossDamege: 1
 --- !u!1 &547834635
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +903,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8011818970783758223, guid: ba9baab07d9ef4a429c71d44268c539a, type: 3}
       propertyPath: m_SortingOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1097,6 +1098,7 @@ MonoBehaviour:
   shootInterval: 2.34
   bulletSpeed: 5
   randomAngle: 30
+  BossDamege: 1
 --- !u!1 &1092061117
 GameObject:
   m_ObjectHideFlags: 0
@@ -1160,7 +1162,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1458,6 +1460,7 @@ MonoBehaviour:
   shootInterval: 2
   bulletSpeed: 5
   randomAngle: 30
+  BossDamege: 1
 --- !u!1 &1143069510 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5565471357008706502, guid: ba9baab07d9ef4a429c71d44268c539a, type: 3}
@@ -1541,7 +1544,7 @@ CircleCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -1761,6 +1764,7 @@ MonoBehaviour:
   shootInterval: 2
   bulletSpeed: 5
   randomAngle: 30
+  BossDamege: 1
 --- !u!1 &1534280665
 GameObject:
   m_ObjectHideFlags: 0
