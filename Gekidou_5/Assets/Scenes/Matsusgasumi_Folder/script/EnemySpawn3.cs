@@ -1,26 +1,21 @@
-using NUnit.Framework.Constraints;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
-
+using System.Collections; // コルーチンを使うために必要
 
 public class EnemySpawn3 : MonoBehaviour
 {
-    //他クラスから呼べるようにシングルトン(Instance)を有効化
     public static EnemySpawn3 Instance { get; private set; }
 
-    //【追加】これがないとAIHoming側から「Enemyspawner.Instance」で呼べません
-    //ここ(関数の外)に書くことで、スクリプト内のどこからでも使えるようになります!
     [Header("Prefabs")]
     [SerializeField] GameObject regularEnemyprefab;//通常の敵
-    [SerializeField] GameObject specialEnemyprefab;//制限したい特定のキャラ
+    [SerializeField] GameObject specialEnemyprefab;//制限したい特徴のキャラ
 
     [Header("Spawn Limits")]
-    // 最初に出す通常の敵の数
     [SerializeField] int initialSpawnCount = 15;
-    [SerializeField] int maxSpecialEnemyCount = 20;//このキャラは画面に最大20匹まで
+    [SerializeField] int maxSpecialEnemyCount = 20;//このキャラは画面最大20匹まで
 
-    //各キャラクターの現在の出現数を数える変数
+    [Header("Timer Settings")]
+    [SerializeField] float delaySeconds = 60f; // 何秒後に登場させるか（インスペクターで変更可能）
+
     private int currentRegularCount = 0;
     private int currentSpecialCount = 0;//このキャラの現在の数
 
@@ -36,74 +31,76 @@ public class EnemySpawn3 : MonoBehaviour
     [SerializeField] float waveTimeLimit = 300f; //全員が消えるまでの制限時間（例: 30秒)
     private float waveTimer = 0;
     private bool waveEnded = false;  //二重に消滅処理を防ぐフラグ 
+    private bool isspawningStarted = false;//タイマーが終了して生成が始まったかどうかのフラグ
+
     private void Awake()
     {
-        //シングルトンの初期化
-        if (Instance == null)
-        {
-            Instance = this;
-            //シーンを跨がない場合は DontDestroyOnLoad は不要です
-        }
-        else
-        {
-            Destroy(gameObject);//重複を防ぐ
-        }
+        if (Instance == null) { Instance = this; }
+        else { Destroy(gameObject); }
     }
 
     private void Start()
     {
-        //プレイヤーにタグで見つける
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        //プレイヤーをタグで見つける
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Playre");
         if (playerObj != null)
         {
             playerTransform = playerObj.transform;
         }
         else
         {
-            Debug.LogError("enemySpawn: タグ'Player'が見つかりません!");
+            Debug.LogError("EnemySpawn2: タグ'Player'が見つかりません！");
         }
 
-        //ゲーム開始時に通常の敵を初期化数だけ生成する
+        // 直接生成せず、タイマー（コルーチン）をスタートさせる
+        StartCoroutine(SpawnAfterDelay());
+    }
+
+    // 時間を待ってから生成する処理
+    private IEnumerator SpawnAfterDelay()
+    {
+        // 指定した秒数だけ待機
+        yield return new WaitForSeconds(60f);
+
+        // 待機が終わったので、プレイヤーの画面外に初期数だけ生成
         for (int i = 0; i < initialSpawnCount; i++)
         {
-            //最初からプレイヤーの画面外に配置する
             Vector2 spawnPos = GetRandomSpawnPosition();
-            SpawnspecificEnemy(false, spawnPos);
+            SpawnspecificEnemy3(false, spawnPos);
         }
+
+        Debug.Log($"{delaySeconds}秒経過したので敵を生成しました！");
     }
 
     //プレイヤーの周囲（画面外）のランダムな位置を計算する関数
     private Vector2 GetRandomSpawnPosition()
     {
-        //もしプレイヤーが見つかっていない場合は、原点（0,0)を基準にする
         Vector2 basePosition = Vector2.zero;
         if (playerTransform != null)
         {
             basePosition = playerTransform.position;
         }
+
         //ランダムな方向（角度）を決める
         float angle = Random.Range(0f, 360f) * Mathf.Deg2Rad;
         //画面外になるようなランダムな距離を決める
         float distance = Random.Range(misSpawnDistance, maxSpawnDistance);
 
-        //方向と距離から、位置（X, Y)を計算
+        //方向と距離から、位置(X, Y)を計算
         float spawnX = basePosition.x + Mathf.Cos(angle) * distance;
         float spawnY = basePosition.y + Mathf.Sin(angle) * distance;
 
         return new Vector2(spawnX, spawnY);
     }
-    //敵を生成する関数（引数でどっちの敵か指定する）
-    private void SpawnspecificEnemy(bool isSpecial, Vector2 position)
+    // --- 以下、SpawnspecificEnemy と OnEnemyDefeated は元のまま ---
+    private void SpawnspecificEnemy3(bool isSpecial, Vector2 position)
     {
         GameObject prefabToSpawn = isSpecial ? specialEnemyprefab : regularEnemyprefab;
-
-        // もしプレハブが空っぽ（消えている）なら、処理を中断する
         if (prefabToSpawn == null)
         {
-            Debug.LogError("プレハブが設定されていません！インスペクターを確認してください。");
+            Debug.LogError("プレハブが設定されてません！インスペクターを確認してください。");
             return;
         }
-
         if (isSpecial)
         {
             if (currentSpecialCount >= maxSpecialEnemyCount) return;
@@ -115,64 +112,63 @@ public class EnemySpawn3 : MonoBehaviour
             Instantiate(regularEnemyprefab, position, Quaternion.identity);
             currentRegularCount++;
         }
-
     }
     //敵が死んだときに「敵自身から」呼ばれる関数
     public void OnEnemyDefeated(bool isSpecial, Vector2 defeatedPosition)
     {
+        //ウェーブがすでに終了しているなら補充しない
+        if (waveEnded) return;
+
         //敵が死んだときの補充も、現在のプレイヤーの画面外にする
         Vector2 spawnPosition = GetRandomSpawnPosition();
-
         if (isSpecial)
         {
             currentSpecialCount--;
-            SpawnspecificEnemy(true, spawnPosition);
+            SpawnspecificEnemy3(true, spawnPosition);
         }
         else
         {
             currentRegularCount--;
-            //通常敵が倒されたときも補充する
-            SpawnspecificEnemy(false, spawnPosition);
+            SpawnspecificEnemy3(false, spawnPosition);
         }
-
-        Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}特殊：{currentSpecialCount}");
+        Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}特集:{currentSpecialCount}");
     }
 
     private void Update()
     {
-        if (waveEnded) return;//すでに終わっていれば何もしない
+        if (waveEnded) return;//すべて終わっていれば何もしない
+        if (!isspawningStarted) return;//敵がまだ出現していない（１５秒待っている間）ならタイマーを進めない
 
         waveTimer += Time.deltaTime;
 
         if (waveTimer >= waveTimeLimit)
         {
-            EndWaveAndCleaeEnemies();
+            EndWaveAndClearEnemies();
         }
     }
 
-    //時間が来たらすべての敵を消去する関数
-    private void EndWaveAndCleaeEnemies()
+    //時間が過ぎたらすべての敵を消去する関数
+    private void EndWaveAndClearEnemies()
     {
         waveEnded = true;
-        Debug.Log("制限時間になりました！すべての敵は消去します。");
+        Debug.Log("制限時間になりました！すべての敵を消去します。");
 
-        //1.画面内にいるすべての「AlHoming」スクリプトが付いたオブジェクトを探してリストする
-        AIHoming[] allEnemis = FindObjectsByType<AIHoming>(FindObjectsSortMode.None);
+        //画面内にいるすべての「AIHoming3」スクリプトが付いたオブジェクトを探してリストする
+        AIHoming3[] allEnemies = FindObjectsByType<AIHoming3>(FindObjectsSortMode.None);
 
-        //2.ループ処理で、見つかった敵すべてに「Disappear()」を実行させる
-        foreach (AIHoming enemy in allEnemis)
+        //ループ処理で、見つかった敵すべてに「Disapppear()」を実行させる
+        foreach (AIHoming3 enemy in allEnemies)
         {
             if (enemy != null)
             {
-                enemy.Disapear();
+                enemy.Disapear();//AIHoming2側の消滅エフェクトなどを実行
             }
         }
 
-        //3.カウントをリセット(必要に応じて)
+        //カウントをリセット
         currentRegularCount = 0;
         currentSpecialCount = 0;
 
-        Debug.Log("すべての敵を消去が完了しました。");
+        Debug.Log("すべての敵が消去が完了しました。");
     }
-
 }

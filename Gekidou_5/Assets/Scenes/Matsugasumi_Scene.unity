@@ -282,6 +282,7 @@ GameObject:
   - component: {fileID: 553635905}
   - component: {fileID: 553635904}
   - component: {fileID: 553635903}
+  - component: {fileID: 553635906}
   m_Layer: 0
   m_Name: EnemySpawn3
   m_TagString: Untagged
@@ -301,10 +302,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08036d30f8f35c444b23eb49a0978d0b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn3
-  regularEnemyprefab: {fileID: 0}
-  specialEnemyprefab: {fileID: 0}
+  regularEnemyprefab: {fileID: 8017806180661443998, guid: a5a9f8fef5af11a4794ea8b6b791e770, type: 3}
+  specialEnemyprefab: {fileID: 8017806180661443998, guid: a5a9f8fef5af11a4794ea8b6b791e770, type: 3}
   initialSpawnCount: 15
   maxSpecialEnemyCount: 20
+  delaySeconds: 60
   misSpawnDistance: 12
   maxSpawnDistance: 15
   waveTimeLimit: 300
@@ -342,6 +344,27 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &553635906
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 553635902}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &652683307
 GameObject:
   m_ObjectHideFlags: 0
@@ -899,7 +922,7 @@ MonoBehaviour:
   maxSpecialEnemyCount: 20
   misSpawnDistance: 12
   maxSpawnDistance: 15
-  waveTimeLimit: 30
+  waveTimeLimit: 300
 --- !u!50 &2000251981
 Rigidbody2D:
   serializedVersion: 5
