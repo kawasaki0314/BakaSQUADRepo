@@ -39,6 +39,12 @@ public class PlayerAttack : MonoBehaviour
         // 時間の更新
         playTime += Time.deltaTime;
 
+        // ポーズ中なら、これ以降の入力や処理をすべて無視する
+        if (PauseManager.IsGamePaused)
+        {
+            return;
+        }
+
         // 一定時間で回転攻撃を出す(1回のみ)
         if (playTime >= 5f && !orbitSpawned)
         {
@@ -86,43 +92,6 @@ public class PlayerAttack : MonoBehaviour
         if (normalScript != null)
         {
             normalScript.attackPower = this.normalAttackPower;
-        }
-
-        // 自分の周りの範囲内にいる敵のコライダーをすべて検知
-        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackOffset, EnemyLayer);
-        // デバッグ用：何匹検知したかコンソールに出す
-        if (hitEnemies.Length > 0) Debug.Log(hitEnemies.Length + "匹の敵を検知！");
-
-        foreach (Collider2D enemyCollider in hitEnemies)
-        {
-            // 1. 新しい遠距離の敵（AIHoming3）かチェック
-            AIHoming3 enemy3 = enemyCollider.GetComponent<AIHoming3>();
-            if (enemy3 != null)
-            {
-                enemy3.TakeDamage(normalAttackPower);
-                enemy3.TakeDamage(orbitAttackPower);
-                enemy3.TakeDamage(bulletAttackPower);
-                continue;
-            }
-
-            // 2. 新しい近接の敵（AIHoming2）かチェック
-            AIHoming2 enemy2 = enemyCollider.GetComponent<AIHoming2>();
-            if (enemy2 != null)
-            {
-                enemy3.TakeDamage(normalAttackPower);
-                enemy3.TakeDamage(orbitAttackPower);
-                enemy3.TakeDamage(bulletAttackPower);
-                continue; // ダメージを与えたので終了     
-            }
-
-            // 3. 昔の敵（AIHoming 無印）かチェック
-            AIHoming enemy = enemyCollider.GetComponent<AIHoming>();
-            if (enemy != null)
-            {
-                enemy3.TakeDamage(normalAttackPower);
-                enemy3.TakeDamage(orbitAttackPower);
-                enemy3.TakeDamage(bulletAttackPower);
-            }
         }
     }
 
