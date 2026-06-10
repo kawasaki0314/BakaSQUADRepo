@@ -23,6 +23,12 @@ public class PlayerMove : MonoBehaviour
     {
         Vector2 move = Vector2.zero;
 
+        // ポーズ中なら、これ以降の入力や処理をすべて無視する
+        if (PauseManager.IsGamePaused)
+        {
+            return;
+        }
+
         // キーボードの認識チェック
         if (Keyboard.current == null) return;
 
