@@ -42,14 +42,14 @@ public class EnemySpawn3 : MonoBehaviour
     private void Start()
     {
         //プレイヤーをタグで見つける
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Playre");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
             playerTransform = playerObj.transform;
         }
         else
         {
-            Debug.LogError("EnemySpawn2: タグ'Player'が見つかりません！");
+            Debug.LogError("EnemySpawn3: タグ'Player'が見つかりません！");
         }
 
         // 直接生成せず、タイマー（コルーチン）をスタートさせる
@@ -68,6 +68,9 @@ public class EnemySpawn3 : MonoBehaviour
             Vector2 spawnPos = GetRandomSpawnPosition();
             SpawnspecificEnemy3(false, spawnPos);
         }
+
+        //敵が生成せれたので、制限時間のタイマーをスタートさせる
+        isspawningStarted = true;
 
         Debug.Log($"{delaySeconds}秒経過したので敵を生成しました！");
     }

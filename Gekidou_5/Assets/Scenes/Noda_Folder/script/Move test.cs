@@ -11,7 +11,7 @@ public class MoveTest : MonoBehaviour
     private Image fadeImage;
     private float currentAlpha = 0f;
     private bool isFadingOut = false;
-    private string nextSceneName = "TestScene"; 
+    private string nextSceneName = "BattleScene"; 
 
     void Start()
     {
