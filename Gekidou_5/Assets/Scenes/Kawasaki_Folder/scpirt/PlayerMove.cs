@@ -105,6 +105,7 @@ public class PlayerMove : MonoBehaviour
         isBlinking = false;
     }
 
+    // スピードアップのバフアイテム
          public void StartSpeedUpBuff(int amount, float duration)
     {
         StartCoroutine(SpeedUpRoutine(amount, duration));
@@ -114,10 +115,13 @@ public class PlayerMove : MonoBehaviour
     {
         Debug.Log($"バフ発動、移動速度が{amount}アップした");
 
+        // 現在の移動速度＋上昇値
         playerSpeed += amount;
 
+        // 指定された時間がたつまでここで処理を停止
         yield return new WaitForSeconds(duration);
 
+        // 現在の移動速度－上昇値
         playerSpeed -= amount;
 
         Debug.Log("バフ効果が切れた");
