@@ -126,7 +126,7 @@ public class levelupplayer : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         //回復アイテムのタグがある時発動可能
-        if(other.CompareTag("healitem"))
+        if(other.CompareTag("HeelItem"))
         {
             Debug.Log("飯だ！うめぇ");
             heal(20);
