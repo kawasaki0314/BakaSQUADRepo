@@ -58,7 +58,10 @@ public class MoveTest : MonoBehaviour
         }
 
         currentAlpha = 0f;
-        fadeImage.enabled = true; 
+        fadeImage.enabled = true;
+
+        fadeImage.raycastTarget = true; //背後の操作を遮断
+
         isFadingOut = true;      
     }
 }
