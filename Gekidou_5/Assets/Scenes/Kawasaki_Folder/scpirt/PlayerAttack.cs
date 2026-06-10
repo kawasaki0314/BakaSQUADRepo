@@ -16,6 +16,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Attack Settings")]
     public float attackOffset = 1.5f; // 近接攻撃を前に出す距離
+    [SerializeField] LayerMask EnemyLayer;
 
     [Header("Auto Shoot Settings")]
     public float shootInterval = 2f; // 自動で射撃攻撃を出す間隔
@@ -37,6 +38,12 @@ public class PlayerAttack : MonoBehaviour
     {
         // 時間の更新
         playTime += Time.deltaTime;
+
+        // ポーズ中なら、これ以降の入力や処理をすべて無視する
+        if (PauseManager.IsGamePaused)
+        {
+            return;
+        }
 
         // 一定時間で回転攻撃を出す(1回のみ)
         if (playTime >= 5f && !orbitSpawned)

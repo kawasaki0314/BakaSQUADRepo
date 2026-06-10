@@ -68,7 +68,7 @@ public class AIHoming3 : MonoBehaviour
 
         transform.position = Vector2.MoveTowards(transform.position,
         playerTr.position,//Vector3は自動的にVector2として計算されます
-        speed * Time.deltaTime);
+        speed * Time.fixedDeltaTime);
     }
 
     //プレイヤーに向かって弾を飛ばす関数
@@ -85,9 +85,9 @@ public class AIHoming3 : MonoBehaviour
 
         //3.弾のRigidbody2Dを取得して、プレイヤーの方向へ速度（速度ベクトル）を与える
         Rigidbody2D rb = bullet.GetComponent<Rigidbody2D>();
-        if(rb != null)
+        if (rb != null)
         {
-            rb.linearVelocity = direction * bulletSpeed; 
+            rb.linearVelocity = direction * bulletSpeed;
         }
         else
         {
@@ -131,23 +131,23 @@ public class AIHoming3 : MonoBehaviour
         */
         //Instance(シングルトン)を使ってスポナーに報告
         //EnemySpawnのInstance(さっきAwakeで作ったやつ)を直接呼ぶ
-        if (EnemySpawn.Instance != null)
+        if (EnemySpawn3.Instance != null)
         {
             //倒された場所を伝えて補充してもらうう
-            EnemySpawn.Instance.OnEnemyDefeated(false, transform.position);
+            EnemySpawn3.Instance.OnEnemyDefeated(false, transform.position);
             // Debug.Log("補充依頼しました");
         }
         else
         {
             //もしこれが出たら、Spawner側のAwakeが動いていない証拠です
-            Debug.LogError("スポナーのInstanceが見つかりません！Spawnerオブジェクトにスクリプトを付け直してください");
+            Debug.LogError("EnemySpawn3のInstanceが見つかりません！Spawnerオブジェクトにスクリプトを付け直してください");
         }
 
         //じぶんおｗ消去する処理は、すべての報告や処理が「終わったら最後」に1回だけ書くのが鉄則！
         Destroy(gameObject);
     }
     //プレイヤーに当たった瞬間（最初の1発）
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -162,47 +162,28 @@ public class AIHoming3 : MonoBehaviour
     }
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if(collision.CompareTag("Player"))
         {
-            attackTimer += Time.deltaTime;
-        }
-
-        if (attackTimer >= attackInterval)
-        {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(attackPower);
-                //タイマーリセット
-                attackTimer = 0f;
-
-            }
-        }
-    }
-
-    //プレイヤーに触れ続けている間（2発目以降の継続ダメージ）
-    private void OntriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            //インターバル以上の時間が経っていたら攻撃
             if (attackTimer >= attackInterval)
             {
-                playerHealth.TakeDamage(attackPower);
-                Debug.Log("継続ダメージを与えました！");
-
-                //タイマーリセット
-                attackTimer = 0f;
+                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                if(playerHealth != null)
+                {
+                    playerHealth.TakeDamage(attackPower);
+                    Debug.Log("継続ダメージを与えました！");
+                    attackTimer = 0f;  //タイマーリセット
+                }
             }
         }
     }
 
+
     //プレイヤーが離れたらタイマーをリセット（スペルを修正しました）
-    private void OnTriggerEt2D(Collider2D collision)
+    private void OnTriggerEtit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
+            Debug.Log("プレイヤーが離れなした");
             attackTimer = 0f;
         }
     }

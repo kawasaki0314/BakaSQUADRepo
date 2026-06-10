@@ -64,7 +64,7 @@ public class levelupplayer : MonoBehaviour
         currentlevel++; //レベルアップ
 
         //次のレベルへの必要経験値を増やす
-        maxexp = Mathf.RoundToInt(maxexp * 1.48f);
+        maxexp = Mathf.RoundToInt(maxexp * 1.3f);
 
         UpdateUI();
 
@@ -107,7 +107,7 @@ public class levelupplayer : MonoBehaviour
 
     public void heal(int heal) //体力回復の定義
     {
-        if(hp >= 100)
+        if(hp >= maxHP)
         {
             Debug.Log("既に体力は全開だ！");//回復のしすぎ
             return;//処理のスキップをし、強制終了
@@ -120,5 +120,18 @@ public class levelupplayer : MonoBehaviour
         healthImage.fillAmount = (float)hp / maxHP;//UI上で表示
 
         Debug.Log($"体力を{heal}回復した！現在のHP:{hp}/{maxHP}");//回復ログの表示
+    }
+
+    //回復アイテム取得時の処理
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        //回復アイテムのタグがある時発動可能
+        if(other.CompareTag("HeelItem"))
+        {
+            Debug.Log("飯だ！うめぇ");
+            heal(20);
+            Destroy(other.gameObject);
+        }
+        
     }
 }
