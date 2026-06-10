@@ -51,5 +51,15 @@ public class AttackBullet : MonoBehaviour
 
             Destroy(gameObject);
         }
+        if (other.CompareTag("Enemy"))
+        {
+
+            BossHp bossHp = other.GetComponent<BossHp>();
+
+            if (bossHp != null)
+            {
+                bossHp.TakeDamage(attackPower);
+            }
+        }
     }
 }

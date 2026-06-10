@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class BossHp : MonoBehaviour
 {
+   public int bossHp = 1000;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -13,4 +14,15 @@ public class BossHp : MonoBehaviour
     {
         
     }
+    public void TakeDamage(int damage)
+    {
+        bossHp -= damage;
+
+        if(bossHp <= 0 )
+        {
+            Destroy(gameObject);
+        }
+
+    }
+
 }

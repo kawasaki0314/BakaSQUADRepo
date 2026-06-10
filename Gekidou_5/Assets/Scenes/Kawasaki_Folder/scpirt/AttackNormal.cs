@@ -33,5 +33,15 @@ public class AttackNormal : MonoBehaviour
                 enemy.TakeDamage(attackPower);
             }
         }
+        if (other.CompareTag("Enemy"))
+        {
+            
+            BossHp bossHp = other.GetComponent<BossHp>();
+           
+            if(bossHp != null)
+            {
+                bossHp.TakeDamage(attackPower);
+            }
+        }
     }
 }

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 180976203088659110}
   - component: {fileID: 3612662236330279304}
   - component: {fileID: 4018889695016821724}
+  - component: {fileID: 15528864289255935}
   m_Layer: 0
   m_Name: SpeedUp
   m_TagString: SpeedUpItem
@@ -169,3 +170,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b087136fa6e7f148940041e169578f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ItemZentai
+--- !u!114 &15528864289255935
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8203498364048792888}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3807e4e646d845445803c66d70f902bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SpeedUpItem
+  speedValue: 2
+  duration: 10

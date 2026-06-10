@@ -14,7 +14,7 @@ public class Shooter : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("Bullethan: Start");
+       
     }
 
     // Update is called once per frame
@@ -46,18 +46,5 @@ public class Shooter : MonoBehaviour
             bulletScript.Initialize(direction,bulletSpeed);
         }
     }
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("OmTriggerEnter2D呼ばれた!相手:" + collision.gameObject.name);
-
-        if (collision.CompareTag("Player"))
-        {
-            levelupplayer player = collision.GetComponent<levelupplayer>();
-            player.hp -= BossDamege;
-            Destroy(gameObject);
-            Debug.Log("当たった!");
-
-        }
-
-    }
+    
 }
