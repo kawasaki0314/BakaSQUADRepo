@@ -14,7 +14,7 @@ public class EnemySpawn2 : MonoBehaviour
     [SerializeField] int maxSpecialEnemyCount = 20;//このキャラは画面最大20匹まで
 
     [Header("Timer Settings")]
-    [SerializeField] float delaySeconds = 15f; // 何秒後に登場させるか（インスペクターで変更可能）
+    [SerializeField] float delaySeconds = 30f; // 何秒後に登場させるか（インスペクターで変更可能）
 
     private int currentRegularCount = 0;
     private int currentSpecialCount = 0;//このキャラの現在の数
@@ -28,7 +28,7 @@ public class EnemySpawn2 : MonoBehaviour
     [SerializeField] float maxSpawnDistance = 15f;  //最大でもこのくらいの距離（遠すぎない）
 
     [Header("Global Wave Limits")]
-    [SerializeField] float waveTimeLimit = 30f; //全員が消えるまでの制限時間（例: 30秒)
+    [SerializeField] float waveTimeLimit = 300f; //全員が消えるまでの制限時間（例: 30秒)
     private float waveTimer = 0;
     private bool waveEnded = false;  //二重に消滅処理を防ぐフラグ 
     private bool isspawningStarted = false;//タイマーが終了して生成が始まったかどうかのフラグ
@@ -42,7 +42,7 @@ public class EnemySpawn2 : MonoBehaviour
     private void Start()
     {
         //プレイヤーをタグで見つける
-        GameObject playerObj = GameObject.FindGameObjectWithTag("Playre");
+        GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if(playerObj != null)
         {
             playerTransform = playerObj.transform;
@@ -60,7 +60,7 @@ public class EnemySpawn2 : MonoBehaviour
     private IEnumerator SpawnAfterDelay()
     {
         // 指定した秒数だけ待機
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(30f);
 
         // 待機が終わったので、プレイヤーの画面外に初期数だけ生成
         for (int i = 0; i < initialSpawnCount; i++)
@@ -137,7 +137,7 @@ public class EnemySpawn2 : MonoBehaviour
     private void Update()
     {
         if (waveEnded) return;//すべて終わっていれば何もしない
-        if (!isspawningStarted) return;//敵がまだ出現していない（１５秒待っている間）ならタイマーを進めない
+        if (!isspawningStarted) return;//敵がまだ出現していない（30秒待っている間）ならタイマーを進めない
 
         waveTimer += Time.deltaTime;
 

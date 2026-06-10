@@ -36,8 +36,7 @@ public class PlayerHealth : MonoBehaviour
     // 自動攻撃の処理
     void Attack()
     {
-        // 自分の周りの範囲内にいる敵のコライダーをすべて検知する
-        // 1. 範囲内の敵をすべて取得
+        // 自分の周りの範囲内にいる敵のコライダーをすべて検知
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, attackRadius, EnemyLayer);
 
         // デバッグ用：何匹検知したかコンソールに出す
@@ -45,13 +44,27 @@ public class PlayerHealth : MonoBehaviour
 
         foreach (Collider2D enemyCollider in hitEnemies)
         {
-            // 2. AIHomingスクリプトを取得
-            AIHoming enemyScript = enemyCollider.GetComponent<AIHoming>();
-
-            if (enemyScript != null)
+            // 1. 新しい遠距離の敵（AIHoming3）かチェック
+            AIHoming3 enemy3 = enemyCollider.GetComponent<AIHoming3>();
+            if (enemy3 != null)
             {
-                // 3. ダメージ関数を呼ぶ
-                enemyScript.TakeDamage(attackPower);
+                enemy3.TakeDamage(attackPower);
+                continue; // ダメージを与えたので、この敵の処理はココで終了（次の敵のループへ）
+            }
+
+            // 2. 新しい近接の敵（AIHoming2）かチェック
+            AIHoming2 enemy2 = enemyCollider.GetComponent<AIHoming2>();
+            if (enemy2 != null)
+            {
+                enemy2.TakeDamage(attackPower);
+                continue; // ダメージを与えたので終了
+            }
+
+            // 3. 昔の敵（AIHoming 無印）かチェック
+            AIHoming enemy = enemyCollider.GetComponent<AIHoming>();
+            if (enemy != null)
+            {
+                enemy.TakeDamage(attackPower);
             }
         }
     }
