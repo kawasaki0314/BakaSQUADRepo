@@ -149,16 +149,20 @@ public class PlayerAttack : MonoBehaviour
         StartCoroutine(PowerUpRoutine(amount, duration));
     }
 
+    // 攻撃力アップのアイテム
     private System.Collections.IEnumerator PowerUpRoutine(int amount, float duration)
     {
         Debug.Log($"バフ発動、攻撃力が{amount}アップした");
 
+        // 現在の攻撃力＋上昇値
         normalAttackPower += amount;
         orbitAttackPower += amount;
         bulletAttackPower += amount;
 
+        // 指定された時間、ここで実行を一時停止
         yield return new WaitForSeconds(duration);
 
+        // 現在の攻撃力－上昇値
         normalAttackPower -= amount;
         orbitAttackPower -= amount;
         bulletAttackPower -= amount;
