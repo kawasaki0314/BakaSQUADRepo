@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833a09f1099d01046a8faf06f842abb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHp
-  bossHp: 1000
+  bossHp: 2147483647
 --- !u!1 &1110859841
 GameObject:
   m_ObjectHideFlags: 0
@@ -1584,6 +1584,9 @@ MonoBehaviour:
   orbitAttackPower: 1
   bulletAttackPower: 1
   attackOffset: 1
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   shootInterval: 2
 --- !u!4 &1143069516 stripped
 Transform:
@@ -1919,8 +1922,8 @@ MonoBehaviour:
   - {fileID: 8329388002031898694, guid: 29588bbb3a673a34a9e3e9e4b014bec8, type: 3}
   xLimit: 8
   yLimit: 4
-  spanMin: 1
-  spanMax: 1
+  spanMin: 0.5
+  spanMax: 0.6
 --- !u!4 &1595204568
 Transform:
   m_ObjectHideFlags: 0
@@ -1962,8 +1965,8 @@ Transform:
   m_GameObject: {fileID: 1727776101}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: 0.049376655, w: 0.9987803}
-  m_LocalPosition: {x: -0.01, y: 0.07, z: 0}
-  m_LocalScale: {x: 0.063384704, y: 0.059958626, z: 1}
+  m_LocalPosition: {x: 0.012, y: -0.014, z: 0}
+  m_LocalScale: {x: 0.09293878, y: 0.07885861, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1092061123}
