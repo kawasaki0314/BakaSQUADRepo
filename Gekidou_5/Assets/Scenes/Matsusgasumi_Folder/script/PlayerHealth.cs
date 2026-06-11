@@ -64,7 +64,7 @@ public class PlayerHealth : MonoBehaviour
             AIHoming enemy = enemyCollider.GetComponent<AIHoming>();
             if (enemy != null)
             {
-                enemy.TakeDamage(attackPower);
+              //  enemy.TakeDamage(attackPower);
             }
         }
     }
