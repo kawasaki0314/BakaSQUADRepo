@@ -6,7 +6,6 @@ public class AIHoming : MonoBehaviour
     [SerializeField] float speed = 2f;  //敵の動くスピード
 
     [Header("Enemy Status")]
-    
     [SerializeField] int attackPower = 1;　//敵の攻撃力
     [SerializeField] float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     float attackTimer = 0f;
@@ -51,7 +50,7 @@ public class AIHoming : MonoBehaviour
     
 
     //死亡処理
-    void Die()
+    public void Die()
     {
         // EnemySpawnクラスのInstance（自分自身）を直接呼ぶ
         // ※もしクラス名が EnemySpeawn なら、ここも EnemySpeawn に合わせる
@@ -100,6 +99,8 @@ public class AIHoming : MonoBehaviour
             if (playerHealth != null)
             {
                 playerHealth.TakeDamage(attackPower);
+                // 当たった瞬間にタイマーをリセットして、次の継続ダメージまでの時間を正確にする
+                attackTimer = 0f;
             }
         }
     }
@@ -107,42 +108,26 @@ public class AIHoming : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            attackTimer += Time.deltaTime;
-        }
-
-        if (attackTimer >= attackInterval)
-        {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(attackPower);
-                //タイマーリセット
-                attackTimer = 0f;
-
-            }
-        }
-    }
-
-    //プレイヤーに触れ続けている間（2発目以降の継続ダメージ）
-    private void OntriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            //インターバル以上の時間が経っていたら攻撃
+            // インターバル以上の時間が経っていたら攻撃
             if (attackTimer >= attackInterval)
             {
-                playerHealth.TakeDamage(attackPower);
-                Debug.Log("継続ダメージを与えました！");
+                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                if (playerHealth != null)
+                {
+                    playerHealth.TakeDamage(attackPower);
+                    Debug.Log("継続ダメージを与えました！");
 
-                //タイマーリセット
-                attackTimer = 0f;
+                    // タイマーリセット
+                    attackTimer = 0f;
+                }
             }
         }
     }
 
+    
+
     //プレイヤーが離れたらタイマーをリセット（スペルを修正しました）
-    private void OnTriggerEt2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

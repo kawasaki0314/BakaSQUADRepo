@@ -1108,8 +1108,7 @@ GameObject:
   - component: {fileID: 2000251980}
   - component: {fileID: 2000251982}
   - component: {fileID: 2000251981}
-  - component: {fileID: 2000251983}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: EnemySpawn
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -1165,7 +1164,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -1223,21 +1222,6 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &2000251983
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2000251977}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e95adb570b44e49a3a5642ea6f1f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIHoming
-  speed: 10
-  attackPower: 1
-  attackInterval: 1
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

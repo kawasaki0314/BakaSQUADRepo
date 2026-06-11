@@ -11,8 +11,9 @@ GameObject:
   - component: {fileID: 8768210738288974727}
   - component: {fileID: 6904471968011400848}
   - component: {fileID: 1057166842327345751}
-  - component: {fileID: 5427553362952411349}
   - component: {fileID: 9164661495648429474}
+  - component: {fileID: -2065528918115014493}
+  - component: {fileID: 8016617087406819743}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -102,14 +103,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 321739127192385401}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -121,22 +122,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &5427553362952411349
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 321739127192385401}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e95adb570b44e49a3a5642ea6f1f2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIHoming
-  speed: 1
-  maxHP: 3
-  attackPower: 1
-  attackInterval: 1
 --- !u!61 &9164661495648429474
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -183,3 +168,32 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-2065528918115014493
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321739127192385401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 51e95adb570b44e49a3a5642ea6f1f2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIHoming
+  speed: 2
+  attackPower: 1
+  attackInterval: 1
+--- !u!114 &8016617087406819743
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321739127192385401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4c36b55a7c053343a6d0d2ad28bf213, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
+  maxHp: 1
+  currentHp: 1
