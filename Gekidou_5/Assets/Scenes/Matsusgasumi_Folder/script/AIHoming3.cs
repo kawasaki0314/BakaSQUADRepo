@@ -110,7 +110,7 @@ public class AIHoming3 : MonoBehaviour
     }
 
     //死亡処理
-    void Die()
+   public  void Die()
     {
         // EnemySpawnクラスのInstance（自分自身）を直接呼ぶ
         // ※もしクラス名が EnemySpeawn なら、ここも EnemySpeawn に合わせる

@@ -6,7 +6,6 @@ public class AIHoming2 : MonoBehaviour
     [SerializeField] float speed = 15f;  //敵の動くスピード
 
     [Header("Enemy Status")]
-    [SerializeField] int maxHP = 3; //敵の最大HP
     [SerializeField] int attackPower = 1;　//敵の攻撃力
     [SerializeField] float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     float attackTimer = 0f;
@@ -15,8 +14,7 @@ public class AIHoming2 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //現在のHPを最大HPと同じ値に初期化します。
-        currentHP = maxHP;
+        
         FindPlayer();//生まれた瞬間に一度探す
         
     }
@@ -71,7 +69,7 @@ public class AIHoming2 : MonoBehaviour
     }
 
     //死亡処理
-    void Die()
+    public void Die()
     {
         // EnemySpawnクラスのInstance（自分自身）を直接呼ぶ
         // ※もしクラス名が EnemySpeawn2 なら、ここも EnemySpeawn2 に合わせる

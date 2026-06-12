@@ -10,9 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 3199860933495892074}
   - component: {fileID: 8638373245092709533}
-  - component: {fileID: -527272805714933944}
   - component: {fileID: -3473321174372814950}
   - component: {fileID: -2331079194151476905}
+  - component: {fileID: -2399908375127680585}
+  - component: {fileID: -1459906429618195703}
   m_Layer: 0
   m_Name: Enemy3
   m_TagString: Untagged
@@ -94,25 +95,6 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
---- !u!114 &-527272805714933944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8017806180661443998}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d02b8b8c868204aa2f2f2780d07997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIHoming3
-  speed: 2
-  maxHP: 3
-  attackPower: 1
-  attackInterval: 1
-  enemyBulletPrefab: {fileID: 6056328613159487194, guid: b61165451f76d0f43b3e540cbee13ebf, type: 3}
-  shotInteval: 2
-  bulletSpeed: 5
 --- !u!61 &-3473321174372814950
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -167,14 +149,14 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8017806180661443998}
-  m_BodyType: 1
+  m_BodyType: 0
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -186,3 +168,36 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
+--- !u!114 &-2399908375127680585
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017806180661443998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 03d02b8b8c868204aa2f2f2780d07997, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::AIHoming3
+  speed: 2
+  maxHP: 3
+  attackPower: 1
+  attackInterval: 1
+  enemyBulletPrefab: {fileID: 0}
+  shotInteval: 2
+  bulletSpeed: 5
+--- !u!114 &-1459906429618195703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8017806180661443998}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 82d2ddd18e4bafb48bf886b33406e33e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyHp2
+  maxHp: 5
+  currentHp: 5

@@ -280,7 +280,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 553635905}
-  - component: {fileID: 553635904}
   - component: {fileID: 553635903}
   - component: {fileID: 553635907}
   - component: {fileID: 553635906}
@@ -311,25 +310,6 @@ MonoBehaviour:
   misSpawnDistance: 12
   maxSpawnDistance: 15
   waveTimeLimit: 300
---- !u!114 &553635904
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 553635902}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 03d02b8b8c868204aa2f2f2780d07997, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIHoming3
-  speed: 2
-  maxHP: 3
-  attackPower: 1
-  attackInterval: 1
-  enemyBulletPrefab: {fileID: 6056328613159487194, guid: b61165451f76d0f43b3e540cbee13ebf, type: 3}
-  shotInteval: 2
-  bulletSpeed: 5
 --- !u!4 &553635905
 Transform:
   m_ObjectHideFlags: 0
@@ -663,7 +643,6 @@ GameObject:
   - component: {fileID: 1041517858}
   - component: {fileID: 1041517857}
   - component: {fileID: 1041517856}
-  - component: {fileID: 1041517855}
   - component: {fileID: 1041517854}
   m_Layer: 6
   m_Name: EnemySpawn2
@@ -692,22 +671,6 @@ MonoBehaviour:
   misSpawnDistance: 12
   maxSpawnDistance: 15
   waveTimeLimit: 300
---- !u!114 &1041517855
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1041517853}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5a368ee7d1cc1114290f5ff1788cdf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::AIHoming2
-  speed: 4.5
-  maxHP: 3
-  attackPower: 1
-  attackInterval: 1
 --- !u!50 &1041517856
 Rigidbody2D:
   serializedVersion: 5
