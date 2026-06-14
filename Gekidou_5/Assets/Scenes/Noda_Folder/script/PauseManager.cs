@@ -18,6 +18,9 @@ public class PauseManager : MonoBehaviour
     {
         //時を動かす
         Time.timeScale = 1f;
+
+        //シーン遷移に残ってしまったポーズフラグを強制リセットする
+        IsGamePaused = false;
     }
 
     void Start()

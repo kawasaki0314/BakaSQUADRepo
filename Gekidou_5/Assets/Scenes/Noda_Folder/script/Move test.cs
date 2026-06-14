@@ -10,7 +10,6 @@ public class MoveTest : MonoBehaviour
 
     private Image fadeImage;
     private float currentAlpha = 0f;
-    private bool isFadingOut = false;
     private string nextSceneName = "BattleScene"; 
 
     void Start()
@@ -29,23 +28,6 @@ public class MoveTest : MonoBehaviour
         fadeImage.enabled = false;
     }
 
-    void Update()
-    {
-        if (isFadingOut)
-        {
-            currentAlpha += speed;
-            currentAlpha = Mathf.Clamp01(currentAlpha);
-            fadeImage.color = new Color(0f, 0f, 0f, currentAlpha);
-
-            if (currentAlpha >= 1f)
-            {
-                isFadingOut = false;
-                Debug.Log("【完了】画面が真っ黒になりました。シーンを切り替えます！");
-                SceneManager.LoadScene(nextSceneName);
-            }
-        }
-    }
-
     // ★ボタンから呼び出す関数
     public void ClickToFadeOut()
     {
@@ -57,11 +39,30 @@ public class MoveTest : MonoBehaviour
             return;
         }
 
+        //コルーチンの開始
+        StartCoroutine(FadeOutRoutine());
+   
+    }
+
+    //フェードアウトとシーン遷移を管理するコルーチン
+    private System.Collections.IEnumerator FadeOutRoutine()
+    {
         currentAlpha = 0f;
         fadeImage.enabled = true;
+        fadeImage.raycastTarget = true; //背後の操作の遮断
 
-        fadeImage.raycastTarget = true; //背後の操作を遮断
+        //currentAlphaが1になるまでループ
+        while (currentAlpha < 1f)
+        {
+            currentAlpha += speed * Time.deltaTime;
+            currentAlpha = Mathf.Clamp01(currentAlpha);
+            fadeImage.color = new Color(0f,0f,0f,currentAlpha);
 
-        isFadingOut = true;      
+            //1フレーム待機
+            yield return null;
+        }
+
+        Debug.Log("【完了】画面が真っ黒になりました。シーンを切り替えます！");
+        SceneManager.LoadScene(nextSceneName);
     }
 }

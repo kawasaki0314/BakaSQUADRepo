@@ -17,6 +17,10 @@ public class PlayerMove : MonoBehaviour
     }
     public float blinkCooldown = 3.0f; // クールダウンタイム
     private float cooldownTimer = 0f;
+    public float GetCoolDownTimer() //クールタイムの残り時間を外部から取得するための関数
+    {
+        return cooldownTimer;
+    }
 
     private bool isBlinking = false;
     void Update()
