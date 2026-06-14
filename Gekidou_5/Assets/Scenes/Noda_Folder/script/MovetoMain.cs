@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
-public class MoveTest : MonoBehaviour
+public class MovetoMain : MonoBehaviour
 {
     [SerializeField] private float speed = 0.02f; // フェードスピード
 
