@@ -6,7 +6,6 @@ public class AIHoming3 : MonoBehaviour
     [SerializeField] float speed = 2f;  //敵の動くスピード
 
     [Header("Enemy Status")]
-    [SerializeField] int maxHP = 3; //敵の最大HP
     [SerializeField] int attackPower = 1;　//敵の攻撃力
     [SerializeField] float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     float attackTimer = 0f;
@@ -19,13 +18,9 @@ public class AIHoming3 : MonoBehaviour
     [SerializeField] float bulletSpeed = 5f;      //弾の飛ぶ速度
     float shotTimer = 0f;　　　　　　　　　　　　 //弾を撃つためのタイマー
 
-    int currentHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //現在のHPを最大HPと同じ値に初期化します。
-        currentHP = maxHP;
-
         //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
@@ -95,19 +90,6 @@ public class AIHoming3 : MonoBehaviour
         }
     }
 
-    //ダメージを受ける関数(ここがHP0で消滅するコアの部分です)
-    public void TakeDamage(int damage)
-    {
-        currentHP -= damage;
-        //  追加
-        Debug.Log("敵の残りHP: " + currentHP);
-
-        //HPが0以下なら死亡
-        if (currentHP <= 0)
-        {
-            Die();
-        }
-    }
 
     //死亡処理
    public  void Die()
@@ -147,7 +129,7 @@ public class AIHoming3 : MonoBehaviour
         Destroy(gameObject);
     }
     //プレイヤーに当たった瞬間（最初の1発）
-    private void OnTriggerExit2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
@@ -179,7 +161,7 @@ public class AIHoming3 : MonoBehaviour
 
 
     //プレイヤーが離れたらタイマーをリセット（スペルを修正しました）
-    private void OnTriggerEtit2D(Collider2D collision)
+    private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {

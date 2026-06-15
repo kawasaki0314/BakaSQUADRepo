@@ -39,11 +39,14 @@ public class EnemyHp2 : MonoBehaviour
         Debug.Log($"[Trigger]触れたオブジェクト名: {collision.gameObject.name}");
 
         if (collision.gameObject.name.Contains("Bullet") ||
-            collision.gameObject.name.Contains("attack1") ||
-            collision.gameObject.name.Contains("Orbit"))
+            collision.gameObject.name.Contains("attack1"))
         {
             TakeDamage(1);
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.name.Contains("Orbit"))
+        {
+            TakeDamage(1);
         }
     }
 

@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: -2331079194151476905}
   - component: {fileID: -2399908375127680585}
   - component: {fileID: -1459906429618195703}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Enemy3
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -181,7 +181,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming3
   speed: 2
-  maxHP: 3
   attackPower: 1
   attackInterval: 1
   enemyBulletPrefab: {fileID: 0}

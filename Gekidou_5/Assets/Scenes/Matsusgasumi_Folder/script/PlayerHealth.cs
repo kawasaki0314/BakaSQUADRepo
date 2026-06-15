@@ -48,7 +48,7 @@ public class PlayerHealth : MonoBehaviour
             AIHoming3 enemy3 = enemyCollider.GetComponent<AIHoming3>();
             if (enemy3 != null)
             {
-                enemy3.TakeDamage(attackPower);
+               //enemy3.TakeDamage(attackPower);
                 continue; // ダメージを与えたので、この敵の処理はココで終了（次の敵のループへ）
             }
 
@@ -56,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
             AIHoming2 enemy2 = enemyCollider.GetComponent<AIHoming2>();
             if (enemy2 != null)
             {
-                enemy2.TakeDamage(attackPower);
+                //enemy2.TakeDamage(attackPower);
                 continue; // ダメージを与えたので終了
             }
 

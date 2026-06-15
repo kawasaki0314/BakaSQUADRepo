@@ -4,9 +4,9 @@ public class EnemyHp : MonoBehaviour
 {
     
     [Header("HP Settings")]
-    [SerializeField] int maxHp = 5;
-    public int currentHp = 5;
-
+    [SerializeField] int maxHp = 8;
+    public int currentHp = 8;
+    private bool isDead = false;
     private AIHoming2 aiHoming2;
 
     void Start()
@@ -17,11 +17,13 @@ public class EnemyHp : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
         currentHp -= damage;
         Debug.Log($"{gameObject.name}に{damage}のダメージ！残りHP:{currentHp}");
 
         if (currentHp <= 0)
         {
+            isDead = true;
             if (aiHoming2 != null)
             {
                aiHoming2.Die();
@@ -39,11 +41,14 @@ public class EnemyHp : MonoBehaviour
         Debug.Log($"[Trigger]触れたオブジェクト名: {collision.gameObject.name}");
 
         if (collision.gameObject.name.Contains("Bullet") ||
-            collision.gameObject.name.Contains("attack1") ||
-            collision.gameObject.name.Contains("Orbit"))
+            collision.gameObject.name.Contains("attack1"))
         {
             TakeDamage(1);
             Destroy(collision.gameObject);
+        }
+        else if (collision.gameObject.name.Contains("Orbit"))
+        {
+            TakeDamage(1);
         }
     }
     
