@@ -3,7 +3,7 @@ using UnityEngine;
 public class AIHoming2 : MonoBehaviour
 {
     Transform playerTr;//プレイヤーのTransform
-    [SerializeField] float speed = 15f;  //敵の動くスピード
+    [SerializeField] float speed = 4f;  //敵の動くスピード
 
     [Header("Enemy Status")]
     [SerializeField] int attackPower = 1;　//敵の攻撃力
