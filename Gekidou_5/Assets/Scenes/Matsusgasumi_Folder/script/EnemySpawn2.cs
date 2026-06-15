@@ -1,5 +1,6 @@
 using UnityEngine;
-using System.Collections; // コルーチンを使うために必要
+using System.Collections;
+
 
 public class EnemySpawn2 : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class EnemySpawn2 : MonoBehaviour
     [SerializeField] GameObject specialEnemyprefab;//制限したい特徴のキャラ
 
     [Header("Spawn Limits")]
-    [SerializeField] int initialSpawnCount = 15;
-    [SerializeField] int maxSpecialEnemyCount = 20;//このキャラは画面最大20匹まで
+    [SerializeField] int initialSpawnCount = 5;
+    [SerializeField] int maxSpecialEnemyCount = 8;//このキャラは画面最大20匹まで
 
     [Header("Timer Settings")]
     [SerializeField] float delaySeconds = 30f; // 何秒後に登場させるか（インスペクターで変更可能）
@@ -60,7 +61,7 @@ public class EnemySpawn2 : MonoBehaviour
     private IEnumerator SpawnAfterDelay()
     {
         // 指定した秒数だけ待機
-        yield return new WaitForSeconds(30f);
+        yield return new WaitForSeconds(delaySeconds);
 
         // 待機が終わったので、プレイヤーの画面外に初期数だけ生成
         for (int i = 0; i < initialSpawnCount; i++)
@@ -68,6 +69,8 @@ public class EnemySpawn2 : MonoBehaviour
             Vector2 spawnPos = GetRandomSpawnPosition();
             SpawnspecificEnemy2(false, spawnPos);
         }
+
+        isspawningStarted = true;
 
         Debug.Log($"{delaySeconds}秒経過したので敵を生成しました！");
     }
