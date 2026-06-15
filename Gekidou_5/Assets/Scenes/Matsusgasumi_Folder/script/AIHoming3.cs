@@ -97,12 +97,12 @@ public class AIHoming3 : MonoBehaviour
         // EnemySpawnクラスのInstance（自分自身）を直接呼ぶ
         // ※もしクラス名が EnemySpeawn なら、ここも EnemySpeawn に合わせる
         Debug.Log("敵を倒した!スポナーに補充を頼みます。");
-        /*
+        
         //画面内からプレイヤーのレベルスクリプトを探して、経験値を手渡す
-        PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
-        if(playerLevel != null)
+        PlayerLevel playerlevel = FindFirstObjectByType<PlayerLevel>();
+        if(playerlevel != null)
         {
-            playerLevel.GainExp(3);//敵を1体倒したら経験値「３」手に入れる設定
+            playerlevel.GainExp(3);//敵を1体倒したら経験値「３」手に入れる設定
             Debug.Log("プレイヤーに経験値を３あたえました！");
         }
         else
@@ -110,7 +110,7 @@ public class AIHoming3 : MonoBehaviour
             //もしもこのエラーが出てたら、プレイヤーに「PlayerLevel」スクリプトが付いているか確認してください
             Debug.LogWarning("PlayerLevelスクリプトは見つかりません！経験値が加算さrませんでした。");
         }
-        */
+        
         //Instance(シングルトン)を使ってスポナーに報告
         //EnemySpawnのInstance(さっきAwakeで作ったやつ)を直接呼ぶ
         if (EnemySpawn3.Instance != null)

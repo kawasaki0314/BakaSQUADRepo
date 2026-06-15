@@ -12,9 +12,13 @@ public class levelupplayer : MonoBehaviour
     public int currentexp = 0; // 初期経験値
     public int maxexp = 100; //必要経験値
 
+    [Header("Hp Settings")]
     public Image healthImage; //体力表示
     public int maxHP; //最大体力
     public int hp; //体力
+
+    [Header("Movement Limit Settings")]
+    [SerializeField] private float maxPlayerSpeed = 3.0f;
 
     private PlayerAttack playerAttack;
     private PlayerMove playerMove;
@@ -33,7 +37,7 @@ public class levelupplayer : MonoBehaviour
         playerMove = GetComponent<PlayerMove>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Space))//スペースキーを押した時検知する
         {
@@ -82,7 +86,9 @@ public class levelupplayer : MonoBehaviour
         // プレイヤーのの移動速度を上げる
         if (playerMove != null && currentlevel % 5 == 0)
         {
-            playerMove.playerSpeed += 0.5f;
+            float targetSpeed = playerMove.playerSpeed + 0.5f;
+            playerMove.playerSpeed = Mathf.Min(targetSpeed, maxPlayerSpeed);
+
             Debug.Log($" プレイヤーの移動速度が 1 上がった！");
         }
 
