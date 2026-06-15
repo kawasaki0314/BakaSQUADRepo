@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
 {
     float timer = 0f;
     bool bossSpawned = false;
-    [SerializeField]public GameObject BossPrefab;
+    public GameObject BossPrefab;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 300f && !bossSpawned)
+        if(timer > 1f && !bossSpawned)
         {
             Instantiate(BossPrefab, Vector3.zero, Quaternion.identity);
             bossSpawned = true;
