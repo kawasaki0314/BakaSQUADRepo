@@ -54,20 +54,6 @@ public class AIHoming2 : MonoBehaviour
             speed * Time.fixedDeltaTime);
     }
 
-
-    //ダメージを受ける関数(ここがHP0で消滅するコアの部分です)
-    public void TakeDamage(int damage)
-    {
-        currentHP -= damage;
-        Debug.Log("敵の残りHP: " + currentHP);
-
-        //HPが0以下なら死亡
-        if (currentHP <= 0)
-        {
-            Die();
-        }
-    }
-
     //死亡処理
     public void Die()
     {

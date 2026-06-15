@@ -3,8 +3,8 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     [Header("HP Settings")]
-    [SerializeField] int maxHp = 5;
-    public int currentHp = 5;
+    [SerializeField] int maxHp = 65;
+    public int currentHp = 65;
 
     private AIHoming aiHoming;
 

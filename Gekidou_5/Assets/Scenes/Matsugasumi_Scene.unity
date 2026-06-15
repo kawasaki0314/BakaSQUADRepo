@@ -666,7 +666,7 @@ Rigidbody2D:
   m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -752,9 +752,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn2
   regularEnemyprefab: {fileID: 7123478603682011902, guid: 192ed3618815f4a4ebc3239852b3f067, type: 3}
-  specialEnemyprefab: {fileID: 0}
-  initialSpawnCount: 5
-  maxSpecialEnemyCount: 8
+  initialSpawnCount: 6
+  maxRegularEnemyCount: 6
   delaySeconds: 30
   misSpawnDistance: 12
   maxSpawnDistance: 15

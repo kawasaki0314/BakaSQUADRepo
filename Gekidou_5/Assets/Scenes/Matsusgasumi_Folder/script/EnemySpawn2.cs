@@ -1,24 +1,23 @@
 using UnityEngine;
 using System.Collections;
 
-
 public class EnemySpawn2 : MonoBehaviour
 {
     public static EnemySpawn2 Instance { get; private set; }
 
     [Header("Prefabs")]
     [SerializeField] GameObject regularEnemyprefab;//通常の敵
-    [SerializeField] GameObject specialEnemyprefab;//制限したい特徴のキャラ
+    
 
     [Header("Spawn Limits")]
-    [SerializeField] int initialSpawnCount = 5;
-    [SerializeField] int maxSpecialEnemyCount = 8;//このキャラは画面最大20匹まで
+    [SerializeField] int initialSpawnCount = 4;
+    [SerializeField] int maxRegularEnemyCount = 4;//このキャラは画面最大6匹まで
 
     [Header("Timer Settings")]
     [SerializeField] float delaySeconds = 30f; // 何秒後に登場させるか（インスペクターで変更可能）
 
     private int currentRegularCount = 0;
-    private int currentSpecialCount = 0;//このキャラの現在の数
+    
 
     //プレイヤーの場所を基準にするための変数
     private Transform playerTransform;
@@ -29,7 +28,7 @@ public class EnemySpawn2 : MonoBehaviour
     [SerializeField] float maxSpawnDistance = 15f;  //最大でもこのくらいの距離（遠すぎない）
 
     [Header("Global Wave Limits")]
-    [SerializeField] float waveTimeLimit = 300f; //全員が消えるまでの制限時間（例: 30秒)
+    [SerializeField] float waveTimeLimit = 300f; //全員が消えるまでの制限時間
     private float waveTimer = 0;
     private bool waveEnded = false;  //二重に消滅処理を防ぐフラグ 
     private bool isspawningStarted = false;//タイマーが終了して生成が始まったかどうかのフラグ
@@ -67,7 +66,7 @@ public class EnemySpawn2 : MonoBehaviour
         for (int i = 0; i < initialSpawnCount; i++)
         {
             Vector2 spawnPos = GetRandomSpawnPosition();
-            SpawnspecificEnemy2(false, spawnPos);
+            SpawnspecificEnemy2(spawnPos);
         }
 
         isspawningStarted = true;
@@ -96,45 +95,30 @@ public class EnemySpawn2 : MonoBehaviour
         return new Vector2(spawnX, spawnY);
     }
     // --- 以下、SpawnspecificEnemy と OnEnemyDefeated は元のまま ---
-    private void SpawnspecificEnemy2(bool isSpecial, Vector2 position)
+    private void SpawnspecificEnemy2(Vector2 position)
     {
-        GameObject prefabToSpawn = isSpecial ? specialEnemyprefab : regularEnemyprefab;
-        if (prefabToSpawn == null)
+        if (regularEnemyprefab == null)
         {
             Debug.LogError("プレハブが設定されてません！インスペクターを確認してください。");
             return;
         }
-        if (isSpecial)
-        {
-            if (currentSpecialCount >= maxSpecialEnemyCount) return;
-            Instantiate(specialEnemyprefab, position, Quaternion.identity);
-            currentSpecialCount++;
-        }
-        else
-        {
+    
+            if (currentRegularCount >= maxRegularEnemyCount) return;
             Instantiate(regularEnemyprefab, position, Quaternion.identity);
             currentRegularCount++;
-        }
+        
     }
     //敵が死んだときに「敵自身から」呼ばれる関数
     public void OnEnemyDefeated(bool isSpecial, Vector2 defeatedPosition)
     {
         //ウェーブがすでに終了しているなら補充しない
         if (waveEnded) return;
-
+        currentRegularCount--;
         //敵が死んだときの補充も、現在のプレイヤーの画面外にする
         Vector2 spawnPosition = GetRandomSpawnPosition();
-        if (isSpecial)
-        {
-            currentSpecialCount--;
-            SpawnspecificEnemy2(true, spawnPosition);
-        }
-        else
-        {
-            currentRegularCount--;
-            SpawnspecificEnemy2(false, spawnPosition);
-        }
-        Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}特集:{currentSpecialCount}");
+
+        SpawnspecificEnemy2(spawnPosition);
+        Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}体");
     }
 
     private void Update()
@@ -170,7 +154,7 @@ public class EnemySpawn2 : MonoBehaviour
         
         //カウントをリセット
         currentRegularCount = 0;
-        currentSpecialCount = 0;
+        
 
         Debug.Log("すべての敵が消去が完了しました。");
     }
