@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HeelItem : MonoBehaviour
 {
-    public float playerhp = 1.1f;
+    public int playerhp =　+20;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
