@@ -11,6 +11,7 @@ public class FloatAnimation : MonoBehaviour
 
     void Start()
     {
+        Time.timeScale = 1f; //動くようになってください
         // UI（Canvas内）か、通常のオブジェクトかを判定
         rectTransform = GetComponent<RectTransform>();
         isUI = rectTransform != null;
