@@ -1,3 +1,4 @@
+using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
@@ -5,6 +6,7 @@ public class EnemyHP : MonoBehaviour
     [Header("HP Settings")]
     [SerializeField] int maxHp = 65;
     public int currentHp = 65;
+    private bool isDead = false;
 
     private AIHoming aiHoming;
 
@@ -16,11 +18,14 @@ public class EnemyHP : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;
+
         currentHp -= damage;
         Debug.Log($"{gameObject.name}に{damage}のダメージ！残りHP:{currentHp}");
 
         if (currentHp <= 0)
         {
+            isDead = true;
             if (aiHoming != null)
             {
                 aiHoming.Die();
