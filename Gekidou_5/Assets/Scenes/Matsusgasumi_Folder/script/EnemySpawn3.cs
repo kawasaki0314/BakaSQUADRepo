@@ -60,7 +60,7 @@ public class EnemySpawn3 : MonoBehaviour
     private IEnumerator SpawnAfterDelay()
     {
         // 指定した秒数だけ待機
-        yield return new WaitForSeconds(60f);
+        yield return new WaitForSeconds(delaySeconds);
 
         // 待機が終わったので、プレイヤーの画面外に初期数だけ生成
         for (int i = 0; i < initialSpawnCount; i++)

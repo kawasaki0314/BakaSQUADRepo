@@ -1,6 +1,4 @@
-using NUnit.Framework.Constraints;
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 
@@ -120,6 +118,8 @@ public class EnemySpawn : MonoBehaviour
     //敵が死んだときに「敵自身から」呼ばれる関数
     public void OnEnemyDefeated(bool isSpecial, Vector2 defeatedPosition)
     {
+        if (waveEnded) return;
+
         //敵が死んだときの補充も、現在のプレイヤーの画面外にする
         Vector2 spawnPosition = GetRandomSpawnPosition();
 
