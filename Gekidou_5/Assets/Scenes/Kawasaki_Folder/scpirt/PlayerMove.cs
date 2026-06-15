@@ -11,7 +11,7 @@ public class PlayerMove : MonoBehaviour
 
     private Vector2 lastDir = Vector2.right; // 最後に入力した方向
 
-    public Vector2 GetLastDir()　// 他のスクリプトから方向を所得するための関数
+    public Vector2 GetLastDir() // 他のスクリプトから方向を所得するための関数
     {
         return lastDir;
     }
