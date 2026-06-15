@@ -1278,7 +1278,7 @@ Transform:
   m_GameObject: {fileID: 1092061117}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.049376655, w: 0.9987803}
-  m_LocalPosition: {x: -0.20286691, y: 7.10001, z: 0}
+  m_LocalPosition: {x: -0.65, y: 8.64, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1301,7 +1301,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833a09f1099d01046a8faf06f842abb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHp
-  bossHp: 2147483647
+  bossHp: 10
 --- !u!1 &1110859841
 GameObject:
   m_ObjectHideFlags: 0

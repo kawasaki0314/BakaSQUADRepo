@@ -7,6 +7,7 @@ using System.Collections.Generic;
 
 public class levelupplayer : MonoBehaviour
 {
+    [Header("Level Settings")]
     public int currentlevel = 1; //現在のレベル
     public int currentexp = 0; // 初期経験値
     public int maxexp = 100; //必要経験値
@@ -15,15 +16,21 @@ public class levelupplayer : MonoBehaviour
     public int maxHP; //最大体力
     public int hp; //体力
 
+    private PlayerAttack playerAttack;
+    private PlayerMove playerMove;
 
     [SerializeField]private int expPerKeyPress = 10;  //1会押すたびにもらえる経験値の量
     [SerializeField]private Slider expSlider;         //InspectorでSliderをドラッグ&ドロップ
     [SerializeField]private TextMeshProUGUI levelText;//InspectorでTMPをドラッグ&ドロップ
 
-    private void Start()
+    void Start()
     {
         UpdateUI();
         hp = maxHP;
+
+        // プレイヤーの他のスクリプトの取得
+        playerAttack = GetComponent<PlayerAttack>();
+        playerMove = GetComponent<PlayerMove>();
     }
 
     private void FixedUpdate()
@@ -62,6 +69,22 @@ public class levelupplayer : MonoBehaviour
     {
         currentexp -= maxexp; //余った経験値は持ち越す
         currentlevel++; //レベルアップ
+
+        // プレイヤーの基礎攻撃量力を1増やす
+        if (playerAttack != null)
+        {
+            playerAttack.normalAttackPower += 1;
+            playerAttack.orbitAttackPower += 1;
+            playerAttack.bulletAttackPower += 1;
+            Debug.Log($" プレイヤーの全攻撃力が 1 上がった！");
+        }
+
+        // プレイヤーのの移動速度を上げる
+        if (playerMove != null && currentlevel % 5 == 0)
+        {
+            playerMove.playerSpeed += 0.5f;
+            Debug.Log($" プレイヤーの移動速度が 1 上がった！");
+        }
 
         //次のレベルへの必要経験値を増やす
         maxexp = Mathf.RoundToInt(maxexp * 1.3f);
