@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a368ee7d1cc1114290f5ff1788cdf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming2
-  speed: 15
+  speed: 8
   attackPower: 1
   attackInterval: 1
 --- !u!114 &-1676100567489339101

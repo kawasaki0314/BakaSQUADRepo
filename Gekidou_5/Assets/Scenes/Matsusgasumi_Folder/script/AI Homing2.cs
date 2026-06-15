@@ -54,32 +54,18 @@ public class AIHoming2 : MonoBehaviour
             speed * Time.fixedDeltaTime);
     }
 
-
-    //ダメージを受ける関数(ここがHP0で消滅するコアの部分です)
-    public void TakeDamage(int damage)
-    {
-        currentHP -= damage;
-        Debug.Log("敵の残りHP: " + currentHP);
-
-        //HPが0以下なら死亡
-        if (currentHP <= 0)
-        {
-            Die();
-        }
-    }
-
     //死亡処理
     public void Die()
     {
         // EnemySpawnクラスのInstance（自分自身）を直接呼ぶ
         // ※もしクラス名が EnemySpeawn2 なら、ここも EnemySpeawn2 に合わせる
         Debug.Log("敵を倒した!スポナーに補充を頼みます。");
-        /*
+        
         //画面内からプレイヤーのレベルスクリプトを探して、経験値を手渡す
-        PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
-        if (playerLevel != null)
+        PlayerLevel playerlevel = FindFirstObjectByType<PlayerLevel>();
+        if (playerlevel != null)
         {
-            playerLevel.GainExp(3);//敵を1体倒したら経験値「３」手に入れる設定
+            playerlevel.GainExp(3);//敵を1体倒したら経験値「３」手に入れる設定
             Debug.Log("プレイヤーに経験値を３あたえました！");
         }
         else
@@ -87,7 +73,7 @@ public class AIHoming2 : MonoBehaviour
             //もしもこのエラーが出てたら、プレイヤーに「PlayerLevel」スクリプトが付いているか確認してください
             Debug.LogWarning("PlayerLevelスクリプトは見つかりません！経験値が加算さrませんでした。");
         }
-        */
+        
         // 【修正】まず最初に、確実に自分を消す予約を入れる
         // Destroyは関数の最後に実行されるので、上に書いても大丈夫です
 
