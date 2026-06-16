@@ -7,7 +7,6 @@ public class EnemySpawn3 : MonoBehaviour
 
     [Header("Prefabs")]
     [SerializeField] GameObject regularEnemyprefab;//通常の敵
-    [SerializeField] GameObject specialEnemyprefab;//制限したい特徴のキャラ
 
     [Header("Spawn Limits")]
     [SerializeField] int initialSpawnCount = 15;
@@ -98,23 +97,17 @@ public class EnemySpawn3 : MonoBehaviour
     // --- 以下、SpawnspecificEnemy と OnEnemyDefeated は元のまま ---
     private void SpawnspecificEnemy3(bool isSpecial, Vector2 position)
     {
-        GameObject prefabToSpawn = isSpecial ? specialEnemyprefab : regularEnemyprefab;
-        if (prefabToSpawn == null)
+        
+        if (regularEnemyprefab == null)
         {
             Debug.LogError("プレハブが設定されてません！インスペクターを確認してください。");
             return;
         }
-        if (isSpecial)
-        {
+        
             if (currentSpecialCount >= maxSpecialEnemyCount) return;
-            Instantiate(specialEnemyprefab, position, Quaternion.identity);
-            currentSpecialCount++;
-        }
-        else
-        {
             Instantiate(regularEnemyprefab, position, Quaternion.identity);
-            currentRegularCount++;
-        }
+            currentSpecialCount++;
+    
     }
     //敵が死んだときに「敵自身から」呼ばれる関数
     public void OnEnemyDefeated(bool isSpecial, Vector2 defeatedPosition)
@@ -134,7 +127,7 @@ public class EnemySpawn3 : MonoBehaviour
             currentRegularCount--;
             SpawnspecificEnemy3(false, spawnPosition);
         }
-        Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}特集:{currentSpecialCount}");
+        Debug.Log($"敵が倒されたので補充しました。通常:{currentRegularCount}体");
     }
 
     private void Update()
@@ -164,13 +157,13 @@ public class EnemySpawn3 : MonoBehaviour
         {
             if (enemy != null)
             {
-                enemy.Disapear();//AIHoming2側の消滅エフェクトなどを実行
+                enemy.Disapear();//AIHoming3側の消滅エフェクトなどを実行
             }
         }
 
         //カウントをリセット
         currentRegularCount = 0;
-        currentSpecialCount = 0;
+       
 
         Debug.Log("すべての敵が消去が完了しました。");
     }
