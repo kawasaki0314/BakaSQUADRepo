@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BossHp : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class BossHp : MonoBehaviour
 
         if(bossHp <= 0 )
         {
+            SceneManager.LoadScene("Clear");
             Destroy(gameObject);
         }
 
