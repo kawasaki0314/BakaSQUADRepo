@@ -4,6 +4,7 @@ using TMPro;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using NUnit.Framework.Constraints;
 
 public class levelupplayer : MonoBehaviour
 {
@@ -21,9 +22,6 @@ public class levelupplayer : MonoBehaviour
     [SerializeField] private Image fadeImage; // 画面を覆う黒い画像
     [SerializeField] private float fadeDuration = 1.0f; // フェードアウトにかける時間（秒）
 
-    [Header("Movement Limit Settings")]
-    [SerializeField] private float maxPlayerSpeed = 3.0f;
-
     private PlayerAttack playerAttack;
     private PlayerMove playerMove;
 
@@ -35,8 +33,8 @@ public class levelupplayer : MonoBehaviour
 
     void Start()
     {
-        UpdateUI();
         hp = maxHP;
+        UpdateUI();
 
         // プレイヤーの他のスクリプトの取得
         playerAttack = GetComponent<PlayerAttack>();
@@ -90,23 +88,56 @@ public class levelupplayer : MonoBehaviour
         currentexp -= maxexp;
         currentlevel++;
 
-        if (playerAttack != null)
+        int randomIndex = Random.Range(0, 5);
+
+        switch (randomIndex)
         {
-            playerAttack.normalAttackPower += 1;
-            playerAttack.orbitAttackPower += 1;
-            playerAttack.bulletAttackPower += 1;
-            Debug.Log($" プレイヤーの全攻撃力が 1 上がった！");
+            case 0: // 攻撃強化   
+                if (playerAttack != null)
+                {
+                    playerAttack.normalAttackPower += 1;
+                    playerAttack.orbitAttackPower += 1;
+                    playerAttack.bulletAttackPower += 1;
+                    Debug.Log($" プレイヤーの全攻撃力が1上がった！");
+                }
+                break;
+
+            case 1: // 移動速度強化
+                if (playerMove != null)
+                {
+                    playerMove.playerSpeed += 0.5f;
+                    Debug.Log($" プレイヤーの移動速度が1上がった！");
+                }
+                break;
+
+            case 2: // 球数
+                if (playerAttack != null)
+                {
+                    playerAttack.bulletCount += 1; // 球数＋
+                    Debug.Log($" bulletの弾数が1増えた！");
+                }
+                break;
+
+            case 3: // HP上限
+                maxHP += 20;
+                hp += 20;
+                if (healthImage != null)
+                { 
+                    healthImage.fillAmount = (float)hp / maxHP;
+                Debug.Log($" HP上限が20上がった！現在の最大HP:{maxHP}");
+                }
+                break;
+
+            case 4: // 連射速度強化
+                if (playerAttack != null)
+                {
+                    playerAttack.fireRateModifier += 0.15f;
+                    Debug.Log($"連射速度が上がった！");
+                }
+                break;
         }
 
-        if (playerMove != null && currentlevel % 5 == 0)
-        {
-            float targetSpeed = playerMove.playerSpeed + 0.5f;
-            playerMove.playerSpeed = Mathf.Min(targetSpeed, maxPlayerSpeed);
-
-            Debug.Log($" プレイヤーの移動速度が 1 上がった！");
-        }
-
-        maxexp = Mathf.RoundToInt(maxexp * 1.3f);
+                maxexp = Mathf.RoundToInt(maxexp * 1f);
         UpdateUI();
         Debug.Log($"レベルアップ！現在のレベル：{currentlevel}次の必要経験値：{maxexp}");
     }
