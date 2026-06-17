@@ -217,14 +217,14 @@ public class levelupplayer : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void heal(int heal)
+    public void heal(int amount)
     {
         if (hp >= maxHP || isDead) return;
 
-        hp += heal;
+        hp += amount;
         hp = Mathf.Clamp(hp, 0, maxHP);
         healthImage.fillAmount = (float)hp / maxHP;
-        Debug.Log($"体力を{heal}回復した！現在のHP:{hp}/{maxHP}");
+        Debug.Log($"体力を{amount}回復した！現在のHP:{hp}/{maxHP}");
     }
 
     private void OnTriggerEnter2D(Collider2D other)

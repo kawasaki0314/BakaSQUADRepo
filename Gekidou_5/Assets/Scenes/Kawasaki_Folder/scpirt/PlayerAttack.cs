@@ -78,8 +78,14 @@ public class PlayerAttack : MonoBehaviour
 
         if (attackPrefab == null) return;
 
-        // プレイヤーの向いている方向を取得
-        Vector2 dir = playerMove.GetLastDir();
+        // プレイヤーの向いている方向(マウスカーソル)を取得
+        Vector3 mouseWorldPos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
+
+        //Z軸はプレイヤーと同じにして、純粋な２D平面上のベクトルにする
+        mouseWorldPos.z = transform.position.z;
+
+        //マウス位置からプレイヤー位置を引いて、方向ベクトルを計算し、正規化する
+        Vector2 dir = ((Vector2)(mouseWorldPos - transform.position)).normalized;
 
         // 攻撃の位置決定
         Vector3 spawnPos = transform.position + (Vector3)(dir * attackOffset);

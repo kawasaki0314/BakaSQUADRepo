@@ -775,7 +775,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   uiText: {fileID: 103476845}
-  countTime: 301
+  countTime: 181
 --- !u!114 &103476845
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1503,6 +1503,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   shootInterval: 2
+  bulletCount: 4
+  fireRateModifier: 0
 --- !u!114 &210212286
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1607,7 +1609,6 @@ MonoBehaviour:
   hp: 100
   fadeImage: {fileID: 1962332751}
   fadeDuration: 2
-  maxPlayerSpeed: 3
   expPerKeyPress: 10
   expSlider: {fileID: 165166155}
   levelText: {fileID: 1951281263}
@@ -10853,6 +10854,7 @@ MonoBehaviour:
   speed: 10
   attackPower: 1
   attackInterval: 1
+  attackTimer: 0
 --- !u!50 &1751000985
 Rigidbody2D:
   serializedVersion: 5
