@@ -22,6 +22,10 @@ public class PlayerAttack : MonoBehaviour
     public float shootInterval = 2f; // 自動で射撃攻撃を出す間隔
     private float shootTimer = 0f; // 射撃攻撃のタイマー
 
+    [Header("Upgrade Stats")]
+    public int bulletCount = 4;
+    public float fireRateModifier = 0f;
+
     private PlayerMove playerMove;
 
     private float playTime = 0f; // 時間管理
@@ -54,7 +58,9 @@ public class PlayerAttack : MonoBehaviour
 
         // 自動で十字型に射撃攻撃を出す
         shootTimer += Time.deltaTime;
-        if (shootTimer >= shootInterval)
+
+        float currentInterval = Mathf.Max(0.15f, shootInterval - fireRateModifier);
+        if (shootTimer >= currentInterval)
         {
             shootTimer = 0f; // タイマーリセット
             AutoShoot();
@@ -120,38 +126,32 @@ public class PlayerAttack : MonoBehaviour
             atk.attackPower = this.orbitAttackPower;
         }
     }
-
-    void AutoShoot() // 十字型に射撃攻撃を出す
-    {
-        if (bulletPrefab == null) return;
-
-        // 十字の4方向のベクトル配置
-        Vector2[] ShootDirections =
+        // 360度均等に弾を発射する正しい処理
+        void AutoShoot()
         {
-            Vector2.right, // (1,0)
-            Vector2.left, // (-1,0)
-            Vector2.up, // (0,1)
-            Vector2.down // (0,-1)
-        };
+            if (bulletPrefab == null) return;
 
-        // ループ処理で4回弾を生成し、それぞれ方向に飛ばす
-        foreach (Vector2 fireDir in ShootDirections)
+        int count = Mathf.Max(1, bulletCount);
+
+        for(int i = 0; i < count; i++)
         {
-            // 弾をプレイヤーの位置に生成
-            GameObject bulletObj = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            float angle = (360f / count) * i;
+            Vector2 dir = Quaternion.Euler(0, 0, angle) * Vector2.right;
 
-            // 弾のスクリプトを取得して方向を設定
+            GameObject bulletObj = Instantiate(bulletPrefab,
+                transform.position, Quaternion.identity);
+
             AttackBullet bullet = bulletObj.GetComponent<AttackBullet>();
-            if (bullet != null)
+            
+            if(bullet != null)
             {
-                bullet.SetDirection(fireDir);
-
+                bullet.SetDirection(dir);
                 bullet.attackPower = this.bulletAttackPower;
             }
         }
-    }
-
-    public void StartPowerUpBuff(int amount, float duration)
+        
+        }
+public void StartPowerUpBuff(int amount, float duration)
     {
         StartCoroutine(PowerUpRoutine(amount, duration));
     }

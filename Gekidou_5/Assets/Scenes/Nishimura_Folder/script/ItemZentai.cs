@@ -6,7 +6,7 @@ public class ItemZentai : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log("ItemZentai: Start");
+       Debug.Log("ItemZentai: Start");
     }
 
     //Playerに当たったら自分を消す
@@ -14,7 +14,7 @@ public class ItemZentai : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            Debug.Log("ItemZentai: OnTriggerEnter2D");
+          //  Debug.Log("ItemZentai: OnTriggerEnter2D");
             Destroy(gameObject);
         }
     }

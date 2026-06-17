@@ -4,7 +4,7 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
-    public float playerSpeed = 2f; // 移動速度
+    public float playerSpeed = 5f; // 移動速度
 
     public float blinkDistance = 7.5f; // ブリンクの距離
     public float blinkDuration = 0.3f; // 時間
