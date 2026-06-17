@@ -38,7 +38,7 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
             buttonText.fontSize = Mathf.MoveTowards(
                 buttonText.fontSize,
                 targetSize,
-                changeSpeed * Time.deltaTime
+                changeSpeed * Time.unscaledDeltaTime
             );
         }
     }

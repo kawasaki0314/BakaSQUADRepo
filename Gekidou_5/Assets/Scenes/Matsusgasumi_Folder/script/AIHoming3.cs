@@ -6,9 +6,9 @@ public class AIHoming3 : MonoBehaviour
     [SerializeField] float speed = 2f;  //敵の動くスピード
 
     [Header("Enemy Status")]
-    [SerializeField] int attackPower = 1;　//敵の攻撃力
-    [SerializeField] float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
-    float attackTimer = 0f;
+    public int attackPower = 1;　//敵の攻撃力
+    public float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
+    public float attackTimer = 0f;
 
 
     //遠距離攻撃（弾を発射する）の設定
@@ -128,47 +128,7 @@ public class AIHoming3 : MonoBehaviour
         //じぶんおｗ消去する処理は、すべての報告や処理が「終わったら最後」に1回だけ書くのが鉄則！
         Destroy(gameObject);
     }
-    //プレイヤーに当たった瞬間（最初の1発）
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log("プレイヤーに当たりました！");
-
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            if (playerHealth != null)
-            {
-                playerHealth.TakeDamage(attackPower);
-            }
-        }
-    }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if(collision.CompareTag("Player"))
-        {
-            if (attackTimer >= attackInterval)
-            {
-                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-                if(playerHealth != null)
-                {
-                    playerHealth.TakeDamage(attackPower);
-                    Debug.Log("継続ダメージを与えました！");
-                    attackTimer = 0f;  //タイマーリセット
-                }
-            }
-        }
-    }
-
-
-    //プレイヤーが離れたらタイマーをリセット（スペルを修正しました）
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            Debug.Log("プレイヤーが離れなした");
-            attackTimer = 0f;
-        }
-    }
+    
     //スポナーから一斉に消されるための関数
     public void Disapear()
     {
