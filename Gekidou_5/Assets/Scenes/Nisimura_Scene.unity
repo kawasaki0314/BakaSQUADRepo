@@ -367,7 +367,7 @@ Transform:
   m_GameObject: {fileID: 147031719}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.29, y: 0.1, z: 0}
+  m_LocalPosition: {x: 9.84, y: 5.51, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -821,7 +821,6 @@ MonoBehaviour:
   hp: 100
   fadeImage: {fileID: 0}
   fadeDuration: 1
-  maxPlayerSpeed: 3
   expPerKeyPress: 10
   expSlider: {fileID: 0}
   levelText: {fileID: 0}
@@ -911,6 +910,8 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   shootInterval: 2
+  bulletCount: 4
+  fireRateModifier: 0
 --- !u!4 &1143069516 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4143329256993166774, guid: ba9baab07d9ef4a429c71d44268c539a, type: 3}
@@ -1069,10 +1070,10 @@ MonoBehaviour:
   - {fileID: 503838146002230707, guid: a1a2ed18b7de90146bb0e7f467d531b8, type: 3}
   - {fileID: 8203498364048792888, guid: 957e3b591d1306f499eac0ec868def29, type: 3}
   - {fileID: 8329388002031898694, guid: 29588bbb3a673a34a9e3e9e4b014bec8, type: 3}
-  xLimit: 8
-  yLimit: 4
-  spanMin: 0.5
-  spanMax: 0.6
+  xLimit: 45
+  yLimit: 45
+  spanMin: 1
+  spanMax: 1
 --- !u!4 &1595204568
 Transform:
   m_ObjectHideFlags: 0
@@ -1082,7 +1083,7 @@ Transform:
   m_GameObject: {fileID: 1595204562}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 12.36, y: 4.02, z: 0}
+  m_LocalPosition: {x: 11.63, y: 4.02, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
