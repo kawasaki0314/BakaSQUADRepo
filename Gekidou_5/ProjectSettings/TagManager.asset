@@ -14,6 +14,8 @@ TagManager:
   - AttackNormal
   - AttackBullet
   - AttackOrbit
+  - Undefined
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX

@@ -38,6 +38,9 @@ public class EnemyHp2 : MonoBehaviour
     {
         Debug.Log($"[Trigger]触れたオブジェクト名: {collision.gameObject.name}");
 
+        //EnemyBulletタグがついているものは無視
+        if (collision.CompareTag("EnemyBullet")) return;
+
         if (collision.gameObject.name.Contains("Bullet") ||
             collision.gameObject.name.Contains("attack1"))
         {

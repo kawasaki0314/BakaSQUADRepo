@@ -83,6 +83,7 @@ public class AIHoming3 : MonoBehaviour
         if (rb != null)
         {
             rb.linearVelocity = direction * bulletSpeed;
+            Debug.Log($"弾を発射！方向:{direction} 速度{rb.linearVelocity}");
         }
         else
         {
