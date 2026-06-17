@@ -819,6 +819,9 @@ MonoBehaviour:
   healthImage: {fileID: 0}
   maxHP: 100
   hp: 100
+  fadeImage: {fileID: 0}
+  fadeDuration: 1
+  maxPlayerSpeed: 3
   expPerKeyPress: 10
   expSlider: {fileID: 0}
   levelText: {fileID: 0}

@@ -20,7 +20,7 @@ public class BOoss : MonoBehaviour
         if (Vector2.Distance(transform.position, playerTr.position) < 0.1f)
             return;
 
-        transform.position = Vector2.MoveTowards(transform.position, new Vector2(playerTr.position.x, playerTr.position.y), speed * Time.deltaTime);
+       transform.position = Vector2.MoveTowards(transform.position, new Vector2(playerTr.position.x, playerTr.position.y), speed * Time.deltaTime);
         transform.Rotate(0, 0, rotationSpeed * Time.deltaTime);
 
     }
