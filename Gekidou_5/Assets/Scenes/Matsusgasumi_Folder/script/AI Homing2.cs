@@ -9,6 +9,7 @@ public class AIHoming2 : MonoBehaviour
     public int attackPower = 1;　//敵の攻撃力
     public float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     public float attackTimer = 0f;
+        private Rigidbody2D rb;
 
     int currentHP;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -39,17 +40,16 @@ public class AIHoming2 : MonoBehaviour
     //毎フレームのタイマー更新は　Update で行う
     private void FixedUpdate()
     {
-        //プレイヤーが見つかっていない、または見失った場合は「毎回」探す
-        if(playerTr == null)
-        {
-            FindPlayer();
-        }
-        //それでも見つからない時だけ処理をスキップする
         if (playerTr == null) return;
 
-        //プレイヤーに向けて移動する（time.fixedDeltaTimeを使用）
-        transform.position = Vector2.MoveTowards(
-            transform.position,
+        // 【追加】衝突で発生した余計な吹っ飛び速度（慣性）をここで毎フレームリセットする
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        // プレイヤーに向けて進む（元の処理のまま）
+        transform.position = Vector2.MoveTowards(transform.position,
             playerTr.position,
             speed * Time.fixedDeltaTime);
     }

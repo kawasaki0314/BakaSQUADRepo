@@ -9,6 +9,7 @@ public class AIHoming3 : MonoBehaviour
     public int attackPower = 1;　//敵の攻撃力
     public float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     public float attackTimer = 0f;
+        private Rigidbody2D rb;
 
 
     //遠距離攻撃（弾を発射する）の設定
@@ -57,13 +58,18 @@ public class AIHoming3 : MonoBehaviour
     //毎フレームのタイマー更新は　Update で行う
     private void FixedUpdate()
     {
-        //プレイヤーが見つかっていないなら処理しない（距離制限は削除）
         if (playerTr == null) return;
-        //プレイヤーに向けて進む
 
+        // 【追加】衝突で発生した余計な吹っ飛び速度（慣性）をここで毎フレームリセットする
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        // プレイヤーに向けて進む（元の処理のまま）
         transform.position = Vector2.MoveTowards(transform.position,
-        playerTr.position,//Vector3は自動的にVector2として計算されます
-        speed * Time.fixedDeltaTime);
+            playerTr.position,
+            speed * Time.fixedDeltaTime);
     }
 
     //プレイヤーに向かって弾を飛ばす関数
