@@ -16,10 +16,10 @@ public class DamageTrigger : MonoBehaviour
         {
             Debug.Log("プレイヤーに当たりました！");
 
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            levelupplayer playerHealth = collision.GetComponent<levelupplayer>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(aiHoming.attackPower);
+                playerHealth.damage(aiHoming.attackPower);
                 // 当たった瞬間にタイマーをリセットして、次の継続ダメージまでの時間を正確にする
                 aiHoming.attackTimer = 0f;
             }
@@ -32,10 +32,10 @@ public class DamageTrigger : MonoBehaviour
             // インターバル以上の時間が経っていたら攻撃
             if (aiHoming.attackTimer >= aiHoming.attackInterval)
             {
-                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                levelupplayer playerHealth = collision.GetComponent<levelupplayer>();
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(aiHoming.attackPower);
+                    playerHealth.damage(aiHoming.attackPower);
                     Debug.Log("継続ダメージを与えました！");
 
                     // タイマーリセット

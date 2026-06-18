@@ -9,22 +9,16 @@ public class AIHoming : MonoBehaviour
     public int attackPower = 1;　//敵の攻撃力
     public float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     public float attackTimer = 0f;
-
+    private Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
+        // （既存のプレイヤーを探す処理はそのまま）
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
+        if (playerObj != null) playerTr = playerObj.transform;
 
-        //2. 小文字の「playerObj」がちゃんと見つかったか確認
-        if (playerObj != null)
-        {
-            playerTr = playerObj.transform;
-        }
-        else
-        {
-            Debug.LogError("タグ'Player'が見つかりません。インスペクターで設定を確認してください。");
-        }
+        // 【追加】敵自身のRigidbody2Dを取得しておく
+        rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
@@ -38,16 +32,19 @@ public class AIHoming : MonoBehaviour
     //毎フレームのタイマー更新は　Update で行う
     private void FixedUpdate()
     {
-        //プレイヤーが見つかっていないなら処理しない（距離制限は削除）
         if (playerTr == null) return;
-        //プレイヤーに向けて進む
 
+        // 【追加】衝突で発生した余計な吹っ飛び速度（慣性）をここで毎フレームリセットする
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector2.zero;
+        }
+
+        // プレイヤーに向けて進む（元の処理のまま）
         transform.position = Vector2.MoveTowards(transform.position,
-        playerTr.position,//Vector3は自動的にVector2として計算されます
-        speed * Time.fixedDeltaTime);
+            playerTr.position,
+            speed * Time.fixedDeltaTime);
     }
-
-    
 
     //死亡処理
     public void Die()
@@ -57,10 +54,10 @@ public class AIHoming : MonoBehaviour
         Debug.Log("敵を倒した!スポナーに補充を頼みます。");
         
         //画面内からプレイヤーのレベルスクリプトを探して、経験値を手渡す
-        PlayerLevel playerlevel = FindFirstObjectByType<PlayerLevel>();
+        levelupplayer playerlevel = FindFirstObjectByType<levelupplayer>();
         if(playerlevel != null)
         {
-            playerlevel.GainExp(3);//敵を1体倒したら経験値「３」手に入れる設定
+            playerlevel.Addexperience(3);//敵を1体倒したら経験値「３」手に入れる設定
             Debug.Log("プレイヤーに経験値を３あたえました！");
         }
         else

@@ -10,26 +10,34 @@ public class PlayerMove : MonoBehaviour
     public float blinkDuration = 0.3f; // 時間
 
     private Vector2 lastDir = Vector2.right; // 最後に入力した方向
+    private Rigidbody2D rb; //保持する変数
 
-    public Vector2 GetLastDir() // 他のスクリプトから方向を所得するための関数
+    public Vector2 GetLastDir()
     {
         return lastDir;
     }
     public float blinkCooldown = 3.0f; // クールダウンタイム
     private float cooldownTimer = 0f;
-    public float GetCoolDownTimer() //クールタイムの残り時間を外部から取得するための関数
+    public float GetCoolDownTimer()
     {
         return cooldownTimer;
     }
 
     private bool isBlinking = false;
+    private Vector2 moveInput = Vector2.zero; // 【追加】入力を保持する変数
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
     void Update()
     {
-        Vector2 move = Vector2.zero;
-
         // ポーズ中なら、これ以降の入力や処理をすべて無視する
         if (PauseManager.IsGamePaused)
         {
+            if (rb != null) rb.linearVelocity = Vector2.zero;
+            moveInput = Vector2.zero; // 入力もリセット
             return;
         }
 
@@ -42,42 +50,38 @@ public class PlayerMove : MonoBehaviour
             cooldownTimer -= Time.deltaTime;
         }
 
+        // 入力をリセット
+        moveInput = Vector2.zero;
+
         // 左右移動の入力
         if (Keyboard.current.aKey.isPressed)
         {
-            move.x -= 1;
+            moveInput.x -= 1;
             transform.localScale = new Vector3(-1, 1, 1);
         }
-        // Dを押すと右移動,右を向く
         else if (Keyboard.current.dKey.isPressed)
         {
-            move.x += 1;
+            moveInput.x += 1;
             transform.localScale = new Vector3(1, 1, 1);
         }
-        
+
         // 上下移動の入力
         if (Keyboard.current.wKey.isPressed)
         {
-            move.y += 1;
+            moveInput.y += 1;
         }
-        // Sを押すと下移動
         else if (Keyboard.current.sKey.isPressed)
         {
-            move.y -= 1;
+            moveInput.y -= 1;
         }
 
         // 方向の更新(ブリンクなどに使用)
-        if (move != Vector2.zero)
+        if (moveInput != Vector2.zero)
         {
-            move = move.normalized;
-            lastDir = move;
+            moveInput = moveInput.normalized;
+            lastDir = moveInput;
         }
 
-        // ブリンク中は通常移動しない
-        if (!isBlinking)
-        {
-            transform.position += (Vector3)(move * playerSpeed * Time.deltaTime);
-        }
         // 右クリックでブリンク
         if (Mouse.current.rightButton.wasPressedThisFrame &&
             lastDir != Vector2.zero &&
@@ -88,35 +92,42 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    // 【追加】物理演算の更新タイミングで速度を強制固定する
+    void FixedUpdate()
+    {
+        // ブリンク中、またはポーズ中はFixedUpdateでの速度上書きをしない
+        if (isBlinking || PauseManager.IsGamePaused) return;
+
+        // 敵にぶつかろうが何だろうが、キー入力に応じた速度で完全に上書きする
+        rb.linearVelocity = moveInput * playerSpeed;
+    }
+
     // ブリンクの処理
     IEnumerator Blink(Vector2 dir)
     {
-        // ブリンク中フラグon(移動を止めるため)
         isBlinking = true;
-        // クールダウン開始
         cooldownTimer = blinkCooldown;
 
-        // 現在位置の記録
         Vector3 start = transform.position;
-        // 終了位置の計算
         Vector3 end = start + (Vector3)(dir * blinkDistance);
 
         float time = 0f;
 
-        // 一定時間かけて移動
         while (time < blinkDuration)
         {
-            transform.position = Vector3.Lerp(start, end, time / blinkDuration);
+            rb.MovePosition(Vector3.Lerp(start, end, time / blinkDuration));
             time += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = end;
-        isBlinking = false;
+        rb.MovePosition(end);
+
+        rb.linearVelocity = Vector2.zero; // 慣性を消す
+        isBlinking = false;               // 通常移動を再開
     }
 
     // スピードアップのバフアイテム
-         public void StartSpeedUpBuff(int amount, float duration)
+    public void StartSpeedUpBuff(int amount, float duration)
     {
         StartCoroutine(SpeedUpRoutine(amount, duration));
     }
@@ -124,16 +135,9 @@ public class PlayerMove : MonoBehaviour
     private System.Collections.IEnumerator SpeedUpRoutine(int amount, float duration)
     {
         Debug.Log($"バフ発動、移動速度が{amount}アップした");
-
-        // 現在の移動速度＋上昇値
         playerSpeed += amount;
-
-        // 指定された時間がたつまでここで処理を停止
         yield return new WaitForSeconds(duration);
-
-        // 現在の移動速度－上昇値
         playerSpeed -= amount;
-
         Debug.Log("バフ効果が切れた");
     }
 }
