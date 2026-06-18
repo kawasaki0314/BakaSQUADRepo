@@ -57,10 +57,10 @@ public class AIHoming : MonoBehaviour
         Debug.Log("敵を倒した!スポナーに補充を頼みます。");
         
         //画面内からプレイヤーのレベルスクリプトを探して、経験値を手渡す
-        PlayerLevel playerlevel = FindFirstObjectByType<PlayerLevel>();
+        levelupplayer playerlevel = FindFirstObjectByType<levelupplayer>();
         if(playerlevel != null)
         {
-            playerlevel.GainExp(3);//敵を1体倒したら経験値「３」手に入れる設定
+            playerlevel.Addexperience(3);//敵を1体倒したら経験値「３」手に入れる設定
             Debug.Log("プレイヤーに経験値を３あたえました！");
         }
         else
