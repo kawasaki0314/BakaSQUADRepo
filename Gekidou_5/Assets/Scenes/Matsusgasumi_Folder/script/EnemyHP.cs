@@ -48,7 +48,7 @@ public class EnemyHP : MonoBehaviour
             TakeDamage(1);
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.name.Contains("Orbit"))
+        else if (collision.CompareTag("Bullet"))
         {
             TakeDamage(1);
         }

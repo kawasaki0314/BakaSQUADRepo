@@ -28,7 +28,7 @@ public class PlayerLevel : MonoBehaviour
         currentExp += amount;
         Debug.Log($"【レベルシステム】経験値を {amount} 獲得！ 現在の経験値: {currentExp}/{expToNextLevel}");
 
-        if (currentExp >= expToNextLevel)
+        if(currentExp >= expToNextLevel)
         {
             // 溜まった経験値を消費する
             currentExp -= expToNextLevel;
