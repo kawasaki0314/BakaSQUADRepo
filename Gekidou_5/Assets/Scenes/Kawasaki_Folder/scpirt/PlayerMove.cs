@@ -10,6 +10,7 @@ public class PlayerMove : MonoBehaviour
     public float blinkDuration = 0.3f; // 時間
 
     private Vector2 lastDir = Vector2.right; // 最後に入力した方向
+    private Rigidbody2D rb; //保持する変数
 
     public Vector2 GetLastDir() // 他のスクリプトから方向を所得するための関数
     {
@@ -23,6 +24,11 @@ public class PlayerMove : MonoBehaviour
     }
 
     private bool isBlinking = false;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
     void Update()
     {
         Vector2 move = Vector2.zero;
@@ -30,6 +36,7 @@ public class PlayerMove : MonoBehaviour
         // ポーズ中なら、これ以降の入力や処理をすべて無視する
         if (PauseManager.IsGamePaused)
         {
+            if (rb != null) rb.linearVelocity = Vector2.zero;
             return;
         }
 
@@ -76,7 +83,7 @@ public class PlayerMove : MonoBehaviour
         // ブリンク中は通常移動しない
         if (!isBlinking)
         {
-            transform.position += (Vector3)(move * playerSpeed * Time.deltaTime);
+            rb.linearVelocity = move * playerSpeed;
         }
         // 右クリックでブリンク
         if (Mouse.current.rightButton.wasPressedThisFrame &&
@@ -106,13 +113,14 @@ public class PlayerMove : MonoBehaviour
         // 一定時間かけて移動
         while (time < blinkDuration)
         {
-            transform.position = Vector3.Lerp(start, end, time / blinkDuration);
+            rb.MovePosition(Vector3.Lerp(start, end, time / blinkDuration));
             time += Time.deltaTime;
             yield return null;
         }
 
-        transform.position = end;
-        isBlinking = false;
+        rb.MovePosition(Vector3.Lerp(start, end, time / blinkDuration));
+        time += Time.deltaTime;
+        yield return null;
     }
 
     // スピードアップのバフアイテム
