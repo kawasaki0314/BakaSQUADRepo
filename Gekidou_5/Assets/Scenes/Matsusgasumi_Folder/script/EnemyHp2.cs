@@ -41,13 +41,13 @@ public class EnemyHp2 : MonoBehaviour
         //EnemyBulletタグがついているものは無視
         if (collision.CompareTag("EnemyBullet")) return;
 
-        if (collision.gameObject.name.Contains("Bullet") ||
+        if (collision.gameObject.name.Contains("AttackBullet") ||
             collision.gameObject.name.Contains("attack1"))
         {
             TakeDamage(1);
             Destroy(collision.gameObject);
         }
-        else if (collision.gameObject.name.Contains("Orbit"))
+        else if (collision.gameObject.name.Contains("AttackBullet"))
         {
             TakeDamage(1);
         }

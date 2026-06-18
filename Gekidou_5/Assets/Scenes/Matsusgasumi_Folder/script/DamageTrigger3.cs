@@ -15,10 +15,10 @@ public class DamageTrigger3 : MonoBehaviour
         {
             Debug.Log("プレイヤーに当たりました！");
 
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            levelupplayer playerHealth = collision.GetComponent<levelupplayer>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(aiHoming3.attackPower);
+                playerHealth.damage(aiHoming3.attackPower);
             }
         }
     }
@@ -28,10 +28,10 @@ public class DamageTrigger3 : MonoBehaviour
         {
             if (aiHoming3.attackTimer >= aiHoming3.attackInterval)
             {
-                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                levelupplayer playerHealth = collision.GetComponent<levelupplayer>();
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(aiHoming3.attackPower);
+                    playerHealth.damage(aiHoming3.attackPower);
                     Debug.Log("継続ダメージを与えました！");
                     aiHoming3.attackTimer = 0f;  //タイマーリセット
                 }

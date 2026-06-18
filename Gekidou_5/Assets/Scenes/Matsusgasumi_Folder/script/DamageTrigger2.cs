@@ -16,10 +16,10 @@ public class DamageTrigger2 : MonoBehaviour
         {
             Debug.Log("プレイヤーに接触！");
 
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+            levelupplayer playerHealth = collision.GetComponent<levelupplayer>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(aiHoming2.attackPower);
+                playerHealth.damage(aiHoming2.attackPower);
                 aiHoming2.attackTimer = 0f;//接触週刊にタイマーリセット
             }
         }
@@ -31,10 +31,10 @@ public class DamageTrigger2 : MonoBehaviour
             //Upbateでも進めていますが、念のためここにもチャック
             if (aiHoming2.attackTimer >= aiHoming2.attackInterval)
             {
-                PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
+                levelupplayer playerHealth = collision.GetComponent<levelupplayer>();
                 if (playerHealth != null)
                 {
-                    playerHealth.TakeDamage(aiHoming2.attackPower);
+                    playerHealth.damage(aiHoming2.attackPower);
                     Debug.Log("継続ダメージを与えました！");
                     aiHoming2.attackTimer = 0f;
                 }
