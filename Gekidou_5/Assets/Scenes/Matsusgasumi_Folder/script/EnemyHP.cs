@@ -42,13 +42,13 @@ public class EnemyHP : MonoBehaviour
     {
         Debug.Log($"[Trigger]触れたオブジェクト名: {collision.gameObject.name}");
 
-        if (collision.gameObject.name.Contains("Bullet") ||
+        if (collision.gameObject.name.Contains("AttackBullet") ||
             collision.gameObject.name.Contains("attack1"))
         {
             TakeDamage(1);
             Destroy(collision.gameObject);
         }
-        else if (collision.CompareTag("Bullet"))
+        else if (collision.CompareTag("AttackBullet"))
         {
             TakeDamage(1);
         }
