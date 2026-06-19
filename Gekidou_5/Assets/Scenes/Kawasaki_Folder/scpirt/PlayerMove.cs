@@ -12,6 +12,9 @@ public class PlayerMove : MonoBehaviour
     private Vector2 lastDir = Vector2.right; // 最後に入力した方向
     private Rigidbody2D rb; //保持する変数
 
+    // 壁のレイヤーを指定するための変数
+    [SerializeField] private LayerMask wallLayerMask;
+
     public Vector2 GetLastDir()
     {
         return lastDir;
@@ -108,20 +111,37 @@ public class PlayerMove : MonoBehaviour
         isBlinking = true;
         cooldownTimer = blinkCooldown;
 
-        /*
+        
         // 元のレイヤーを変更し、ブリンク用のレイヤーに変更
         int originalLayer = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("PlayerBlinking");
-        */
+        /*
         // プレイヤーのコライダを取得し、一時的にすり抜け状態にする
         Collider2D playerCollider = GetComponent<Collider2D>();
         if(playerCollider != null)
         {
             playerCollider.isTrigger = true;
         }
+        */
+        // 壁のチェック
 
         Vector3 start = transform.position;
-        Vector3 end = start + (Vector3)(dir * blinkDistance);
+        Vector3 end;
+
+        // レイキャストでブリンク方向に壁があるかどうかのチェック
+        RaycastHit2D hit = Physics2D.Raycast(start, dir, blinkDistance, wallLayerMask);
+
+        if(hit.collider != null)
+        {
+            // 壁が見つかった場合、ブリンクの調整を行う
+            float safeDistance = hit.distance - 0.2f;
+            end = start + (Vector3)(dir * safeDistance);
+        }
+        else
+        {
+            // 壁がなかったらそのまんまで
+            end = start + (Vector3)(dir * blinkDistance);
+        }
 
         float time = 0f;
 
@@ -134,15 +154,15 @@ public class PlayerMove : MonoBehaviour
 
         rb.MovePosition(end);
         rb.linearVelocity = Vector2.zero; // 慣性を消す
-
+        /*
         // ブリンク終了後、すり抜け状態を解除し通常状態に戻す
         if(playerCollider != null)
         {
             playerCollider.isTrigger = false;
         }
-        /*
-        gameObject.layer = originalLayer; // 元のレイヤーに戻る
         */
+        gameObject.layer = originalLayer; // 元のレイヤーに戻る
+        
         isBlinking = false;               // 通常移動を再開
     }
 

@@ -752,7 +752,12 @@ MonoBehaviour:
   orbitAttackPower: 1
   bulletAttackPower: 1
   attackOffset: 1
+  EnemyLayer:
+    serializedVersion: 2
+    m_Bits: 0
   shootInterval: 2
+  bulletCount: 4
+  fireRateModifier: 0
 --- !u!114 &1872364375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1194,6 +1199,10 @@ PrefabInstance:
     - target: {fileID: 1961218237401755345, guid: 3385d3cd8f2eb87449edce201d5774ef, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2603972385917380892, guid: 3385d3cd8f2eb87449edce201d5774ef, type: 3}
+      propertyPath: maxHp
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7058466274248975391, guid: 3385d3cd8f2eb87449edce201d5774ef, type: 3}
       propertyPath: m_Name
