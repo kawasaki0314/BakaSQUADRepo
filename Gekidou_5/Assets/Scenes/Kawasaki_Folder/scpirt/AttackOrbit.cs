@@ -4,8 +4,8 @@ public class AttackOrbit : MonoBehaviour
 {
     public Transform player; // 中心のプレイヤー
 
-    public float distance = 2.5f; // 回転半径
-    public float speed = 180f; // 回転速度
+    public float distance = 5f; // 回転半径
+    public float speed = 240f; // 回転速度
 
     // 攻撃力を受け取るため
     [HideInInspector]

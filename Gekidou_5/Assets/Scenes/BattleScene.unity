@@ -1499,8 +1499,8 @@ Transform:
   m_GameObject: {fileID: 251033540}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.41679406, y: 1.9707618, z: 0}
-  m_LocalScale: {x: 0.16726896, y: 2.9410157, z: 1}
+  m_LocalPosition: {x: -0.41679406, y: 1.84948, z: 0}
+  m_LocalScale: {x: 0.16726896, y: 4.733396, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 681705185}
@@ -5819,11 +5819,11 @@ MonoBehaviour:
   normalAttackPower: 1
   orbitAttackPower: 1
   bulletAttackPower: 1
-  attackOffset: 1
+  attackOffset: 0.85
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
-  shootInterval: 2
+  shootInterval: 1.5
   bulletCount: 4
   fireRateModifier: 0
 --- !u!114 &959005595
@@ -10024,8 +10024,8 @@ Transform:
   m_GameObject: {fileID: 1588896614}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.40186524, y: 1.9710623, z: 0}
-  m_LocalScale: {x: 0.19696616, y: 2.9413679, z: 1}
+  m_LocalPosition: {x: 0.40186524, y: 1.85903, z: 0}
+  m_LocalScale: {x: 0.19696616, y: 4.6965866, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 681705185}
