@@ -15,11 +15,11 @@ public class PlayerAttack : MonoBehaviour
     public int bulletAttackPower = 1; // 射撃攻撃の威力
 
     [Header("Attack Settings")]
-    public float attackOffset = 1.5f; // 近接攻撃を前に出す距離
+    public float attackOffset = 1f; // 近接攻撃を前に出す距離
     [SerializeField] LayerMask EnemyLayer;
 
     [Header("Auto Shoot Settings")]
-    public float shootInterval = 2f; // 自動で射撃攻撃を出す間隔
+    public float shootInterval = 2.0f; // 自動で射撃攻撃を出す間隔
     private float shootTimer = 0f; // 射撃攻撃のタイマー
 
     [Header("Upgrade Stats")]

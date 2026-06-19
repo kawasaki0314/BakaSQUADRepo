@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5576919231464899124}
   - component: {fileID: 2614212524731071162}
   - component: {fileID: 2588117302745064338}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   - component: {fileID: 3109239088589072822}
   - component: {fileID: 2782735922983311471}
   - component: {fileID: 827734194062568157}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Boss
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -223,7 +223,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2d9235446b5aa445a562f16136f285d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BOoss
-  speed: 5
+  speed: 3
   rotationSpeed: 50
 --- !u!50 &97867158226093300
 Rigidbody2D:
@@ -365,7 +365,7 @@ GameObject:
   - component: {fileID: 4655217206716565784}
   - component: {fileID: 7125220741385047262}
   - component: {fileID: 8193268847488199164}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +474,7 @@ GameObject:
   - component: {fileID: 2166233590363178074}
   - component: {fileID: 7486640709958581261}
   - component: {fileID: 5804827641609048739}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -583,7 +583,7 @@ GameObject:
   - component: {fileID: 1890657176923794167}
   - component: {fileID: 9019404555554670347}
   - component: {fileID: 8508497365837532961}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}

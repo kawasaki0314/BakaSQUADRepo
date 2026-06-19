@@ -1378,7 +1378,7 @@ GameObject:
   - component: {fileID: 251033544}
   - component: {fileID: 251033543}
   - component: {fileID: 251033541}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3443,7 +3443,7 @@ GameObject:
   - component: {fileID: 681705185}
   - component: {fileID: 681705184}
   - component: {fileID: 681705182}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4821,7 +4821,7 @@ GameObject:
   - component: {fileID: 838014361}
   - component: {fileID: 838014360}
   - component: {fileID: 838014358}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5841,6 +5841,9 @@ MonoBehaviour:
   playerSpeed: 3
   blinkDistance: 7.5
   blinkDuration: 0.3
+  wallLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
   blinkCooldown: 3
 --- !u!4 &959005597 stripped
 Transform:
@@ -6698,6 +6701,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5565471357008706502, guid: ba9baab07d9ef4a429c71d44268c539a, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5565471357008706502, guid: ba9baab07d9ef4a429c71d44268c539a, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -7219,7 +7226,7 @@ GameObject:
   - component: {fileID: 1192449244}
   - component: {fileID: 1192449246}
   - component: {fileID: 1192449245}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji (5)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9903,7 +9910,7 @@ GameObject:
   - component: {fileID: 1588896618}
   - component: {fileID: 1588896617}
   - component: {fileID: 1588896615}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11412,7 +11419,7 @@ GameObject:
   - component: {fileID: 1837917902}
   - component: {fileID: 1837917904}
   - component: {fileID: 1837917903}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji (7)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -11550,7 +11557,7 @@ GameObject:
   - component: {fileID: 1846470506}
   - component: {fileID: 1846470508}
   - component: {fileID: 1846470507}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13173,7 +13180,7 @@ GameObject:
   - component: {fileID: 2103992796}
   - component: {fileID: 2103992795}
   - component: {fileID: 2103992794}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: sekai no haji (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -13407,7 +13414,7 @@ SceneRoots:
   - {fileID: 1951131592}
   - {fileID: 916757290}
   - {fileID: 965832628}
-  - {fileID: 687900793}
   - {fileID: 876059509}
   - {fileID: 946454274}
+  - {fileID: 687900793}
   - {fileID: 1147466281}
