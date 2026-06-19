@@ -108,9 +108,17 @@ public class PlayerMove : MonoBehaviour
         isBlinking = true;
         cooldownTimer = blinkCooldown;
 
+        /*
         // 元のレイヤーを変更し、ブリンク用のレイヤーに変更
         int originalLayer = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("PlayerBlinking");
+        */
+        // プレイヤーのコライダを取得し、一時的にすり抜け状態にする
+        Collider2D playerCollider = GetComponent<Collider2D>();
+        if(playerCollider != null)
+        {
+            playerCollider.isTrigger = true;
+        }
 
         Vector3 start = transform.position;
         Vector3 end = start + (Vector3)(dir * blinkDistance);
@@ -125,11 +133,16 @@ public class PlayerMove : MonoBehaviour
         }
 
         rb.MovePosition(end);
-
         rb.linearVelocity = Vector2.zero; // 慣性を消す
 
+        // ブリンク終了後、すり抜け状態を解除し通常状態に戻す
+        if(playerCollider != null)
+        {
+            playerCollider.isTrigger = false;
+        }
+        /*
         gameObject.layer = originalLayer; // 元のレイヤーに戻る
-
+        */
         isBlinking = false;               // 通常移動を再開
     }
 

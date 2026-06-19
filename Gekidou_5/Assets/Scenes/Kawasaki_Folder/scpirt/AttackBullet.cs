@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class AttackBullet : MonoBehaviour
 {
-    public float speed = 8f; // 弾の速度
+    public float speed = 15f; // 弾の速度
     public float lifeTime = 3f; // 弾の表示時間
 
     // 攻撃力を受け取るため

@@ -142,6 +142,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AttackOrbit
   player: {fileID: 4143329256993166774, guid: ba9baab07d9ef4a429c71d44268c539a, type: 3}
-  distance: 1.5
-  speed: 180
+  distance: 2
+  speed: 240
   attackPower: 0
