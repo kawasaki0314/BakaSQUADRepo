@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class BossHani : MonoBehaviour
 {
-    [SerializeField] private int attackPower = 10;     // ボスの攻撃力
+    [SerializeField] private int attackPower = 44;     // ボスの攻撃力
     [SerializeField] private float attackInterval = 1.0f; // 次の攻撃までの間隔（秒）
 
     private float localAttackTimer = 0f; // ボス専用の攻撃タイマー
