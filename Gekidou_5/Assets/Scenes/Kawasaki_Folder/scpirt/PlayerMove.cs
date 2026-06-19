@@ -4,6 +4,8 @@ using System.Collections;
 
 public class PlayerMove : MonoBehaviour
 {
+    Animator animator;
+
     public float playerSpeed = 5f; // 移動速度
 
     public float blinkDistance = 7.5f; // ブリンクの距離
@@ -32,6 +34,7 @@ public class PlayerMove : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -43,6 +46,8 @@ public class PlayerMove : MonoBehaviour
             moveInput = Vector2.zero; // 入力もリセット
             return;
         }
+
+        Anim();
 
         // キーボードの認識チェック
         if (Keyboard.current == null) return;
@@ -60,22 +65,26 @@ public class PlayerMove : MonoBehaviour
         if (Keyboard.current.aKey.isPressed)
         {
             moveInput.x -= 1;
-            transform.localScale = new Vector3(-1, 1, 1);
+            transform.localScale = new Vector3(-2.5f, 2.5f, 1);
+            animator.SetBool("run", true);
         }
         else if (Keyboard.current.dKey.isPressed)
         {
             moveInput.x += 1;
-            transform.localScale = new Vector3(1, 1, 1);
+            transform.localScale = new Vector3(2.5f, 2.5f, 1);
+            animator.SetBool("run", true);
         }
 
         // 上下移動の入力
         if (Keyboard.current.wKey.isPressed)
         {
             moveInput.y += 1;
+            animator.SetBool("run", true);
         }
         else if (Keyboard.current.sKey.isPressed)
         {
             moveInput.y -= 1;
+            animator.SetBool("run", true);
         }
 
         // 方向の更新(ブリンクなどに使用)
@@ -92,6 +101,24 @@ public class PlayerMove : MonoBehaviour
             cooldownTimer <= 0f)
         {
             StartCoroutine(Blink(lastDir));
+            animator.SetBool("blink", true);
+        }
+    }
+
+    private void Anim()
+    {
+        if(rb.linearVelocity.x>0)
+        {
+            animator.SetBool("run", true);
+        }
+        if(rb.linearVelocity.y>0)
+        {
+            animator.SetBool("run", true);
+        }
+        else
+        {
+            animator.SetBool("run", false);
+       //     animator.SetTrigger("blink");
         }
     }
 
