@@ -108,6 +108,10 @@ public class PlayerMove : MonoBehaviour
         isBlinking = true;
         cooldownTimer = blinkCooldown;
 
+        // 元のレイヤーを変更し、ブリンク用のレイヤーに変更
+        int originalLayer = gameObject.layer;
+        gameObject.layer = LayerMask.NameToLayer("PlayerBlinking");
+
         Vector3 start = transform.position;
         Vector3 end = start + (Vector3)(dir * blinkDistance);
 
@@ -123,6 +127,9 @@ public class PlayerMove : MonoBehaviour
         rb.MovePosition(end);
 
         rb.linearVelocity = Vector2.zero; // 慣性を消す
+
+        gameObject.layer = originalLayer; // 元のレイヤーに戻る
+
         isBlinking = false;               // 通常移動を再開
     }
 
