@@ -8,7 +8,7 @@ public class AIHoming : MonoBehaviour
     [Header("Enemy Status")]
     public int attackPower = 1;　//敵の攻撃力
     public float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
-    public float attackTimer = 0f;
+    //public float attackTimer = 0f;
     private Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,7 +26,7 @@ public class AIHoming : MonoBehaviour
     private void Update()
     {
         //攻撃タイマーを常に進める（プレイヤーに触れる間だけカウントしたい場合は、下に 移動させてもOK)
-        attackTimer += Time.deltaTime;
+        //attackTimer += Time.deltaTime;
     }
 
     //毎フレームのタイマー更新は　Update で行う
