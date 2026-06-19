@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 5201659645070602948}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.55, y: 9.423, z: 0}
+  m_LocalPosition: {x: 1.553, y: 9.415, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -108,7 +108,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BulletEnemy
   moveSpeed: 5
   lifeTime: 10
-  BossDamege: 1
+  BossDamege: 15
 --- !u!58 &1211646925986331651
 CircleCollider2D:
   m_ObjectHideFlags: 0
