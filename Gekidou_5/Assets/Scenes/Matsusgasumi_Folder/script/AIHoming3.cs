@@ -10,6 +10,7 @@ public class AIHoming3 : MonoBehaviour
     public float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     public float attackTimer = 0f;
         private Rigidbody2D rb;
+    Enemyanims enemyanims;
 
 
     //遠距離攻撃（弾を発射する）の設定
@@ -22,6 +23,7 @@ public class AIHoming3 : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        enemyanims = GetComponent<Enemyanims>(); 
         //1. 最初は「GameObject playerObj」と書いて、箱(変数)を用意してプレイヤーを探す
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
 
@@ -50,6 +52,7 @@ public class AIHoming3 : MonoBehaviour
             if (shotTimer >= shotInteval)
             {
                 ShotBullet();
+                enemyanims.animState = Enemyanims.AnimState.shot;
                 shotTimer = 0f;  //タイマーリセット
             }
         }
