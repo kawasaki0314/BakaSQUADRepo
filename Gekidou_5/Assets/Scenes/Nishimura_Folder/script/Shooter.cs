@@ -41,9 +41,13 @@ public class Shooter : MonoBehaviour
 
             Vector2 direction = new Vector2(Mathf.Cos(radian), Mathf.Sin(radian));
 
+            float angle_shoot = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+
             GameObject bullet = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+            bullet.transform.rotation = Quaternion.Euler(0, 0, angle_shoot);
             BulletEnemy bulletScript = bullet.GetComponent<BulletEnemy>();
             bulletScript.Initialize(direction,bulletSpeed);
+
         }
     }
     
