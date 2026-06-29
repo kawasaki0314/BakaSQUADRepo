@@ -65,13 +65,13 @@ public class PlayerMove : MonoBehaviour
         if (Keyboard.current.aKey.isPressed)
         {
             moveInput.x -= 1;
-            transform.localScale = new Vector3(-2.5f, 2.5f, 1);
+            transform.localScale = new Vector3(-3.5f, 3.5f, 1);
             animator.SetBool("run", true);
         }
         else if (Keyboard.current.dKey.isPressed)
         {
             moveInput.x += 1;
-            transform.localScale = new Vector3(2.5f, 2.5f, 1);
+            transform.localScale = new Vector3(3.5f, 3.5f, 1);
             animator.SetBool("run", true);
         }
 
