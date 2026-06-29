@@ -4,7 +4,7 @@ using UnityEngine.UI;
 public class PageManager : MonoBehaviour
 {
     private RectTransform pageContainer;
-    private float pageWidth = 1024f;
+    private float pageWidth = 1920f;
     private float slideSpeed = 10f;
     private Vector3 targetPosition;
     private bool isSliding = false;
@@ -62,14 +62,14 @@ public class PageManager : MonoBehaviour
 
     public void GoToPage2()
     {
-        Debug.Log($"[PageManager] GoToPage2が実行されました。ターゲット座標: {new Vector3(-pageWidth, 0, 0)}");
+        //Debug.Log($"[PageManager] GoToPage2が実行されました。ターゲット座標: {new Vector3(-pageWidth, 0, 0)}");
         targetPosition = new Vector3(-pageWidth, 0, 0);
         isSliding = true;
     }
 
     public void GoToPage1()
     {
-        Debug.Log("[PageManager] GoToPage1が実行されました。");
+        //Debug.Log("[PageManager] GoToPage1が実行されました。");
         targetPosition = Vector3.zero;
         isSliding = true;
     }
