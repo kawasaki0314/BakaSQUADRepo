@@ -1,9 +1,12 @@
 using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using System.Collections;
 
 public class PlayerAttack : MonoBehaviour
 {
+    Animator animator;
+
     [Header("Prefabs")]
     public GameObject attackPrefab; // 近接攻撃
     public GameObject orbitPrefab; // 回転攻撃
@@ -36,9 +39,11 @@ public class PlayerAttack : MonoBehaviour
     void Start()
     {   // PlayerMoveを取得
         playerMove = GetComponent<PlayerMove>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
+
     {
         // 時間の更新
         playTime += Time.deltaTime;
@@ -99,6 +104,9 @@ public class PlayerAttack : MonoBehaviour
 
         // 攻撃の生成
         GameObject attackObj = Instantiate(attackPrefab, spawnPos, rot);
+
+        // 攻撃のエフェクト
+        animator.SetTrigger("Normal");
 
         AttackNormal normalScript = attackObj.GetComponent<AttackNormal>();
         if (normalScript != null)

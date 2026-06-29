@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class AttackNormal : MonoBehaviour
 {
-    public float lifeTime = 0.1f; // 攻撃の存在時間
+    public float lifeTime = 0.18f; // 攻撃の存在時間
 
     [HideInInspector]
     public int attackPower;

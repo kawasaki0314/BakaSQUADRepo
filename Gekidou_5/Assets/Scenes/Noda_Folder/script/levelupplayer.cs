@@ -158,9 +158,8 @@ public class levelupplayer : MonoBehaviour
 
     public void damage(int damage)
     {
-        if (hp <= 0 || isDead) // ★死亡フラグもチェック
+        if (isDead) // ★死亡フラグもチェック
         {
-            Debug.Log("やめて！もう城之内くんのライフポイントはゼロよ！");
             return;
         }
 
@@ -181,7 +180,6 @@ public class levelupplayer : MonoBehaviour
     private IEnumerator PlayerDeathCoroutine()
     {
         isDead = true; // 死亡フラグを立てる
-        Debug.Log("城之内死す。デュエルスタンバイ！");
 
         // 移動スクリプトや攻撃スクリプトがあればここで止める
         if (playerMove != null) playerMove.enabled = false;
