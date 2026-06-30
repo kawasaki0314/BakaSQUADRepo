@@ -313,4 +313,5 @@ MonoBehaviour:
   - {fileID: -1080639201159906234, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
   - {fileID: 2033972664488331648, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
   - {fileID: 3246473091442742622, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
-  shotAnim: []
+  shotAnim:
+  - {fileID: -765150924802650856, guid: a8beae22981d1c241abf89f8eeaffa32, type: 3}
