@@ -29,7 +29,7 @@ public class Enemyanims : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         //animMaxで配列の長さを代入
         shotAnimMax = shotAnim.Length;
-        shotAnimMax = walkAnim.Length;
+        walkAnimMax = walkAnim.Length;
     }
 
     // Update is called once per frame
@@ -68,6 +68,7 @@ public class Enemyanims : MonoBehaviour
                     if (shotAnimIdx >= shotAnimMax)
                     {
                         animState = AnimState.walk;
+                        shotAnimIdx = 0;
                     }
                 }
                 //見た目をコマ数に応じて変更する処理
