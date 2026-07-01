@@ -106,7 +106,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
   bulletPrefab: {fileID: 5201659645070602948, guid: 16ffac02d1f3fdf4eae1edd44debd7d6, type: 3}
   shootInterval: 2
-  bulletSpeed: 5
+  bulletSpeed: 4
   randomAngle: 30
   BossDamege: 1
 --- !u!1 &843629712885348275
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
   bulletPrefab: {fileID: 5201659645070602948, guid: 16ffac02d1f3fdf4eae1edd44debd7d6, type: 3}
   shootInterval: 2
-  bulletSpeed: 5
+  bulletSpeed: 6
   randomAngle: 30
   BossDamege: 1
 --- !u!1 &5768219523518940821
@@ -324,7 +324,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
   bulletPrefab: {fileID: 5201659645070602948, guid: 16ffac02d1f3fdf4eae1edd44debd7d6, type: 3}
   shootInterval: 2
-  bulletSpeed: 5
+  bulletSpeed: 7
   randomAngle: 30
   BossDamege: 1
 --- !u!1 &5887548758168832905
@@ -589,7 +589,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Shooter
   bulletPrefab: {fileID: 4013117528663225874, guid: 482d8997c93d59c44bdb600022e985b1, type: 3}
   shootInterval: 2
-  bulletSpeed: 5
+  bulletSpeed: 3
   randomAngle: 30
   BossDamege: 1
 --- !u!1 &7616461848705079300

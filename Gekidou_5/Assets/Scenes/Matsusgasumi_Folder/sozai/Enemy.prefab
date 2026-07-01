@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 9164661495648429474}
   - component: {fileID: -2065528918115014493}
   - component: {fileID: 8016617087406819743}
+  - component: {fileID: -4585270808694169961}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -184,7 +185,6 @@ MonoBehaviour:
   speed: 2
   attackPower: 1
   attackInterval: 1
-  attackTimer: 0
 --- !u!114 &8016617087406819743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -199,6 +199,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
   maxHp: 1
   currentHp: 1
+--- !u!114 &-4585270808694169961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 321739127192385401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d48cf78ec4307ee4ea74d61923c37b7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Enemyanims
+  animState: 0
+  walkAnim:
+  - {fileID: -3768127733405742447, guid: 28b824077a361544390cddad4154aefb, type: 3}
+  shotAnim: []
 --- !u!1 &913858775483236376
 GameObject:
   m_ObjectHideFlags: 0
