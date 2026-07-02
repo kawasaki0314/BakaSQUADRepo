@@ -1,10 +1,11 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
     [SerializeField] GameObject bulletPrefab;
+    [SerializeField]AudioSource bulletAudio;
     [SerializeField]float shootInterval = 2f;
     [SerializeField] float bulletSpeed = 5f;
     [SerializeField]float randomAngle = 30f;
@@ -48,6 +49,7 @@ public class Shooter : MonoBehaviour
             BulletEnemy bulletScript = bullet.GetComponent<BulletEnemy>();
             bulletScript.Initialize(direction,bulletSpeed);
 
+            bulletAudio.Play();
         }
     }
     
