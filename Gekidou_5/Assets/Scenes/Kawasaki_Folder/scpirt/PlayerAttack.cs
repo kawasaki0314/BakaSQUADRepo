@@ -1,4 +1,4 @@
-using UnityEditor.UIElements;
+﻿using UnityEditor.UIElements;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
@@ -18,7 +18,7 @@ public class PlayerAttack : MonoBehaviour
     public int bulletAttackPower = 1; // 射撃攻撃の威力
 
     [Header("Attack Settings")]
-    public float attackOffset = 1f; // 近接攻撃を前に出す距離
+    public float attackOffset = 0.5f; // 近接攻撃を前に出す距離
     [SerializeField] LayerMask EnemyLayer;
 
     [Header("Auto Shoot Settings")]
