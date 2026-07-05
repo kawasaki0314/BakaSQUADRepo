@@ -123,7 +123,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.1382, y: -1.89496, z: 0}
-  m_LocalScale: {x: 3.5, y: 3.5, z: 3.5}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5225467831565215256}
@@ -278,7 +278,7 @@ MonoBehaviour:
   attackPower: 1
   attackInterval: 1
   attackTimer: 0
-  enemyBulletPrefab: {fileID: 263778287546085466}
+  enemyBulletPrefab: {fileID: 551301137742484396, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
   shotInteval: 2
   bulletSpeed: 5
 --- !u!114 &-1459906429618195703
@@ -333,6 +333,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Circle
       objectReference: {fileID: 0}
+    - target: {fileID: 551301137742484396, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1451467086768237392, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.467
@@ -378,11 +382,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
---- !u!1 &263778287546085466 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 551301137742484396, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
-  m_PrefabInstance: {fileID: 292660870197928950}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &1165051466305505446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1451467086768237392, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
