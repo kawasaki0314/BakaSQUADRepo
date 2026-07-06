@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 4f && !bossSpawned)
+        if(timer > 20f && !bossSpawned)
         {
             Instantiate(BossPrefab, Vector3.zero, Quaternion.identity);
             bossSpawned = true;
