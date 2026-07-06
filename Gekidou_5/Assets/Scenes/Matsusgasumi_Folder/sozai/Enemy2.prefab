@@ -274,8 +274,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1efed184e4ea194d857947d800285a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHp
-  maxHp: 8
-  currentHp: 8
+  maxHp: 5
+  currentHp: 5
 --- !u!114 &1499657878284235636
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,8 +288,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a368ee7d1cc1114290f5ff1788cdf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming2
-  speed: 6
-  attackPower: 2
+  speed: 5.5
+  attackPower: 1
   attackInterval: 2
   attackTimer: 1
 --- !u!114 &723112973853266664
