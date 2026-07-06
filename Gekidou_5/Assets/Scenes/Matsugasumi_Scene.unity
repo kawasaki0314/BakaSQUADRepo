@@ -305,7 +305,7 @@ MonoBehaviour:
   regularEnemyprefab: {fileID: 8017806180661443998, guid: a5a9f8fef5af11a4794ea8b6b791e770, type: 3}
   initialSpawnCount: 15
   maxSpecialEnemyCount: 20
-  delaySeconds: 30
+  delaySeconds: 0
   misSpawnDistance: 12
   maxSpawnDistance: 15
   waveTimeLimit: 180

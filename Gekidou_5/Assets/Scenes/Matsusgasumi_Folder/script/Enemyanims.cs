@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using UnityEngine;
 
 public class Enemyanims : MonoBehaviour
@@ -20,8 +20,10 @@ public class Enemyanims : MonoBehaviour
     int shotAnimMax = 0;
     //現在のコマ数
     int walkAnimIdx; 
-    int shotAnimIdx; 
+    int shotAnimIdx;
 
+    //プレイヤーのtransform
+    Transform playerTr;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -30,11 +32,28 @@ public class Enemyanims : MonoBehaviour
         //animMaxで配列の長さを代入
         shotAnimMax = shotAnim.Length;
         walkAnimMax = walkAnim.Length;
+
+        //プレイヤーを探して取得
+        GameObject playerobj = GameObject.FindGameObjectWithTag("Player");
+        if (playerobj != null) playerTr = playerobj.transform;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        //向きの反転処理
+        if(playerTr != null)
+        {
+            float deltaX = playerTr.position.x - transform.position.x;
+            if(deltaX > 0.001f)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if(deltaX < -0.0001f)
+            {
+                spriteRenderer.flipX = true;
+            }
+        }
         
         switch(animState)
         {

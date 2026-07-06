@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEngine;
 public class AIHoming3 : MonoBehaviour
 {
@@ -52,7 +52,7 @@ public class AIHoming3 : MonoBehaviour
             if (shotTimer >= shotInteval)
             {
                 ShotBullet();
-                enemyanims.animState = Enemyanims.AnimState.shot;
+                enemyanims = GetComponent<Enemyanims>();
                 shotTimer = 0f;  //タイマーリセット
             }
         }
