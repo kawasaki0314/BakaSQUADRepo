@@ -20,7 +20,7 @@ public class BgmManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if (timer > 3f && !bgmDestroy)
+        if (timer > 10f && !bgmDestroy)
         {
             Destroy(gameObject);
             bgmDestroy = true;

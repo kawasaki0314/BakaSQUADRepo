@@ -6,12 +6,12 @@ public class ItemZentai : MonoBehaviour
 {
 
     [SerializeField] AudioSource itemDelete;
-    bool itemDestroy = false;
+    Collision col;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+      
     }
 
     //Playerに当たったら自分を消す
@@ -25,8 +25,7 @@ public class ItemZentai : MonoBehaviour
             
             if (collision.gameObject.name == "HeelItem")
             {
-                //collision(gameObject);
-                itemDestroy = true;
+                col(gameObject);
             }
             else if (collision.gameObject.name == "SpeedUp")
             {
