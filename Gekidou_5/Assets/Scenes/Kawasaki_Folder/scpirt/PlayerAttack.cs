@@ -155,6 +155,9 @@ public class PlayerAttack : MonoBehaviour
             GameObject bulletObj = Instantiate(bulletPrefab,
                 transform.position, Quaternion.identity);
 
+            // 見た目を進行方向に回転させる
+            bulletObj.transform.rotation = Quaternion.Euler(0, 0, angle);
+
             AttackBullet bullet = bulletObj.GetComponent<AttackBullet>();
             
             if(bullet != null)
