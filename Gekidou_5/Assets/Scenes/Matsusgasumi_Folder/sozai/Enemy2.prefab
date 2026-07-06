@@ -106,7 +106,7 @@ GameObject:
   - component: {fileID: -5517470467452224959}
   - component: {fileID: 6602082932235609106}
   - component: {fileID: 1499657878284235636}
-  - component: {fileID: 5609404230195512698}
+  - component: {fileID: 723112973853266664}
   m_Layer: 6
   m_Name: Enemy2
   m_TagString: Enemy
@@ -288,11 +288,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a368ee7d1cc1114290f5ff1788cdf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming2
-  speed: 4
-  attackPower: 1
-  attackInterval: 1
-  attackTimer: 0
---- !u!114 &5609404230195512698
+  speed: 6
+  attackPower: 2
+  attackInterval: 2
+  attackTimer: 1
+--- !u!114 &723112973853266664
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -301,12 +301,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 7123478603682011902}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48cf78ec4307ee4ea74d61923c37b7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 566c85fe373607441b319597990250fd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemyanims
-  animState: 0
-  walkAnim:
+  m_EditorClassIdentifier: Assembly-CSharp::anim
+  Enemyanim:
   - {fileID: 7826254348065083450, guid: 5a5f6cbbe441e4c4f90b48d7db8d85fd, type: 3}
-  - {fileID: 7826254348065083450, guid: 5a5f6cbbe441e4c4f90b48d7db8d85fd, type: 3}
-  - {fileID: 7826254348065083450, guid: 5a5f6cbbe441e4c4f90b48d7db8d85fd, type: 3}
-  shotAnim: []

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 9164661495648429474}
   - component: {fileID: -2065528918115014493}
   - component: {fileID: 8016617087406819743}
-  - component: {fileID: -4585270808694169961}
+  - component: {fileID: 2416086933489948126}
   m_Layer: 6
   m_Name: Enemy
   m_TagString: Enemy
@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 321739127192385401}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.5184, y: -2.2979, z: 0}
-  m_LocalScale: {x: 2.572, y: 3.436, z: 2.5}
+  m_LocalPosition: {x: 3.5296, y: -2.3016, z: 0}
+  m_LocalScale: {x: 2.5017843, y: 3.4126353, z: 2.5}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 239938013496784651}
@@ -85,7 +85,7 @@ SpriteRenderer:
   m_GlobalIlluminationMeshLod: 0
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_MaskInteraction: 0
   m_Sprite: {fileID: 3363541916626770549, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
   m_Color: {r: 0.9622642, g: 0.9622642, b: 0.9622642, a: 1}
@@ -158,7 +158,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.00872568, y: -0.007620126}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -168,7 +168,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.20886724, y: 0.33595413}
   m_EdgeRadius: 0
 --- !u!114 &-2065528918115014493
 MonoBehaviour:
@@ -182,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51e95adb570b44e49a3a5642ea6f1f2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming
-  speed: 2
+  speed: 3
   attackPower: 1
   attackInterval: 1
 --- !u!114 &8016617087406819743
@@ -197,9 +197,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c36b55a7c053343a6d0d2ad28bf213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
-  maxHp: 1
-  currentHp: 1
---- !u!114 &-4585270808694169961
+  maxHp: 3
+  currentHp: 3
+--- !u!114 &2416086933489948126
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -208,19 +208,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 321739127192385401}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d48cf78ec4307ee4ea74d61923c37b7e, type: 3}
+  m_Script: {fileID: 11500000, guid: 566c85fe373607441b319597990250fd, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Enemyanims
-  animState: 0
-  walkAnim:
+  m_EditorClassIdentifier: Assembly-CSharp::anim
+  Enemyanim:
   - {fileID: -4464269051469612698, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
   - {fileID: 7402773640274918407, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
   - {fileID: -6509729700684870969, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
   - {fileID: 4608951095693538414, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
   - {fileID: -1594559767309666308, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
-  - {fileID: -8389994089377553982, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
-  - {fileID: -8946222537138898474, guid: bb0a88aa126539c4f8920587b88818e8, type: 3}
-  shotAnim: []
 --- !u!1 &913858775483236376
 GameObject:
   m_ObjectHideFlags: 0

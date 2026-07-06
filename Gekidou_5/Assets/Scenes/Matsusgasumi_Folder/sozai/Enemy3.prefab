@@ -105,7 +105,7 @@ GameObject:
   - component: {fileID: -2331079194151476905}
   - component: {fileID: -2399908375127680585}
   - component: {fileID: -1459906429618195703}
-  - component: {fileID: 4263934440464389677}
+  - component: {fileID: 9070473340655100393}
   m_Layer: 6
   m_Name: Enemy3
   m_TagString: Enemy
@@ -295,7 +295,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHp2
   maxHp: 5
   currentHp: 5
---- !u!114 &4263934440464389677
+--- !u!114 &9070473340655100393
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -313,14 +313,11 @@ MonoBehaviour:
   - {fileID: 8554065511361404839, guid: 28b824077a361544390cddad4154aefb, type: 3}
   - {fileID: 2929988617101887465, guid: 28b824077a361544390cddad4154aefb, type: 3}
   - {fileID: 4459220953878098484, guid: 28b824077a361544390cddad4154aefb, type: 3}
-  - {fileID: -7625008683082812949, guid: 28b824077a361544390cddad4154aefb, type: 3}
+  - {fileID: 4459220953878098484, guid: 28b824077a361544390cddad4154aefb, type: 3}
   shotAnim:
-  - {fileID: 1724285005971383338, guid: 28b824077a361544390cddad4154aefb, type: 3}
-  - {fileID: -9079346703612450975, guid: 28b824077a361544390cddad4154aefb, type: 3}
-  - {fileID: -5047961293538176382, guid: 28b824077a361544390cddad4154aefb, type: 3}
-  - {fileID: 7284819520274923836, guid: 28b824077a361544390cddad4154aefb, type: 3}
-  - {fileID: -2579691841418097144, guid: 28b824077a361544390cddad4154aefb, type: 3}
+  - {fileID: -6847057486287709447, guid: 28b824077a361544390cddad4154aefb, type: 3}
   - {fileID: 9006311976287439935, guid: 28b824077a361544390cddad4154aefb, type: 3}
+  - {fileID: -3847778255299745568, guid: 28b824077a361544390cddad4154aefb, type: 3}
 --- !u!1001 &292660870197928950
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -380,8 +377,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 551301137742484396, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3221718983601226692}
   m_SourcePrefab: {fileID: 100100000, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
+--- !u!1 &263778287546085466 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 551301137742484396, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
+  m_PrefabInstance: {fileID: 292660870197928950}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3221718983601226692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 263778287546085466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1ffebec72c5b7db49b1c3bdf500af851, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::EnemyBullet
+  damage: 1
+  lifeTime: 5
 --- !u!4 &1165051466305505446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1451467086768237392, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}

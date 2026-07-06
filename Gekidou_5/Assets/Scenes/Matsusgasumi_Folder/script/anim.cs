@@ -14,6 +14,8 @@ public class anim : MonoBehaviour
     int animMax;
     //現在のコマ数
     int animIdx = 0;
+    //プレイヤーのTransformを直接持つ
+    Transform playerTr;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -21,6 +23,10 @@ public class anim : MonoBehaviour
         spriteRenderer = GetComponent<SpriteRenderer>();
         //animMaxで配列の長さを代入
         animMax = Enemyanim.Length;
+        //プレイヤーを探して取得
+        GameObject playerobj = GameObject.FindGameObjectWithTag("Player");
+        if (playerobj != null) playerTr = playerobj.transform;
+        
     }
 
     // Update is called once per frame
@@ -41,5 +47,26 @@ public class anim : MonoBehaviour
         }
         //見た目をコマ数に応じて変更する処理
         spriteRenderer.sprite = Enemyanim[animIdx];
+
+        //前フレームとの差分でX方向の移動を判定
+       // float deltaX = transform.position.x - lastPosition.x;
+
+        //プレイヤーが敵より右にいるか左にいるかで反転
+        if(playerTr != null)
+        {
+            float delaX = playerTr.position.x - transform.position.x;
+            
+            //プレイヤー右にいる
+            if(delaX > 0.0001f)
+            {
+                spriteRenderer.flipX = false;
+            }
+            else if(delaX < -0.0001f)
+            {
+                spriteRenderer.flipX = true;
+            }   
+        }
+        
     }
 }
+    
