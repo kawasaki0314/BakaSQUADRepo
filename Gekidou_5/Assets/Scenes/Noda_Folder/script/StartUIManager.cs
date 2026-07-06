@@ -16,21 +16,22 @@ public class GameUIManager : MonoBehaviour
     [SerializeField] private float timeAfterLastChar = 0.1f;
 
     private Coroutine sequenceCoroutine;
-    private bool isSequenceFinished = false; // 演出が終わったかどうかのフラグ
+    private bool isSequenceFinished = false;
+
+    // === 【追加】スキップを受け付けてもいいかどうかのフラグ ===
+    private bool canSkip = false;
 
     void Start()
     {
-        // ゲーム開始時はボタンを非表示にする
+        Time.timeScale = 1f;
         SetButtonsActive(false);
-
-        // コルーチンを変数に保存して開始する（後で強制停止できるようにするため）
         sequenceCoroutine = StartCoroutine(SequenceRoutine());
     }
 
     void Update()
     {
-        // 演出がまだ終わっていない状態で、画面がクリック（タップ）されたらスキップ
-        if (!isSequenceFinished && Input.GetMouseButtonDown(0))
+        // === 【修正】canSkip が true の時だけクリックを受け付ける ===
+        if (canSkip && !isSequenceFinished && Input.GetMouseButtonDown(0))
         {
             SkipAnimation();
         }
@@ -38,45 +39,44 @@ public class GameUIManager : MonoBehaviour
 
     IEnumerator SequenceRoutine()
     {
-        // 1. 文字が揃うのを待つ（約1秒）
-        yield return new WaitForSeconds(1.0f);
+        // 【重要】文字側のスクリプトが1フレーム待って座標を記憶するのを、こちらも1フレーム待つ
+        yield return null;
 
-        // 2. 少し余韻を持たせる
+        // 文字たちが記憶を終えたので、ここからスキップを受け付け開始にする！
+        canSkip = true;
+
+        // 1. 文字が揃うのを待つ（約1秒）
+        // （すでに1フレーム消費したので、少しだけ時間を引いて調整しておくと親切です）
+        yield return new WaitForSecondsRealtime(1.0f);
+
         if (timeAfterLastChar > 0f)
         {
-            yield return new WaitForSeconds(timeAfterLastChar);
+            yield return new WaitForSecondsRealtime(timeAfterLastChar);
         }
 
-        // 演出終了処理へ
         FinishSequence();
     }
 
-    /// <summary>
-    /// 演出を通常通り、またはスキップして完了させる共通処理
-    /// </summary>
     private void FinishSequence()
     {
         if (isSequenceFinished) return;
         isSequenceFinished = true;
 
-        // 3. ボタンを出現させる
         SetButtonsActive(true);
 
-        // 4. 光の演出（パッと光ってフェードアウト）を再生
         if (flashEffect != null)
         {
             flashEffect.PlayFlash();
         }
     }
 
-    /// <summary>
-    /// クリックされたときに呼び出されるスキップ処理
-    /// </summary>
     private void SkipAnimation()
     {
-        if (sequenceCoroutine != null) StopCoroutine(sequenceCoroutine);
+        if (sequenceCoroutine != null)
+        {
+            StopCoroutine(sequenceCoroutine);
+        }
 
-        // 文字側に追加した関数を呼び出して一瞬で整列させる
         foreach (var animator in textAnimators)
         {
             if (animator != null)
@@ -88,9 +88,6 @@ public class GameUIManager : MonoBehaviour
         FinishSequence();
     }
 
-    /// <summary>
-    /// リストに登録されたボタンの表示・非表示を一括で切り替える関数
-    /// </summary>
     private void SetButtonsActive(bool isActive)
     {
         if (buttonsToActivate == null) return;
@@ -103,5 +100,4 @@ public class GameUIManager : MonoBehaviour
             }
         }
     }
-
 }
