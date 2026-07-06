@@ -106,6 +106,7 @@ GameObject:
   - component: {fileID: -5517470467452224959}
   - component: {fileID: 6602082932235609106}
   - component: {fileID: 1499657878284235636}
+  - component: {fileID: 723112973853266664}
   m_Layer: 6
   m_Name: Enemy2
   m_TagString: Enemy
@@ -178,7 +179,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 2
   m_MaskInteraction: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
+  m_Sprite: {fileID: 7826254348065083450, guid: 5a5f6cbbe441e4c4f90b48d7db8d85fd, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -226,7 +227,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 2.06, y: 1.05}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -287,7 +288,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5a368ee7d1cc1114290f5ff1788cdf0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming2
-  speed: 4
-  attackPower: 1
-  attackInterval: 1
-  attackTimer: 0
+  speed: 6
+  attackPower: 2
+  attackInterval: 2
+  attackTimer: 1
+--- !u!114 &723112973853266664
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7123478603682011902}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 566c85fe373607441b319597990250fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::anim
+  Enemyanim:
+  - {fileID: 7826254348065083450, guid: 5a5f6cbbe441e4c4f90b48d7db8d85fd, type: 3}
