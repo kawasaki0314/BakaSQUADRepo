@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using System.Collections;
@@ -31,10 +31,14 @@ public class levelupplayer : MonoBehaviour
 
     private bool isDead = false; // ★死亡二重処理防止フラグ
 
+    private Animator animator; 
+
     void Start()
     {
         hp = maxHP;
         UpdateUI();
+
+        animator = GetComponent<Animator>();
 
         // プレイヤーの他のスクリプトの取得
         playerAttack = GetComponent<PlayerAttack>();
@@ -173,6 +177,12 @@ public class levelupplayer : MonoBehaviour
         {
             // ★コルーチンを呼び出す
             StartCoroutine(PlayerDeathCoroutine());
+
+            if (animator != null)
+            {
+                animator.SetTrigger("Death");
+            }
+
         }
     }
 
@@ -184,6 +194,8 @@ public class levelupplayer : MonoBehaviour
         // 移動スクリプトや攻撃スクリプトがあればここで止める
         if (playerMove != null) playerMove.enabled = false;
         if (playerAttack != null) playerAttack.enabled = false;
+
+       
 
         // フェード用画像を表示する
         if (fadeImage != null)
