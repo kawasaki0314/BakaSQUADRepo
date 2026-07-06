@@ -52,7 +52,14 @@ public class AIHoming3 : MonoBehaviour
             if (shotTimer >= shotInteval)
             {
                 ShotBullet();
-                enemyanims = GetComponent<Enemyanims>();
+                if (enemyanims != null)
+                {
+                    enemyanims.animState = Enemyanims.AnimState.shot;
+                }
+                else
+                {
+                    enemyanims = GetComponent<Enemyanims>();
+                }
                 shotTimer = 0f;  //タイマーリセット
             }
         }
