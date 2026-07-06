@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.InputSystem;
 using System.Collections;
 
@@ -101,7 +101,6 @@ public class PlayerMove : MonoBehaviour
             cooldownTimer <= 0f)
         {
             StartCoroutine(Blink(lastDir));
-            animator.SetBool("blink", true);
         }
     }
 
