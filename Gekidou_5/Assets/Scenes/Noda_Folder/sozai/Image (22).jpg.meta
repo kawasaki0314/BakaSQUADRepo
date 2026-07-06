@@ -1,13 +1,10 @@
 fileFormatVersion: 2
-guid: 06d73f5f841cd634a9a13fe218bc9456
+guid: 8f98dffaef42b5844939ad33497703db
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7618897984305731304
-    second: 703_1_0
-  - first:
-      213: -3509001742841600992
-    second: 703_1_1
+      213: -8269221487998706690
+    second: Image (22)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,6 +97,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -129,13 +139,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 703_1_0
+      name: Image (22)_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 37
-        width: 6
-        height: 6
+        x: 0
+        y: 0
+        width: 1254
+        height: 1254
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -144,30 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 819648166ac344690800000000000000
-      internalID: -7618897984305731304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 703_1_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 26
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02423b1a1858d4fc0800000000000000
-      internalID: -3509001742841600992
+      spriteID: efb5fce6ed2dd3d80800000000000000
+      internalID: -8269221487998706690
       vertices: []
       indices: 
       edges: []
@@ -186,8 +174,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      703_1_0: -7618897984305731304
-      703_1_1: -3509001742841600992
+      Image (22)_0: -8269221487998706690
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

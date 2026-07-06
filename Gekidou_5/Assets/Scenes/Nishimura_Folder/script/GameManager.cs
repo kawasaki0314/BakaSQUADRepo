@@ -1,4 +1,4 @@
-using Microsoft.Win32.SafeHandles;
+﻿using Microsoft.Win32.SafeHandles;
 using UnityEditor;
 using UnityEngine;
 
@@ -19,7 +19,7 @@ public class GameManager : MonoBehaviour
     {
         timer += Time.deltaTime;
 
-        if(timer > 1f && !bossSpawned)
+        if(timer > 4f && !bossSpawned)
         {
             Instantiate(BossPrefab, Vector3.zero, Quaternion.identity);
             bossSpawned = true;

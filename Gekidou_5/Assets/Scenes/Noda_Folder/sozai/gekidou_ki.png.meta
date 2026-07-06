@@ -1,13 +1,19 @@
 fileFormatVersion: 2
-guid: 06d73f5f841cd634a9a13fe218bc9456
+guid: e13f45864ef15c54a9c78a7c10bd5e84
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7618897984305731304
-    second: 703_1_0
+      213: -2604299218715751817
+    second: b6I73gmbVtbEMHs1783315277_1783315435_0
   - first:
-      213: -3509001742841600992
-    second: 703_1_1
+      213: -3582338583300148663
+    second: b6I73gmbVtbEMHs1783315277_1783315435_1
+  - first:
+      213: 4781243771251119193
+    second: b6I73gmbVtbEMHs1783315277_1783315435_2
+  - first:
+      213: -489847285611736046
+    second: b6I73gmbVtbEMHs1783315277_1783315435_3
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -100,6 +106,19 @@ TextureImporter:
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 4
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
     buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
@@ -129,11 +148,77 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: 703_1_0
+      name: b6I73gmbVtbEMHs1783315277_1783315435_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 37
+        x: 40
+        y: 44
+        width: 809
+        height: 1265
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 77ace93a8ababdbd0800000000000000
+      internalID: -2604299218715751817
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: b6I73gmbVtbEMHs1783315277_1783315435_1
+      rect:
+        serializedVersion: 2
+        x: 843
+        y: 1077
+        width: 29
+        height: 30
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 942f73dd90af84ec0800000000000000
+      internalID: -3582338583300148663
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: b6I73gmbVtbEMHs1783315277_1783315435_2
+      rect:
+        serializedVersion: 2
+        x: 858
+        y: 1066
+        width: 6
+        height: 7
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      customData: 
+      outline: []
+      physicsShape: []
+      tessellationDetail: -1
+      bones: []
+      spriteID: 954d8f9b0e36a5240800000000000000
+      internalID: 4781243771251119193
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: b6I73gmbVtbEMHs1783315277_1783315435_3
+      rect:
+        serializedVersion: 2
+        x: 850
+        y: 1056
         width: 6
         height: 6
       alignment: 0
@@ -144,30 +229,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 819648166ac344690800000000000000
-      internalID: -7618897984305731304
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: 703_1_1
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 26
-        width: 13
-        height: 14
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 02423b1a1858d4fc0800000000000000
-      internalID: -3509001742841600992
+      spriteID: 2145ce23d76b339f0800000000000000
+      internalID: -489847285611736046
       vertices: []
       indices: 
       edges: []
@@ -186,8 +249,10 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      703_1_0: -7618897984305731304
-      703_1_1: -3509001742841600992
+      b6I73gmbVtbEMHs1783315277_1783315435_0: -2604299218715751817
+      b6I73gmbVtbEMHs1783315277_1783315435_1: -3582338583300148663
+      b6I73gmbVtbEMHs1783315277_1783315435_2: 4781243771251119193
+      b6I73gmbVtbEMHs1783315277_1783315435_3: -489847285611736046
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

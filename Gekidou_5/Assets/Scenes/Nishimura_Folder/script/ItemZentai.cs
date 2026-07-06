@@ -1,12 +1,17 @@
+﻿using System;
 using UnityEngine;
 
 
 public class ItemZentai : MonoBehaviour
 {
+
+    [SerializeField] AudioSource itemDelete;
+    bool itemDestroy = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       Debug.Log("ItemZentai: Start");
+       
     }
 
     //Playerに当たったら自分を消す
@@ -14,7 +19,25 @@ public class ItemZentai : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-          //  Debug.Log("ItemZentai: OnTriggerEnter2D");
+
+
+            //  Debug.Log("ItemZentai: OnTriggerEnter2D");
+            
+            if (collision.gameObject.name == "HeelItem")
+            {
+                //collision(gameObject);
+                itemDestroy = true;
+            }
+            else if (collision.gameObject.name == "SpeedUp")
+            {
+                
+            }
+            else if (collision.gameObject.name == "AttackUp")
+            {
+
+                
+            }
+
             Destroy(gameObject);
         }
     }
@@ -22,6 +45,7 @@ public class ItemZentai : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+     
 
     }
 }
