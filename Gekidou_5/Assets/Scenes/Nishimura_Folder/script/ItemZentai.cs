@@ -25,7 +25,7 @@ public class ItemZentai : MonoBehaviour
             
             if (collision.gameObject.name == "HeelItem")
             {
-                col(gameObject);
+                //col(gameObject);
             }
             else if (collision.gameObject.name == "SpeedUp")
             {

@@ -8243,6 +8243,7 @@ GameObject:
   - component: {fileID: 1373669411}
   - component: {fileID: 1373669413}
   - component: {fileID: 1373669412}
+  - component: {fileID: 1373669414}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -8311,6 +8312,18 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1373669410}
   m_CullTransparentMesh: 1
+--- !u!114 &1373669414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1373669410}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd2ef685a5caa9d44b1eaf80c3ef1d04, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIDragHandler
 --- !u!1 &1387065102
 GameObject:
   m_ObjectHideFlags: 0
