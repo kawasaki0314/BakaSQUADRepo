@@ -1,4 +1,4 @@
-using System.Diagnostics.CodeAnalysis;
+﻿using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
 public class EnemyHP : MonoBehaviour
