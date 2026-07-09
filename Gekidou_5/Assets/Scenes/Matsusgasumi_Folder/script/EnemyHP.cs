@@ -4,9 +4,14 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     [Header("HP Settings")]
-    [SerializeField] int maxHp = 65;
-    public int currentHp = 65;
+    [SerializeField] int maxHp = 5;
+    public int currentHp = 5;
     private bool isDead = false;
+    private SpriteRenderer sr;
+
+    [Header("被ダメージ点滅設定")]
+    [SerializeField] private float blinkDuration = 0.2f; //点滅を続ける時間(秒)
+    [SerializeField] private float blinkspeedspeed = 20f;  //点滅の速さ
 
     private AIHoming aiHoming;
 
@@ -14,6 +19,7 @@ public class EnemyHP : MonoBehaviour
     {
         currentHp = maxHp;
         aiHoming = GetComponent<AIHoming>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(int damage)
@@ -21,6 +27,13 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
 
         currentHp -= damage;
+        // 点滅
+        sr.color = Color.Lerp(Color.white,
+                    Color.red,
+                    Mathf.PingPong(
+                        Time.time * 3f,
+                        1f));
+
         Debug.Log($"{gameObject.name}に{damage}のダメージ！残りHP:{currentHp}");
 
         if (currentHp <= 0)
@@ -32,7 +45,7 @@ public class EnemyHP : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+               // Destroy(gameObject);
             }
         }
     }
@@ -46,7 +59,7 @@ public class EnemyHP : MonoBehaviour
             collision.gameObject.name.Contains("attack1"))
         {
             TakeDamage(1);
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
         }
         else if (collision.CompareTag("AttackBullet"))
         {
