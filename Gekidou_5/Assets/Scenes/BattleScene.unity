@@ -13408,6 +13408,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
+      propertyPath: hp
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
+      propertyPath: maxHP
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
       propertyPath: expSlider
       value: 
       objectReference: {fileID: 165166155}
