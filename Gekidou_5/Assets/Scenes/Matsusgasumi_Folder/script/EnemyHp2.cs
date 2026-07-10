@@ -6,6 +6,7 @@ public class EnemyHp2 : MonoBehaviour
     [Header("HP Settings")]
     [SerializeField] int maxHp = 5;
     public int currentHp = 5;
+    private SpriteRenderer sr;
 
     private AIHoming3 aiHoming3;
 
@@ -13,11 +14,19 @@ public class EnemyHp2 : MonoBehaviour
     {
         currentHp = maxHp;
         aiHoming3 = GetComponent<AIHoming3>();
+        sr = GetComponent<SpriteRenderer>();
     }
 
     public void TakeDamage(int damage)
     {
         currentHp -= damage;
+        // 点滅
+        sr.color = Color.Lerp(Color.white,
+                    Color.red,
+                    Mathf.PingPong(
+                        Time.time * 8f,
+                        1f));
+
         Debug.Log($"{gameObject.name}に{damage}のダメージ！残りHP:{currentHp}");
 
         if (currentHp <= 0)
@@ -28,7 +37,7 @@ public class EnemyHp2 : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+               // Destroy(gameObject);
             }
         }
     }
@@ -45,7 +54,7 @@ public class EnemyHp2 : MonoBehaviour
             collision.gameObject.name.Contains("attack1"))
         {
             TakeDamage(1);
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
         }
         else if (collision.gameObject.name.Contains("AttackBullet"))
         {

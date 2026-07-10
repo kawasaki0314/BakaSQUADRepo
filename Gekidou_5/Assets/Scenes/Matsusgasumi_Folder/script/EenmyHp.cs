@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyHp : MonoBehaviour
 {
@@ -30,7 +30,7 @@ public class EnemyHp : MonoBehaviour
             }
             else
             {
-                Destroy(gameObject);
+               // Destroy(gameObject);
             }
         }
     }
@@ -44,7 +44,7 @@ public class EnemyHp : MonoBehaviour
             collision.gameObject.name.Contains("attack1"))
         {
             TakeDamage(1);
-            Destroy(collision.gameObject);
+           // Destroy(collision.gameObject);
         }
         else if (collision.CompareTag("AttackBullet"))
         {
