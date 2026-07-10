@@ -106,7 +106,7 @@ public class PlayerAttack : MonoBehaviour
         GameObject attackObj = Instantiate(attackPrefab, spawnPos, rot);
 
         // 攻撃のエフェクト
-        animator.SetTrigger("Normal");
+        //animator.SetTrigger("Normal");
 
         AttackNormal normalScript = attackObj.GetComponent<AttackNormal>();
         if (normalScript != null)

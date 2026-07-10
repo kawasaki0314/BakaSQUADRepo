@@ -31,7 +31,7 @@ public class levelupplayer : MonoBehaviour
 
     [SerializeField] private GameObject floatingTextPrefab;
     [SerializeField] private Transform textSpawnPoint;
-    [SerializeField] private Canvas canvas;
+//  [SerializeField] private Canvas canvas;
 
     private bool isDead = false; // ★死亡二重処理防止フラグ
 
@@ -84,15 +84,7 @@ public class levelupplayer : MonoBehaviour
         // FloatingTextプレハブを生成する
         // Instantiate = オブジェクトを複製して生成する命令
         GameObject textObj = Instantiate(floatingTextPrefab,
-            canvas.transform);
-
-        // 2D空間の座標をUIが使うスクリーン座標へ変換する
-        Vector3 screenPos = Camera.main.
-            WorldToScreenPoint(textSpawnPoint.position);
-
-        // 生成したテキストの位置を設定
-        // textSpawnPointの位置の設定
-        textObj.transform.position= screenPos;
+            textSpawnPoint.position,Quaternion.identity);
 
         // FloatingTextスクリプトを取得
         FloatingText floatingText= textObj.GetComponent<FloatingText>();

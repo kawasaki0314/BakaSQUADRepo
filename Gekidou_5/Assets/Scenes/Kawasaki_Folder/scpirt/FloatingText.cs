@@ -11,12 +11,12 @@ public class FloatingText : MonoBehaviour
 
     // このオブジェクトについているTextMeshProUGUI
     // を取得するための変数
-    private TextMeshProUGUI text;
+    private TextMeshPro text;
     private float maxLifeTime;
 
     private void Awake()
     {
-        text = GetComponent<TextMeshProUGUI>();
+        text = GetComponent<TextMeshPro>();
 
         // 初期寿命の保存
         maxLifeTime = lifeTime;
