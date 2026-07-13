@@ -78,21 +78,6 @@ public class levelupplayer : MonoBehaviour
         }
     }
 
-    private void ShowLevelUpEffect(string message)
-    {
-
-        // FloatingTextプレハブを生成する
-        // Instantiate = オブジェクトを複製して生成する命令
-        GameObject textObj = Instantiate(floatingTextPrefab,
-            textSpawnPoint.position,Quaternion.identity);
-
-        // FloatingTextスクリプトを取得
-        FloatingText floatingText= textObj.GetComponent<FloatingText>();
-
-        // 表示する文字列を設定
-        floatingText.SetText(message);
-    }
-
     public void Addexperience(int amount)
     {
         currentexp += amount;
@@ -121,7 +106,7 @@ public class levelupplayer : MonoBehaviour
                     playerAttack.normalAttackPower += 1;
                     playerAttack.orbitAttackPower += 1;
                     playerAttack.bulletAttackPower += 1;
-                    ShowLevelUpEffect("全攻撃力が1上がった！");
+                    Debug.Log("全攻撃力が1上がった！");
                 }
                 break;
 
@@ -129,7 +114,7 @@ public class levelupplayer : MonoBehaviour
                 if (playerMove != null)
                 {
                     playerMove.playerSpeed += 0.5f;
-                    ShowLevelUpEffect("移動速度が1上がった！");
+                    Debug.Log("移動速度が1上がった！");
                 }
                 break;
 
@@ -137,7 +122,7 @@ public class levelupplayer : MonoBehaviour
                 if (playerAttack != null)
                 {
                     playerAttack.bulletCount += 1; // 球数＋
-                    ShowLevelUpEffect("弾数が1増えた！");
+                    Debug.Log("弾数が1増えた！");
                 }
                 break;
 
@@ -147,7 +132,7 @@ public class levelupplayer : MonoBehaviour
                 if (healthImage != null)
                 { 
                     healthImage.fillAmount = (float)hp / maxHP;
-                    ShowLevelUpEffect("HP上限が20上がった！");
+                    Debug.Log("HP上限が20上がった！");
                 }
                 break;
 
@@ -155,7 +140,7 @@ public class levelupplayer : MonoBehaviour
                 if (playerAttack != null)
                 {
                     playerAttack.fireRateModifier += 0.15f;
-                    ShowLevelUpEffect("連射速度が上がった！");
+                    Debug.Log("連射速度が上がった！");
                 }
                 break;
         }
