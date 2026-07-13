@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
@@ -6,6 +6,8 @@ public class Enemy : MonoBehaviour
     public int maxHp = 3;  // エネミーの最大HP
     private int nowHp;     // 現在のHP
 
+    [Header("EXP Stteings")]
+    public int expReward = 20;
     void Start()
     {
         // ゲーム開始時にHPを満タンにする
@@ -29,11 +31,13 @@ public class Enemy : MonoBehaviour
     {
         Debug.Log("エネミーを倒した！");
 
-        PlayerLevel playerLevel = FindFirstObjectByType<PlayerLevel>();
-        if (playerLevel != null)
+        levelupplayer player = FindFirstObjectByType<levelupplayer>();
+
+        if(player != null)
         {
-            playerLevel.GainExp(3); // 敵を1体倒したら経験値を「3」手に入れる
+            player.Addexperience(expReward);
         }
+        
 
         Destroy(gameObject); // エネミーのオブジェクトを削除
     }
