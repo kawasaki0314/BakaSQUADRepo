@@ -200,6 +200,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHP
   maxHp: 10
   currentHp: 10
+  blinkDuration: 0.2
+  blinkspeedspeed: 20
 --- !u!114 &2416086933489948126
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -297,7 +299,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.003013596, y: 0.012150496}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -307,7 +309,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.22854275, y: 0.3306172}
   m_EdgeRadius: 0
 --- !u!1 &3443300139751231475
 GameObject:
@@ -355,7 +357,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 22e89202f60ba56429d0c122f9ba8a3c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.5
+  m_Volume: 0.052
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -363,7 +365,7 @@ AudioSource:
   SpatializePostEffects: 0
   Priority: 128
   DopplerLevel: 1
-  MinDistance: 0.3928367
+  MinDistance: 0.29482794
   MaxDistance: 500
   Pan2D: 0
   rolloffMode: 0
