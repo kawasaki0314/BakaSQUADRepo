@@ -8237,8 +8237,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 130
-  m_fontSizeBase: 130
+  m_fontSize: 440
+  m_fontSizeBase: 440
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -8306,8 +8306,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.000015259, y: -0.0000069141}
-  m_SizeDelta: {x: 464.5593, y: 166.01}
+  m_AnchoredPosition: {x: -0.000012957, y: 0.0000076294}
+  m_SizeDelta: {x: 1920, y: 657.6254}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1328116436
 GameObject:
@@ -12361,8 +12361,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 378.2576, y: 171.6678}
+  m_AnchoredPosition: {x: 0.000015259, y: 0.0000088215}
+  m_SizeDelta: {x: 947.8387, y: 310.2731}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1958560103
 CanvasRenderer:
@@ -12419,8 +12419,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 70
-  m_fontSizeBase: 70
+  m_fontSize: 140
+  m_fontSizeBase: 140
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -13796,13 +13796,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71bcfec7fa2a95649aee16b75bfbeea0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameStartDirector
-  readyTextRect: {fileID: 1958560102}
   readyText: {fileID: 1958560104}
   goText: {fileID: 1320258751}
-  dropDuration: 0.1
+  fadeInDuration: 1
   readyStayDuration: 2
   goDisplayDuration: 1
-  shakeMagnitude: 7
+  shakeMagnitude: 100
 --- !u!4 &2140212470
 Transform:
   m_ObjectHideFlags: 0
