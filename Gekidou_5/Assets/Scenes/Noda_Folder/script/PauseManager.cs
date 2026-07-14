@@ -1,43 +1,71 @@
-using System.Collections; // コルーチンを使うために必要です
+﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class PauseManager : MonoBehaviour
 {
-    public static bool IsGamePaused { get; private set; } = false;//どこからでも参照できるフラグ
+    public static bool IsGamePaused { get; private set; } = false;
 
-    [SerializeField] private CanvasGroup pauseCanvasGroup; // GameObjectの代わりにCanvasGroupを使います
+    [SerializeField] private CanvasGroup pauseCanvasGroup;
     [SerializeField] private Button firstSelectedButton;
-    [SerializeField] private float fadeDuration = 0.05f; // フェードにかかる時間（秒）
+    [SerializeField] private float fadeDuration = 0.05f;
 
     private bool isPaused = false;
-    private Coroutine fadeCoroutine; // 実行中のフェード処理を管理する変数
+    private Coroutine fadeCoroutine;
+
+    // ★【追加】ポーズが許可されているかどうかのフラグ
+    private bool isPauseAllowed = false;
 
     void Awake()
     {
-        //時を動かす
         Time.timeScale = 1f;
-
-        //シーン遷移に残ってしまったポーズフラグを強制リセットする
         IsGamePaused = false;
     }
 
     void Start()
     {
-        // ゲーム開始時はポーズ画面を完全に隠しておく
         if (pauseCanvasGroup != null)
         {
             pauseCanvasGroup.alpha = 0f;
             pauseCanvasGroup.interactable = false;
             pauseCanvasGroup.blocksRaycasts = false;
         }
+
+        // ★【追加】演出時間を読み取って、その間ポーズを禁止するコルーチンを開始
+        StartCoroutine(WaitForProductionRoutine());
+    }
+
+    // ★【追加】演出時間を待つためのコルーチン
+    private IEnumerator WaitForProductionRoutine()
+    {
+        isPauseAllowed = false; // 最初はポーズ禁止
+
+        // シーン内の GameStartDirector を探す
+        GameStartDirector startDirector = Object.FindFirstObjectByType<GameStartDirector>();
+
+        if (startDirector != null)
+        {
+            // 演出の合計時間（秒）を取得
+            float waitTime = startDirector.TotalProductionDuration;
+
+            // Time.timeScale = 0 なので Realtime（現実の時間）で待つ
+            yield return new WaitForSecondsRealtime(waitTime);
+        }
+
+        isPauseAllowed = true; // 演出時間を過ぎたのでポーズを解禁！
     }
 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
+            // ★【修正】まだポーズが許可されていなければ、入力を完全に無視
+            if (!isPauseAllowed)
+            {
+                return;
+            }
+
             if (isPaused)
             {
                 Resume();
@@ -54,11 +82,7 @@ public class PauseManager : MonoBehaviour
         if (!isPaused) return;
         isPaused = false;
         IsGamePaused = false;
-
-        // 時間の流れを元に戻す
         Time.timeScale = 1f;
-
-        // フェードアウトを開始
         StartFade(0f, false);
     }
 
@@ -67,14 +91,9 @@ public class PauseManager : MonoBehaviour
         if (isPaused) return;
         isPaused = true;
         IsGamePaused = true;
-
-        //時を動かす
         Time.timeScale = 0f;
-
-        // フェードインを開始
         StartFade(1f, true);
 
-        // ボタンの選択
         EventSystem.current.SetSelectedGameObject(null);
         if (firstSelectedButton != null)
         {
@@ -82,10 +101,8 @@ public class PauseManager : MonoBehaviour
         }
     }
 
-    // フェード処理を安全に開始するためのメソッド
     private void StartFade(float targetAlpha, bool isInteractive)
     {
-        // すでにフェード中なら、それを止めて新しいフェードを開始する
         if (fadeCoroutine != null)
         {
             StopCoroutine(fadeCoroutine);
@@ -93,10 +110,8 @@ public class PauseManager : MonoBehaviour
         fadeCoroutine = StartCoroutine(FadeRoutine(targetAlpha, isInteractive));
     }
 
-    // フェードの具体的な中身（コルーチン）
     private IEnumerator FadeRoutine(float targetAlpha, bool isInteractive)
     {
-        // フェード中はボタンが誤反応しないように、一旦操作を無効化する（フェードイン時は最後に有効化）
         if (!isInteractive)
         {
             pauseCanvasGroup.interactable = false;
@@ -108,16 +123,15 @@ public class PauseManager : MonoBehaviour
 
         while (elapsedTime < fadeDuration)
         {
-            elapsedTime += Time.unscaledDeltaTime; // ポーズ中も時間をカウントするために unscaled を使用
+            elapsedTime += Time.unscaledDeltaTime;
             float t = elapsedTime / fadeDuration;
-            float smoothedT = Mathf.SmoothStep(0f, 1f, t);//SmoothStepで始まりと終わりを滑らかに
-            pauseCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, elapsedTime / fadeDuration);
+            float smoothedT = Mathf.SmoothStep(0f, 1f, t);
+            pauseCanvasGroup.alpha = Mathf.Lerp(startAlpha, targetAlpha, smoothedT);
             yield return null;
         }
 
         pauseCanvasGroup.alpha = targetAlpha;
 
-        // フェードイン完了時のみ、ボタンを触れるようにする
         if (isInteractive)
         {
             pauseCanvasGroup.interactable = true;

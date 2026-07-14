@@ -13800,8 +13800,9 @@ MonoBehaviour:
   goText: {fileID: 1320258751}
   fadeInDuration: 1
   readyStayDuration: 2
+  readyStartOffsetVolume: 2500
   goDisplayDuration: 1
-  shakeMagnitude: 100
+  shakeMagnitude: 20
 --- !u!4 &2140212470
 Transform:
   m_ObjectHideFlags: 0
