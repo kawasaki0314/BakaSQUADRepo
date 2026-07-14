@@ -22,20 +22,9 @@ public class ItemZentai : MonoBehaviour
 
 
             //  Debug.Log("ItemZentai: OnTriggerEnter2D");
+            AudioSource.PlayClipAtPoint(collision.GetComponent<AudioSource>().clip, collision.transform.position);
             
-            if (collision.gameObject.name == "HeelItem")
-            {
-                //col(gameObject);
-            }
-            else if (collision.gameObject.name == "SpeedUp")
-            {
-                
-            }
-            else if (collision.gameObject.name == "AttackUp")
-            {
-
-                
-            }
+           
 
             Destroy(gameObject);
         }

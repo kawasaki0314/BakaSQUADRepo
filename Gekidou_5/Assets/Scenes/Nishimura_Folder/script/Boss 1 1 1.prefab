@@ -849,7 +849,6 @@ GameObject:
   - component: {fileID: 5779632988210400474}
   - component: {fileID: 925115298631466691}
   - component: {fileID: 1474871088751713016}
-  - component: {fileID: 6863081504314715718}
   - component: {fileID: 3728147448285534991}
   m_Layer: 0
   m_Name: Boss 1 1 1
@@ -1082,24 +1081,6 @@ MonoBehaviour:
   - {fileID: -2316645505101881158, guid: 2c624ed21c28d3f4688be2556e086043, type: 3}
   - {fileID: 1710781640123152636, guid: 2c624ed21c28d3f4688be2556e086043, type: 3}
   - {fileID: -1194485642262697457, guid: 2c624ed21c28d3f4688be2556e086043, type: 3}
---- !u!114 &6863081504314715718
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8035632563858813065}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dd1fe47a68e92c847ad617befe4c33f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Shooter
-  bulletPrefab: {fileID: 0}
-  bulletAudio: {fileID: 3728147448285534991}
-  shootInterval: 2
-  bulletSpeed: 3
-  randomAngle: 30
-  BossDamege: 1
 --- !u!82 &3728147448285534991
 AudioSource:
   m_ObjectHideFlags: 0
