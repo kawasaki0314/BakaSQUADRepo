@@ -12,6 +12,9 @@ public class EnemyHP : MonoBehaviour
     [Header("被ダメージ点滅設定")]
     [SerializeField] private float blinkDuration = 0.2f; //点滅を続ける時間(秒)
     [SerializeField] private float blinkspeedspeed = 20f;  //点滅の速さ
+    [SerializeField, Range(0f, 1f)] private float blinkIntensity = 0.3f; //色の濃さ
+    private Coroutine blinkCoroutine;
+    private Color originalCoror;
 
     private AIHoming aiHoming;
 
@@ -20,6 +23,10 @@ public class EnemyHP : MonoBehaviour
         currentHp = maxHp;
         aiHoming = GetComponent<AIHoming>();
         sr = GetComponent<SpriteRenderer>();
+        if(sr != null)
+        {
+            originalCoror = sr.color;
+        }
     }
 
     public void TakeDamage(int damage)
@@ -27,12 +34,16 @@ public class EnemyHP : MonoBehaviour
         if (isDead) return;
 
         currentHp -= damage;
-        // 点滅
-        sr.color = Color.Lerp(Color.white,
-                    Color.red,
-                    Mathf.PingPong(
-                        Time.time * 3f,
-                        1f));
+        
+        // 被ダメージ時の点滅開始
+        if (sr != null)
+        {
+            if (blinkCoroutine != null)
+            {
+                StopCoroutine(blinkCoroutine);
+            }
+            blinkCoroutine = StartCoroutine(BlinkCoroutine());
+        }
 
         Debug.Log($"{gameObject.name}に{damage}のダメージ！残りHP:{currentHp}");
 
@@ -49,7 +60,21 @@ public class EnemyHP : MonoBehaviour
             }
         }
     }
+    private System.Collections.IEnumerator BlinkCoroutine()
+    {
+        float timer = 0f;
 
+        while (timer < blinkDuration)
+        {
+            float t = Mathf.PingPong(timer * blinkspeedspeed, 1f) * blinkIntensity;
+            sr.color = Color.Lerp(originalCoror, Color.red, t);
+
+            timer += Time.deltaTime;
+            yield return null;
+        }
+
+        sr.color = originalCoror; // 点滅終了後は元の色に戻す
+    }
     // Triggerで来る弾に対応（BulletPrefabなど）
     private void OnTriggerEnter2D(Collider2D collision)
     {
