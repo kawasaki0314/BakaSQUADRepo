@@ -45,6 +45,9 @@ public class PlayerAttack : MonoBehaviour
     void Update()
 
     {
+        //ゲーム開始前は何もできないゾ
+        if(GameStartDirector.IsGameStarted == false) return;
+
         // 時間の更新
         playTime += Time.deltaTime;
 

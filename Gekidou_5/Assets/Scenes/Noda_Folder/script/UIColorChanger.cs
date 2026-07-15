@@ -1,17 +1,18 @@
 ﻿using UnityEngine;
+using UnityEngine.UI; // UIコンポーネントを扱うために必要！
 
-public class KeyColorChanger2D : MonoBehaviour
+public class KeyColorChangerUI : MonoBehaviour
 {
-    [Header("キーに対応する2Dオブジェクト")]
-    public SpriteRenderer spriteW;
-    public SpriteRenderer spriteA;
-    public SpriteRenderer spriteS;
-    public SpriteRenderer spriteD;
-    public SpriteRenderer spriteP;
+    [Header("キーに対応するUIオブジェクト")]
+    public Image imageW;
+    public Image imageA;
+    public Image imageS;
+    public Image imageD;
+    public Image imageP;
 
-    [Header("マウスクリックに対応する2Dオブジェクト")]
-    public SpriteRenderer spriteLeftClick;  // 左クリック用
-    public SpriteRenderer spriteRightClick; // 右クリック用
+    [Header("マウスクリックに対応するUIオブジェクト")]
+    public Image imageLeftClick;  // 左クリック用
+    public Image imageRightClick; // 右クリック用
 
     [Header("色の設定")]
     public Color normalColor = Color.white; // 通常時の色
@@ -20,45 +21,45 @@ public class KeyColorChanger2D : MonoBehaviour
     void Update()
     {
         // --- キーボードの判定 ---
-        ChangeColorIfPressedKey(KeyCode.W, spriteW);
-        ChangeColorIfPressedKey(KeyCode.A, spriteA);
-        ChangeColorIfPressedKey(KeyCode.S, spriteS);
-        ChangeColorIfPressedKey(KeyCode.D, spriteD);
-        ChangeColorIfPressedKey(KeyCode.P, spriteP);
+        ChangeColorIfPressedKey(KeyCode.W, imageW);
+        ChangeColorIfPressedKey(KeyCode.A, imageA);
+        ChangeColorIfPressedKey(KeyCode.S, imageS);
+        ChangeColorIfPressedKey(KeyCode.D, imageD);
+        ChangeColorIfPressedKey(KeyCode.P, imageP);
 
         // --- マウスクリックの判定 ---
         // 0 = 左クリック、1 = 右クリック
-        ChangeColorIfPressedMouse(0, spriteLeftClick);
-        ChangeColorIfPressedMouse(1, spriteRightClick);
+        ChangeColorIfPressedMouse(0, imageLeftClick);
+        ChangeColorIfPressedMouse(1, imageRightClick);
     }
 
     // キーボード用の色変更メソッド
-    void ChangeColorIfPressedKey(KeyCode key, SpriteRenderer targetSprite)
+    void ChangeColorIfPressedKey(KeyCode key, Image targetImage)
     {
-        if (targetSprite == null) return;
+        if (targetImage == null) return;
 
         if (Input.GetKey(key))
         {
-            targetSprite.color = pressedColor;
+            targetImage.color = pressedColor;
         }
         else
         {
-            targetSprite.color = normalColor;
+            targetImage.color = normalColor;
         }
     }
 
     // マウス用の色変更メソッド
-    void ChangeColorIfPressedMouse(int mouseButton, SpriteRenderer targetSprite)
+    void ChangeColorIfPressedMouse(int mouseButton, Image targetImage)
     {
-        if (targetSprite == null) return;
+        if (targetImage == null) return;
 
         if (Input.GetMouseButton(mouseButton))
         {
-            targetSprite.color = pressedColor;
+            targetImage.color = pressedColor;
         }
         else
         {
-            targetSprite.color = normalColor;
+            targetImage.color = normalColor;
         }
     }
 }

@@ -4,6 +4,8 @@ using TMPro;
 
 public class GameStartDirector : MonoBehaviour
 {
+    public static bool IsGameStarted { get; private set; } = true;
+
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI readyText;
     [SerializeField] private TextMeshProUGUI goText;
@@ -20,10 +22,15 @@ public class GameStartDirector : MonoBehaviour
     private Vector3 readyTextOriginalPosition;
     private Vector3 goTextOriginalPosition;
 
-    // ★【追加】演出にかかる「合計時間」を外から計算できるようにするプロパティ
+    // 演出にかかる「合計時間」を外から計算できるようにするプロパティ
     public float TotalProductionDuration
     {
         get { return fadeInDuration + readyStayDuration + goDisplayDuration; }
+    }
+
+    void Awake()
+    {
+        IsGameStarted = false;   
     }
 
     void Start()
@@ -75,5 +82,7 @@ public class GameStartDirector : MonoBehaviour
         goText.gameObject.SetActive(false);
 
         Time.timeScale = 1f;
+
+        IsGameStarted = true;
     }
 }

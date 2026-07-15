@@ -14,7 +14,7 @@ public class PauseManager : MonoBehaviour
     private bool isPaused = false;
     private Coroutine fadeCoroutine;
 
-    // ★【追加】ポーズが許可されているかどうかのフラグ
+    // ポーズが許可されているかどうかのフラグ
     private bool isPauseAllowed = false;
 
     void Awake()
@@ -32,11 +32,11 @@ public class PauseManager : MonoBehaviour
             pauseCanvasGroup.blocksRaycasts = false;
         }
 
-        // ★【追加】演出時間を読み取って、その間ポーズを禁止するコルーチンを開始
+        //演出時間を読み取って、その間ポーズを禁止するコルーチンを開始
         StartCoroutine(WaitForProductionRoutine());
     }
 
-    // ★【追加】演出時間を待つためのコルーチン
+    // 演出時間を待つためのコルーチン
     private IEnumerator WaitForProductionRoutine()
     {
         isPauseAllowed = false; // 最初はポーズ禁止
@@ -60,7 +60,7 @@ public class PauseManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.P))
         {
-            // ★【修正】まだポーズが許可されていなければ、入力を完全に無視
+            // まだポーズが許可されていなければ、入力を完全に無視
             if (!isPauseAllowed)
             {
                 return;

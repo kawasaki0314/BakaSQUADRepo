@@ -1,0 +1,22 @@
+﻿using UnityEngine;
+
+public class ChickenSpawn : MonoBehaviour
+{
+    [Header("移動速度の範囲")]
+    public float minSpeed = 0.5f; // 最低速度
+    public float maxSpeed = 2.5f; // 最高速度
+
+    private float moveSpeed;
+
+    void Start()
+    {
+        // 出現した瞬間に、範囲内からランダムな速度を決定する
+        moveSpeed = Random.Range(minSpeed, maxSpeed);
+    }
+
+    void Update()
+    {
+        // 決定された速度で右に移動
+        transform.Translate(Vector3.right * moveSpeed * Time.deltaTime);
+    }
+}
