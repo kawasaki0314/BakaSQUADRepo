@@ -25,7 +25,7 @@ public class levelupplayer : MonoBehaviour
     private PlayerAttack playerAttack;
     private PlayerMove playerMove;
 
-    [SerializeField] private int expPerKeyPress = 10;  //1会押すたびにもらえる経験値の量
+    [SerializeField] private int expPerKeyPress = 3;  //1会押すたびにもらえる経験値の量
     [SerializeField] private Slider expSlider;         //InspectorでSliderをドラッグ&ドロップ
     [SerializeField] private TextMeshProUGUI levelText;//InspectorでTMPをドラッグ&ドロップ
 
