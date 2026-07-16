@@ -4495,7 +4495,7 @@ GameObject:
   - component: {fileID: 768618490}
   - component: {fileID: 768618489}
   m_Layer: 6
-  m_Name: saraky
+  m_Name: salary
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
