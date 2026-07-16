@@ -1,4 +1,4 @@
-using System.Runtime.CompilerServices;
+﻿using System.Runtime.CompilerServices;
 using UnityEngine;
 using UnityEngine.Rendering;
 
@@ -8,7 +8,7 @@ public class BulletEnemy : MonoBehaviour
     [SerializeField] float moveSpeed = 5f;
     private Vector2 direction;
     [SerializeField] float lifeTime = 10f;
-    [SerializeField] int BossDamege = 1;
+    [SerializeField] int BossDamege = 10;
     Rigidbody2D rb;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 

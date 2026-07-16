@@ -10338,7 +10338,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -7.2106934, y: -4.953247}
+  m_AnchoredPosition: {x: -7.2106934, y: -4.953125}
   m_SizeDelta: {x: 22.403076, y: 22.40332}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1655503792
@@ -14042,6 +14042,10 @@ PrefabInstance:
       propertyPath: healthImage
       value: 
       objectReference: {fileID: 1283918390}
+    - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
+      propertyPath: expPerKeyPress
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
       propertyPath: textSpawnPoint
       value: 

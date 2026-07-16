@@ -1,9 +1,9 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class BossHp : MonoBehaviour
 {
-   public int bossHp = 1000;
+   public int bossHp = 1500;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
