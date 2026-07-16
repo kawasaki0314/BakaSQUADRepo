@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections; // コルーチンを使うために必要
 
 public class EnemySpawn3 : MonoBehaviour
@@ -9,7 +9,7 @@ public class EnemySpawn3 : MonoBehaviour
     [SerializeField] GameObject regularEnemyprefab;//通常の敵
 
     [Header("Spawn Limits")]
-    [SerializeField] int initialSpawnCount = 15;
+    [SerializeField] int initialSpawnCount = 20;
     [SerializeField] int maxSpecialEnemyCount = 20;//このキャラは画面最大20匹まで
 
     [Header("Timer Settings")]

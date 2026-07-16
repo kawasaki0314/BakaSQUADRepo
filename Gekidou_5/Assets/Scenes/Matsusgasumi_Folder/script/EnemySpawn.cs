@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using UnityEngine;
 
 
@@ -15,8 +15,8 @@ public class EnemySpawn : MonoBehaviour
 
     [Header("Spawn Limits")]
     // 最初に出す通常の敵の数
-    [SerializeField] int initialSpawnCount = 15;
-    [SerializeField] int maxSpecialEnemyCount = 20;//このキャラは画面に最大20匹まで
+    [SerializeField] int initialSpawnCount = 25;
+    [SerializeField] int maxSpecialEnemyCount = 25;//このキャラは画面に最大20匹まで
 
     //各キャラクターの現在の出現数を数える変数
     private int currentRegularCount = 0;

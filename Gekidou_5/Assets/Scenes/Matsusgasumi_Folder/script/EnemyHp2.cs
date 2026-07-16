@@ -4,8 +4,8 @@ public class EnemyHp2 : MonoBehaviour
 {
 
     [Header("HP Settings")]
-    [SerializeField] int maxHp = 5;
-    public int currentHp = 5;
+    [SerializeField] int maxHp = 9;
+    public int currentHp = 9;
     private SpriteRenderer sr;
     [Header("被ダメージ点滅設定")]
     [SerializeField] private float blinkDuration = 0.2f; //点滅を続ける時間(秒)
