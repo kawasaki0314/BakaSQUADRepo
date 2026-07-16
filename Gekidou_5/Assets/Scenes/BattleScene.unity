@@ -7862,7 +7862,7 @@ GameObject:
   - component: {fileID: 1271573993}
   m_Layer: 0
   m_Name: ItemSpawner
-  m_TagString: Untagged
+  m_TagString: HeelItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -14008,6 +14008,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2387896174327388517, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3995881027568724988, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}

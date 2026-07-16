@@ -22,7 +22,7 @@ public class ItemZentai : MonoBehaviour
 
 
             //  Debug.Log("ItemZentai: OnTriggerEnter2D");
-            AudioSource.PlayClipAtPoint(collision.GetComponent<AudioSource>().clip, collision.transform.position);
+            //AudioSource.PlayClipAtPoint(collision.GetComponent<AudioSource>().clip, collision.transform.position);
             
            
 
