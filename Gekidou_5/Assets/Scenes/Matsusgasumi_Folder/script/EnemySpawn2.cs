@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using System.Collections;
 
 public class EnemySpawn2 : MonoBehaviour
@@ -10,8 +10,8 @@ public class EnemySpawn2 : MonoBehaviour
     
 
     [Header("Spawn Limits")]
-    [SerializeField] int initialSpawnCount = 4;
-    [SerializeField] int maxRegularEnemyCount = 4;//このキャラは画面最大6匹まで
+    [SerializeField] int initialSpawnCount = 6;
+    [SerializeField] int maxRegularEnemyCount = 6;//このキャラは画面最大6匹まで
 
     [Header("Timer Settings")]
     [SerializeField] float delaySeconds = 30f; // 何秒後に登場させるか（インスペクターで変更可能）

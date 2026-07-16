@@ -4,8 +4,8 @@ public class EnemyHp : MonoBehaviour
 {
     
     [Header("HP Settings")]
-    [SerializeField] int maxHp = 8;
-    public int currentHp = 8;
+    [SerializeField] int maxHp = 5;
+    public int currentHp = 5;
     private bool isDead = false;
     private SpriteRenderer sr;
 

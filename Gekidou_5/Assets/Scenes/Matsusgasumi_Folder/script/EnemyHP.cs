@@ -4,8 +4,8 @@ using UnityEngine;
 public class EnemyHP : MonoBehaviour
 {
     [Header("HP Settings")]
-    [SerializeField] int maxHp = 5;
-    public int currentHp = 5;
+    [SerializeField] int maxHp = 4;
+    public int currentHp = 4;
     private bool isDead = false;
     private SpriteRenderer sr;
 

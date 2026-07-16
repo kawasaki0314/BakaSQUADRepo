@@ -6,7 +6,7 @@ public class AIHoming3 : MonoBehaviour
     [SerializeField] float speed = 2f;  //敵の動くスピード
 
     [Header("Enemy Status")]
-    public int attackPower = 1;　//敵の攻撃力
+    public int attackPower = 2;　//敵の攻撃力
     public float attackInterval = 1f;//攻撃のインターバル（1秒に1回）
     public float attackTimer = 0f;
         private Rigidbody2D rb;
