@@ -119,8 +119,8 @@ public class AIHoming3 : MonoBehaviour
         levelupplayer playerlevel = FindFirstObjectByType<levelupplayer>();
         if(playerlevel != null)
         {
-            playerlevel.Addexperience(3);//敵を1体倒したら経験値「３」手に入れる設定
-            Debug.Log("プレイヤーに経験値を３あたえました！");
+            playerlevel.Addexperience(10);//敵を1体倒したら経験値「10」手に入れる設定
+            Debug.Log("プレイヤーに経験値を10あたえました！");
         }
         else
         {
