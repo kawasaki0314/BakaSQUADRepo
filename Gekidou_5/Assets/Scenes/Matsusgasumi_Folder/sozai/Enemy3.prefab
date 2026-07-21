@@ -418,7 +418,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 03d02b8b8c868204aa2f2f2780d07997, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming3
-  speed: 2
+  speed: 3
   attackPower: 1
   attackInterval: 1
   attackTimer: 0
@@ -437,8 +437,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d2ddd18e4bafb48bf886b33406e33e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemyHp2
-  maxHp: 5
-  currentHp: 5
+  maxHp: 15
+  currentHp: 15
+  blinkDuration: 0.2
+  blinkspeedspeed: 20
+  blinkIntensity: 0.3
 --- !u!114 &9070473340655100393
 MonoBehaviour:
   m_ObjectHideFlags: 0

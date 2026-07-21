@@ -184,7 +184,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming
   speed: 3
-  attackPower: 1
+  attackPower: 2
   attackInterval: 1
 --- !u!114 &8016617087406819743
 MonoBehaviour:
@@ -202,6 +202,7 @@ MonoBehaviour:
   currentHp: 10
   blinkDuration: 0.2
   blinkspeedspeed: 20
+  blinkIntensity: 0.3
 --- !u!114 &2416086933489948126
 MonoBehaviour:
   m_ObjectHideFlags: 0
