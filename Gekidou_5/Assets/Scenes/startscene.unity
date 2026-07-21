@@ -445,15 +445,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 35
+  m_fontSizeBase: 35
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_characterHorizontalScale: 1
@@ -1316,12 +1316,12 @@ Transform:
   m_GameObject: {fileID: 1327136428}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -971.4453, y: -553.59064, z: 0}
-  m_LocalScale: {x: 1.3156017, y: 1.180509, z: 2.8742516}
+  m_LocalPosition: {x: -3.4, y: -4.69, z: 0}
+  m_LocalScale: {x: 0.4515529, y: 0.40518513, z: 0.986527}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 984759088}
-  m_Father: {fileID: 2009543454}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1414438605
 GameObject:
@@ -1702,7 +1702,6 @@ RectTransform:
   - {fileID: 2133237461}
   - {fileID: 1090304124}
   - {fileID: 345445726}
-  - {fileID: 1327136430}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1983,3 +1982,4 @@ SceneRoots:
   - {fileID: 2009543454}
   - {fileID: 624152305}
   - {fileID: 1414438607}
+  - {fileID: 1327136430}
