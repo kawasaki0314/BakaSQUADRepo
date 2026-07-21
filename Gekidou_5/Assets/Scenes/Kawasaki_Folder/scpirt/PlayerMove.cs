@@ -35,6 +35,12 @@ public class PlayerMove : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+
+        // アニメーターの状態もリセットしておく
+        if (animator != null)
+        {
+            animator.SetBool("run", false);
+        }
     }
 
     void Update()
@@ -44,10 +50,9 @@ public class PlayerMove : MonoBehaviour
         {
             if (rb != null) rb.linearVelocity = Vector2.zero;
             moveInput = Vector2.zero; // 入力もリセット
+            if (animator != null) animator.SetBool("run", false); // ポーズ時はアニメも止める
             return;
         }
-
-        Anim();
 
         // キーボードの認識チェック
         if (Keyboard.current == null) return;
@@ -66,25 +71,21 @@ public class PlayerMove : MonoBehaviour
         {
             moveInput.x -= 1;
             transform.localScale = new Vector3(-3.5f, 3.5f, 1);
-            animator.SetBool("run", true);
         }
         else if (Keyboard.current.dKey.isPressed)
         {
             moveInput.x += 1;
             transform.localScale = new Vector3(3.5f, 3.5f, 1);
-            animator.SetBool("run", true);
         }
 
         // 上下移動の入力
         if (Keyboard.current.wKey.isPressed)
         {
             moveInput.y += 1;
-            animator.SetBool("run", true);
         }
         else if (Keyboard.current.sKey.isPressed)
         {
             moveInput.y -= 1;
-            animator.SetBool("run", true);
         }
 
         // 方向の更新(ブリンクなどに使用)
@@ -94,8 +95,12 @@ public class PlayerMove : MonoBehaviour
             lastDir = moveInput;
         }
 
+        // アニメーションの更新処理は入力計算の後に実行
+        Anim();
+
         // 右クリックでブリンク
-        if (Mouse.current.rightButton.wasPressedThisFrame &&
+        if (Mouse.current != null &&
+            Mouse.current.rightButton.wasPressedThisFrame &&
             lastDir != Vector2.zero &&
             !isBlinking &&
             cooldownTimer <= 0f)
@@ -104,21 +109,14 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
+    // 【★修正】アニメーション判定を移動入力の有無で正しく行うように変更
     private void Anim()
     {
-        if(rb.linearVelocity.x>0)
-        {
-            animator.SetBool("run", true);
-        }
-        if(rb.linearVelocity.y>0)
-        {
-            animator.SetBool("run", true);
-        }
-        else
-        {
-            animator.SetBool("run", false);
-       //     animator.SetTrigger("blink");
-        }
+        if (animator == null) return;
+
+        // moveInput または 物理速度が出ている時は走る
+        bool isMoving = moveInput != Vector2.zero || rb.linearVelocity.sqrMagnitude > 0.01f;
+        animator.SetBool("run", isMoving);
     }
 
     // 【追加】物理演算の更新タイミングで速度を強制固定する
@@ -137,35 +135,21 @@ public class PlayerMove : MonoBehaviour
         isBlinking = true;
         cooldownTimer = blinkCooldown;
 
-        
-        // 元のレイヤーを変更し、ブリンク用のレイヤーに変更
         int originalLayer = gameObject.layer;
         gameObject.layer = LayerMask.NameToLayer("PlayerBlinking");
-        /*
-        // プレイヤーのコライダを取得し、一時的にすり抜け状態にする
-        Collider2D playerCollider = GetComponent<Collider2D>();
-        if(playerCollider != null)
-        {
-            playerCollider.isTrigger = true;
-        }
-        */
-        // 壁のチェック
 
         Vector3 start = transform.position;
         Vector3 end;
 
-        // レイキャストでブリンク方向に壁があるかどうかのチェック
         RaycastHit2D hit = Physics2D.Raycast(start, dir, blinkDistance, wallLayerMask);
 
-        if(hit.collider != null)
+        if (hit.collider != null)
         {
-            // 壁が見つかった場合、ブリンクの調整を行う
             float safeDistance = hit.distance - 0.2f;
             end = start + (Vector3)(dir * safeDistance);
         }
         else
         {
-            // 壁がなかったらそのまんまで
             end = start + (Vector3)(dir * blinkDistance);
         }
 
@@ -180,15 +164,8 @@ public class PlayerMove : MonoBehaviour
 
         rb.MovePosition(end);
         rb.linearVelocity = Vector2.zero; // 慣性を消す
-        /*
-        // ブリンク終了後、すり抜け状態を解除し通常状態に戻す
-        if(playerCollider != null)
-        {
-            playerCollider.isTrigger = false;
-        }
-        */
         gameObject.layer = originalLayer; // 元のレイヤーに戻る
-        
+
         isBlinking = false;               // 通常移動を再開
     }
 

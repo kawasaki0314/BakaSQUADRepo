@@ -17,6 +17,12 @@ public class PauseManager : MonoBehaviour
     // ポーズが許可されているかどうかのフラグ
     private bool isPauseAllowed = false;
 
+    private void OnEnable()
+    {
+        IsGamePaused = false;
+        Time.timeScale = 1f;
+    }
+
     void Awake()
     {
         Time.timeScale = 1f;
@@ -34,6 +40,14 @@ public class PauseManager : MonoBehaviour
 
         //演出時間を読み取って、その間ポーズを禁止するコルーチンを開始
         StartCoroutine(WaitForProductionRoutine());
+    }
+
+    private void OnDestroy()
+    {
+        //時間を戻してポーズ状態を強制解除する
+        Time.timeScale = 1f;
+        IsGamePaused = false;
+        isPaused = false;
     }
 
     // 演出時間を待つためのコルーチン
