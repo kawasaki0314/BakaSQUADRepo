@@ -25,6 +25,14 @@ public class levelupplayer : MonoBehaviour
     private PlayerAttack playerAttack;
     private PlayerMove playerMove;
 
+    [SerializeField] private StatusGaugeUI gaugeUI;
+
+    private int attackLevel = 0;
+    private int speedLevel = 0;
+    private int bulletLevel = 0;
+    private int hpLevel = 0;
+    private int fireRateLevel = 0;
+
     [SerializeField] private int expPerKeyPress = 3;  //1会押すたびにもらえる経験値の量
     [SerializeField] private Slider expSlider;         //InspectorでSliderをドラッグ&ドロップ
     [SerializeField] private TextMeshProUGUI levelText;//InspectorでTMPをドラッグ&ドロップ
@@ -56,6 +64,16 @@ public class levelupplayer : MonoBehaviour
             fadeImage.color = c;
             fadeImage.gameObject.SetActive(false); // 初期状態は非アクティブに
         }
+
+        if(gaugeUI!=null)
+        {
+            gaugeUI.UpdateAttack(0);
+            gaugeUI.UpdateSpeed(0);
+            gaugeUI.UpdateBullet(0);
+            gaugeUI.UpdateHP(0);
+            gaugeUI.UpdateFireRate(0);
+        }
+        
     }
 
     private void Update()
@@ -106,7 +124,11 @@ public class levelupplayer : MonoBehaviour
                     playerAttack.normalAttackPower += 1;
                     playerAttack.orbitAttackPower += 1;
                     playerAttack.bulletAttackPower += 1;
+
+                    attackLevel++;
                     Debug.Log("全攻撃力が1上がった！");
+
+                    gaugeUI.UpdateAttack(attackLevel);
                 }
                 break;
 
@@ -115,6 +137,10 @@ public class levelupplayer : MonoBehaviour
                 {
                     playerMove.playerSpeed += 0.5f;
                     Debug.Log("移動速度が1上がった！");
+
+                    speedLevel++;
+
+                    gaugeUI.UpdateSpeed(speedLevel);
                 }
                 break;
 
@@ -123,16 +149,25 @@ public class levelupplayer : MonoBehaviour
                 {
                     playerAttack.bulletCount += 1; // 球数＋
                     Debug.Log("弾数が1増えた！");
+
+                    bulletLevel++;
+
+                    gaugeUI.UpdateBullet(bulletLevel);
                 }
                 break;
 
             case 3: // HP上限
                 maxHP += 20;
                 hp += 20;
+
+                hpLevel++;
+
                 if (healthImage != null)
-                { 
+                {
                     healthImage.fillAmount = (float)hp / maxHP;
                     Debug.Log("HP上限が20上がった！");
+
+                    gaugeUI.UpdateHP(hpLevel);
                 }
                 break;
 
@@ -140,14 +175,19 @@ public class levelupplayer : MonoBehaviour
                 if (playerAttack != null)
                 {
                     playerAttack.fireRateModifier += 0.15f;
-                    Debug.Log("連射速度が上がった！");
+
+                    fireRateLevel++;
+
+                    gaugeUI.UpdateFireRate(fireRateLevel);
+                    
                 }
                 break;
-        }
 
-                maxexp = Mathf.RoundToInt(maxexp * 1f);
+                }
+        maxexp = Mathf.RoundToInt(maxexp * 1f);
         UpdateUI();
         Debug.Log($"レベルアップ！現在のレベル：{currentlevel}次の必要経験値：{maxexp}");
+
     }
 
     private void UpdateUI()

@@ -10,6 +10,9 @@ public class StatusGaugeUI : MonoBehaviour
     [SerializeField] private Image hpGauge;
     [SerializeField] private Image fireRateGauge;
 
+    [SerializeField] private StatusGaugeUI gaugeUI;
+
+
     public void UpdateAttack(int value)
     {
         attackGauge.fillAmount = value/10f;
