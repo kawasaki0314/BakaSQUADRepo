@@ -12,7 +12,16 @@ public class hp : MonoBehaviour
     void Start()
     {
         currentHp = maxHp;
+        chicken = GetComponent<chicken>();
+    }
 
+    public void TakeDamage(int damage)
+    {
+        currentHp -= damage;
+        if(currentHp <= 0)
+        {
+            chicken.Die();
+        }
     }
 
     // Update is called once per frame

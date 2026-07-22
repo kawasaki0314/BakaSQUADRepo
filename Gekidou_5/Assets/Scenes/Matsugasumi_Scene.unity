@@ -171,6 +171,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Timer
   uiText: {fileID: 314413650}
   countTime: 301
+  warningTime: 60
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  warningColor: {r: 1, g: 0, b: 0, a: 1}
+  blinkSpeed: 5
+  nextSceneName: 
+  fadeImage: {fileID: 0}
+  fadeDuration: 1
 --- !u!114 &314413650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -406,7 +413,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 626317232}
-  - component: {fileID: 626317231}
+  - component: {fileID: 626317233}
   m_Layer: 0
   m_Name: spawn4(chikin)
   m_TagString: Untagged
@@ -414,18 +421,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &626317231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 626317230}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a863e55f8053574abf9174d57b182ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::spawn
 --- !u!4 &626317232
 Transform:
   m_ObjectHideFlags: 0
@@ -441,6 +436,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &626317233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 626317230}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a863e55f8053574abf9174d57b182ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::spawn
+  chickenPrefab: {fileID: 0}
+  chickenSpawnRate: 20
 --- !u!1 &652683307
 GameObject:
   m_ObjectHideFlags: 0
