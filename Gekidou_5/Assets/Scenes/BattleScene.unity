@@ -8386,6 +8386,11 @@ MonoBehaviour:
   normalSize: 52
   hoverSize: 60
   changeSpeed: 120
+  audioSource: {fileID: 1465901919}
+  hoverSE: {fileID: 8300000, guid: 82eeb4b204d97e14aaf816518a80a00c, type: 3}
+  clickSE: {fileID: 8300000, guid: 6f6e504dfec7cfb4fa24caaa08f8be1b, type: 3}
+  nextSceneName: 
+  delayBeforeSceneChange: 0.2
 --- !u!1 &1271573992
 GameObject:
   m_ObjectHideFlags: 0
@@ -9567,6 +9572,135 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!1 &1465901918
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1465901920}
+  - component: {fileID: 1465901919}
+  m_Layer: 0
+  m_Name: AudioSource
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &1465901919
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465901918}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_Resource: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+--- !u!4 &1465901920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1465901918}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 273.23245, y: 198.58118, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1475419205
 GameObject:
   m_ObjectHideFlags: 0
@@ -9844,6 +9978,11 @@ MonoBehaviour:
   normalSize: 52
   hoverSize: 60
   changeSpeed: 120
+  audioSource: {fileID: 1465901919}
+  hoverSE: {fileID: 8300000, guid: 82eeb4b204d97e14aaf816518a80a00c, type: 3}
+  clickSE: {fileID: 8300000, guid: 6f6e504dfec7cfb4fa24caaa08f8be1b, type: 3}
+  nextSceneName: 
+  delayBeforeSceneChange: 0.2
 --- !u!1 &1505425684
 GameObject:
   m_ObjectHideFlags: 0
@@ -11593,6 +11732,11 @@ MonoBehaviour:
   normalSize: 52
   hoverSize: 60
   changeSpeed: 120
+  audioSource: {fileID: 1465901919}
+  hoverSE: {fileID: 8300000, guid: 82eeb4b204d97e14aaf816518a80a00c, type: 3}
+  clickSE: {fileID: 8300000, guid: 6f6e504dfec7cfb4fa24caaa08f8be1b, type: 3}
+  nextSceneName: Clear
+  delayBeforeSceneChange: 0.2
 --- !u!1 &1745226315
 GameObject:
   m_ObjectHideFlags: 0
@@ -12247,9 +12391,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 4748953602020181577, guid: 7fb5154e016f2054f85b7606e0c4d152, type: 3}
-        m_TargetAssemblyTypeName: backhere, Assembly-CSharp
-        m_MethodName: onbackhere
+      - m_Target: {fileID: 8578727814660880750, guid: 902cbafe5eddf6d45853878a0ae828d0, type: 3}
+        m_TargetAssemblyTypeName: modoru, Assembly-CSharp
+        m_MethodName: Onmodoru
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -12309,10 +12453,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c5bb71a3c2c70a4d9be1eefd85e2ce2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ButtonHoverEffect
-  buttonText: {fileID: 0}
+  buttonText: {fileID: 712368913}
   normalSize: 52
   hoverSize: 60
   changeSpeed: 120
+  audioSource: {fileID: 1465901919}
+  hoverSE: {fileID: 8300000, guid: 82eeb4b204d97e14aaf816518a80a00c, type: 3}
+  clickSE: {fileID: 8300000, guid: 6f6e504dfec7cfb4fa24caaa08f8be1b, type: 3}
+  nextSceneName: 
+  delayBeforeSceneChange: 0.2
 --- !u!1 &1833453668
 GameObject:
   m_ObjectHideFlags: 0
@@ -15103,3 +15252,4 @@ SceneRoots:
   - {fileID: 1401911715}
   - {fileID: 345461044}
   - {fileID: 2140212470}
+  - {fileID: 1465901920}
