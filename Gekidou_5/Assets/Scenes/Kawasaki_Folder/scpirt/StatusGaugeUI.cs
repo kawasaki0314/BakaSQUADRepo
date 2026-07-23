@@ -27,10 +27,10 @@ public class StatusGaugeUI : MonoBehaviour
     }
     public void UpdateHP(int value)
     {
-        hpGauge.fillAmount = value / 200f;
+        hpGauge.fillAmount = value / 10f;
     }
     public void UpdateFireRate(float value)
     {
-        fireRateGauge.fillAmount = value / 5f;
+        fireRateGauge.fillAmount = value / 10f;
     }
 }

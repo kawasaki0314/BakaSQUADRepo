@@ -17,8 +17,6 @@ public class GameUIManager : MonoBehaviour
 
     private Coroutine sequenceCoroutine;
     private bool isSequenceFinished = false;
-
-    // === 【追加】スキップを受け付けてもいいかどうかのフラグ ===
     private bool canSkip = false;
 
     void Start()
@@ -30,7 +28,6 @@ public class GameUIManager : MonoBehaviour
 
     void Update()
     {
-        // === 【修正】canSkip が true の時だけクリックを受け付ける ===
         if (canSkip && !isSequenceFinished && Input.GetMouseButtonDown(0))
         {
             SkipAnimation();
@@ -39,14 +36,10 @@ public class GameUIManager : MonoBehaviour
 
     IEnumerator SequenceRoutine()
     {
-        // 【重要】文字側のスクリプトが1フレーム待って座標を記憶するのを、こちらも1フレーム待つ
         yield return null;
 
-        // 文字たちが記憶を終えたので、ここからスキップを受け付け開始にする！
         canSkip = true;
 
-        // 1. 文字が揃うのを待つ（約1秒）
-        // （すでに1フレーム消費したので、少しだけ時間を引いて調整しておくと親切です）
         yield return new WaitForSecondsRealtime(1.0f);
 
         if (timeAfterLastChar > 0f)
@@ -64,6 +57,7 @@ public class GameUIManager : MonoBehaviour
 
         SetButtonsActive(true);
 
+        // フラッシュ演出を再生（内部でフラッシュSEも鳴ります）
         if (flashEffect != null)
         {
             flashEffect.PlayFlash();
