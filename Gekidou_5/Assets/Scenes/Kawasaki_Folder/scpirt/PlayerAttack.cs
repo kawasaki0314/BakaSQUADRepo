@@ -20,6 +20,9 @@ public class PlayerAttack : MonoBehaviour
     public float attackOffset = 0.5f; // 近接攻撃を前に出す距離
     [SerializeField] LayerMask EnemyLayer;
 
+    public float attackInterval = 0.15f;
+    private float attackTimer = 0f;
+
     [Header("Auto Shoot Settings")]
     public float shootInterval = 2.0f; // 自動で射撃攻撃を出す間隔
     private float shootTimer = 0f; // 射撃攻撃のタイマー
@@ -77,6 +80,15 @@ public class PlayerAttack : MonoBehaviour
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Attack();
+        }
+
+        attackTimer += Time.deltaTime;
+
+        // 連射
+        if (Mouse.current.leftButton.isPressed&&attackTimer>=attackInterval)
+        {
+            Attack();
+            attackTimer = 0f;
         }
     }
 
