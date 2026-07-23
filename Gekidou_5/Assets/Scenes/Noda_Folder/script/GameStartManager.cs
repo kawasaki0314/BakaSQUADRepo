@@ -19,10 +19,15 @@ public class GameStartDirector : MonoBehaviour
     [SerializeField] private float goDisplayDuration = 1.0f;
     [SerializeField] private float shakeMagnitude = 15.0f;
 
+    // --- 【追加】オーディオ設定 ---
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip readySE; // 「Ready?」表示時の音（不要なら空でOK）
+    [SerializeField] private AudioClip goSE;    // 「Go!」表示時の音
+
     private Vector3 readyTextOriginalPosition;
     private Vector3 goTextOriginalPosition;
 
-    // 演出にかかる「合計時間」を外から計算できるようにするプロパティ
     public float TotalProductionDuration
     {
         get { return fadeInDuration + readyStayDuration + goDisplayDuration; }
@@ -30,7 +35,13 @@ public class GameStartDirector : MonoBehaviour
 
     void Awake()
     {
-        IsGameStarted = false;   
+        IsGameStarted = false;
+
+        // AudioSourceが未設定なら自身から取得を試みる保険
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
     }
 
     void Start()
@@ -47,6 +58,13 @@ public class GameStartDirector : MonoBehaviour
     {
         // --- Ready? の下からフェードイン 演出 ---
         readyText.gameObject.SetActive(true);
+
+        // 【追加】「Ready?」表示時のSE（設定されている場合のみ再生）
+        if (audioSource != null && readySE != null)
+        {
+            audioSource.PlayOneShot(readySE);
+        }
+
         Color textColor = readyText.color;
         float elapsed = 0f;
         Vector3 readyStartPosition = readyTextOriginalPosition - new Vector3(0, readyStartOffsetVolume, 0);
@@ -67,6 +85,13 @@ public class GameStartDirector : MonoBehaviour
 
         // --- Go! の全方向シェイク出現 ---
         goText.gameObject.SetActive(true);
+
+        // --- 【追加】「Go!」出現の瞬間にSEを再生！ ---
+        if (audioSource != null && goSE != null)
+        {
+            audioSource.PlayOneShot(goSE);
+        }
+
         elapsed = 0f;
 
         while (elapsed < goDisplayDuration)

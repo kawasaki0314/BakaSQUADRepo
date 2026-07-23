@@ -14179,6 +14179,9 @@ MonoBehaviour:
   readyStartOffsetVolume: 2500
   goDisplayDuration: 0.5
   shakeMagnitude: 20
+  audioSource: {fileID: 1465901919}
+  readySE: {fileID: 0}
+  goSE: {fileID: 8300000, guid: 35dfca666aa88a24ca1367d6512a138c, type: 3}
 --- !u!4 &2140212470
 Transform:
   m_ObjectHideFlags: 0

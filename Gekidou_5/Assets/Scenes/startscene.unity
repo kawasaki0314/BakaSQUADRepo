@@ -173,6 +173,8 @@ MonoBehaviour:
   duration: 0.1
   delay: 0
   startOffset: 1200
+  audioSource: {fileID: 841127808}
+  dropSE: {fileID: 8300000, guid: 76b96424f0651fb41a8503b04e73e512, type: 3}
 --- !u!114 &50673222
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -589,6 +591,8 @@ MonoBehaviour:
   duration: 0.1
   delay: 0.8
   startOffset: 1200
+  audioSource: {fileID: 841127808}
+  dropSE: {fileID: 8300000, guid: 76b96424f0651fb41a8503b04e73e512, type: 3}
 --- !u!114 &387965172
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -760,6 +764,8 @@ MonoBehaviour:
   duration: 0.1
   delay: 0.6
   startOffset: 1000
+  audioSource: {fileID: 841127808}
+  dropSE: {fileID: 8300000, guid: 76b96424f0651fb41a8503b04e73e512, type: 3}
 --- !u!114 &677870250
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1550,6 +1556,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::SceneFlashEffect
   fadeDuration: 1
+  audioSource: {fileID: 841127808}
+  flashSE: {fileID: 8300000, guid: 6c9b24a8c9ddcfc41aeb9203e618f43b, type: 3}
 --- !u!1 &1327136428
 GameObject:
   m_ObjectHideFlags: 0
@@ -1787,6 +1795,8 @@ MonoBehaviour:
   duration: 0.1
   delay: 0.4
   startOffset: 1200
+  audioSource: {fileID: 841127808}
+  dropSE: {fileID: 8300000, guid: 76b96424f0651fb41a8503b04e73e512, type: 3}
 --- !u!114 &1739257060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1879,6 +1889,8 @@ MonoBehaviour:
   duration: 0.1
   delay: 0.2
   startOffset: 1000
+  audioSource: {fileID: 841127808}
+  dropSE: {fileID: 8300000, guid: 76b96424f0651fb41a8503b04e73e512, type: 3}
 --- !u!114 &1811237799
 MonoBehaviour:
   m_ObjectHideFlags: 0
