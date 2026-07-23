@@ -1,17 +1,28 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement; // シーン遷移に必要
 using TMPro;
 
-public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerClickHandler
 {
+    [Header("Text Settings")]
     [SerializeField] private TextMeshProUGUI buttonText;
     [SerializeField] private float normalSize = 30f;
     [SerializeField] private float hoverSize = 38f;
-
-    // アニメーションのスピード（値を大きくするほど速く変化します）
     [SerializeField] private float changeSpeed = 120f;
 
-    private float targetSize; // 目標にする文字サイズ
+    [Header("Audio Settings")]
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip hoverSE; // ホバー時の音（不要なら空でOK）
+    [SerializeField] private AudioClip clickSE; // クリック時の音
+
+    [Header("Scene Settings")]
+    [SerializeField] private string nextSceneName = ""; // 遷移先のシーン名（空なら遷移しない）
+    [SerializeField] private float delayBeforeSceneChange = 0.2f; // クリック音を鳴らしてから遷移するまでの待ち時間（秒）
+
+    private float targetSize;
+    private bool isClicked = false; // 二重クリック防止フラグ
 
     void Start()
     {
@@ -20,7 +31,12 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
             buttonText = GetComponentInChildren<TextMeshProUGUI>();
         }
 
-        // 最初は通常サイズを目標にする
+        // AudioSourceが未設定なら自動取得を試みる
+        if (audioSource == null)
+        {
+            audioSource = GetComponent<AudioSource>();
+        }
+
         targetSize = normalSize;
         if (buttonText != null)
         {
@@ -32,7 +48,6 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
     {
         if (buttonText == null) return;
 
-        // 現在のサイズが目標サイズと違う場合、滑らかに近づける
         if (!Mathf.Approximately(buttonText.fontSize, targetSize))
         {
             buttonText.fontSize = Mathf.MoveTowards(
@@ -43,15 +58,52 @@ public class ButtonHoverEffect : MonoBehaviour, IPointerEnterHandler, IPointerEx
         }
     }
 
-    // カーソルがボタンの上に乗ったとき
+    // カーソルが乗ったとき
     public void OnPointerEnter(PointerEventData eventData)
     {
-        targetSize = hoverSize; // 目標サイズを大きくする
+        if (isClicked) return; // クリック後はホバー反応させない
+
+        targetSize = hoverSize;
+
+        // ホバーSEの設定があれば再生
+        if (audioSource != null && hoverSE != null)
+        {
+            audioSource.PlayOneShot(hoverSE);
+        }
     }
 
-    // カーソルがボタンから離れたとき
+    // カーソルが離れたとき
     public void OnPointerExit(PointerEventData eventData)
     {
-        targetSize = normalSize; // 目標サイズを元に戻す
+        if (isClicked) return;
+
+        targetSize = normalSize;
+    }
+
+    // ボタンがクリックされたとき（IPointerClickHandlerにより自動で呼ばれます）
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        if (isClicked) return; // 連打防止
+        isClicked = true;
+
+        StartCoroutine(PlaySEAndChangeScene());
+    }
+
+    private IEnumerator PlaySEAndChangeScene()
+    {
+        // 1. クリックSEの再生
+        if (audioSource != null && clickSE != null)
+        {
+            audioSource.PlayOneShot(clickSE);
+        }
+
+        // 2. 指定した時間だけ待つ（SEの余韻を残すため）
+        yield return new WaitForSeconds(delayBeforeSceneChange);
+
+        // 3. シーン名が指定されていれば遷移する
+        if (!string.IsNullOrEmpty(nextSceneName))
+        {
+            SceneManager.LoadScene(nextSceneName);
+        }
     }
 }
