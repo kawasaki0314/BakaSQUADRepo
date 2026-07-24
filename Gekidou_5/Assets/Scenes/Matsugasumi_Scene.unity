@@ -313,8 +313,8 @@ MonoBehaviour:
   initialSpawnCount: 15
   maxSpecialEnemyCount: 20
   delaySeconds: 30
-  misSpawnDistance: 12
-  maxSpawnDistance: 12
+  misSpawnDistance: 15
+  maxSpawnDistance: 20
   waveTimeLimit: 180
 --- !u!4 &553635905
 Transform:
@@ -328,7 +328,8 @@ Transform:
   m_LocalPosition: {x: -43.62348, y: 16.05789, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 2000251979}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &553635906
@@ -1253,11 +1254,11 @@ Transform:
   m_GameObject: {fileID: 2000251977}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -197.00882, y: -10.479279, z: 0}
+  m_LocalPosition: {x: -153.38535, y: -26.537169, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 553635905}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2000251980
 MonoBehaviour:
@@ -1358,7 +1359,6 @@ SceneRoots:
   - {fileID: 1279488615}
   - {fileID: 652683311}
   - {fileID: 1830155979}
-  - {fileID: 2000251979}
   - {fileID: 553635905}
   - {fileID: 1041517858}
   - {fileID: 1272987752}
