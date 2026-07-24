@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EnemyBullet : MonoBehaviour
 {
@@ -14,15 +14,14 @@ public class EnemyBullet : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         //プレイヤーに当たったら
-        if(collision.CompareTag("Player"))
+        if (collision.CompareTag("Player"))
         {
-            PlayerHealth playerHealth = collision.GetComponent<PlayerHealth>();
-            if(playerHealth != null)
+            levelupplayer playerHealth = collision.GetComponent<levelupplayer>();
+            if (playerHealth != null)
             {
-                playerHealth.TakeDamage(damage);//ダメージを与える
+                playerHealth.damage(damage); //ダメージを与える（関数名も damage() に統一）
             }
-            Destroy(gameObject);//弾を消す
+            Destroy(gameObject); //弾を消す
         }
-        //もし壁などに当たって消したい場合は、ここに障害物のタグ判定を追加してもOK!
     }
-}
+ }
