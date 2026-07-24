@@ -14075,11 +14075,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpawn3
   regularEnemyprefab: {fileID: 8017806180661443998, guid: a5a9f8fef5af11a4794ea8b6b791e770, type: 3}
-  initialSpawnCount: 15
-  maxSpecialEnemyCount: 20
+  initialSpawnCount: 10
+  maxSpecialEnemyCount: 10
   delaySeconds: 30
-  misSpawnDistance: 12
-  maxSpawnDistance: 15
+  misSpawnDistance: 2
+  maxSpawnDistance: 2
   waveTimeLimit: 180
 --- !u!4 &2017662214
 Transform:
@@ -14967,7 +14967,7 @@ MonoBehaviour:
   readyStartOffsetVolume: 2500
   goDisplayDuration: 0.5
   shakeMagnitude: 20
-  audioSource: {fileID: 1465901919}
+  audioSource: {fileID: 0}
   readySE: {fileID: 0}
   goSE: {fileID: 8300000, guid: 35dfca666aa88a24ca1367d6512a138c, type: 3}
 --- !u!4 &2140212470
@@ -15039,11 +15039,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
       propertyPath: hp
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
       propertyPath: maxHP
-      value: 500
+      value: 1000
       objectReference: {fileID: 0}
     - target: {fileID: 5355680110791797489, guid: 69f19bd2698d1024b9a51b67bf46b4fe, type: 3}
       propertyPath: canvas
