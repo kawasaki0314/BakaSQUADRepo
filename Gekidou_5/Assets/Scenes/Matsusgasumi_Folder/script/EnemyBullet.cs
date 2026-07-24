@@ -24,4 +24,4 @@ public class EnemyBullet : MonoBehaviour
             Destroy(gameObject); //弾を消す
         }
     }
-}
+ }

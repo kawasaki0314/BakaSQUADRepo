@@ -30,8 +30,7 @@ public class EnemyHp2 : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (isDead) return;//すでに死亡済みなら何もしない
-
+        if (isDead) return;
         currentHp -= damage;
         // 被ダメージ時の点滅開始
         if (sr != null)
@@ -48,7 +47,7 @@ public class EnemyHp2 : MonoBehaviour
 
         if (currentHp <= 0)
         {
-            isDead = true;
+            isDead = true; //死亡処理をしたことを記録
             if (aiHoming3 != null)
             {
                 aiHoming3.Die();
