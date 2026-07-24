@@ -314,7 +314,7 @@ MonoBehaviour:
   maxSpecialEnemyCount: 20
   delaySeconds: 30
   misSpawnDistance: 12
-  maxSpawnDistance: 15
+  maxSpawnDistance: 12
   waveTimeLimit: 180
 --- !u!4 &553635905
 Transform:
@@ -1123,6 +1123,7 @@ MonoBehaviour:
   EnemyLayer:
     serializedVersion: 2
     m_Bits: 0
+  attackInterval: 0.15
   shootInterval: 2
   bulletCount: 4
   fireRateModifier: 0
