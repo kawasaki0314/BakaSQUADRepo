@@ -13,6 +13,7 @@ public class EnemyHp2 : MonoBehaviour
     [SerializeField, Range(0f, 1f)] private float blinkIntensity = 0.3f; //色の濃さ
     private Coroutine blinkCoroutine;
     private Color originalCoror;
+    private bool isDead = false;
 
     private AIHoming3 aiHoming3;
 
@@ -29,6 +30,8 @@ public class EnemyHp2 : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        if (isDead) return;//すでに死亡済みなら何もしない
+
         currentHp -= damage;
         // 被ダメージ時の点滅開始
         if (sr != null)
@@ -45,6 +48,7 @@ public class EnemyHp2 : MonoBehaviour
 
         if (currentHp <= 0)
         {
+            isDead = true;
             if (aiHoming3 != null)
             {
                 aiHoming3.Die();
