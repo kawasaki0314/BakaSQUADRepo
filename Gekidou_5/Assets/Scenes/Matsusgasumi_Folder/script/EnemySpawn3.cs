@@ -103,10 +103,20 @@ public class EnemySpawn3 : MonoBehaviour
             Debug.LogError("プレハブが設定されてません！インスペクターを確認してください。");
             return;
         }
-        
+
+        if (isSpecial)
+        {
             if (currentSpecialCount >= maxSpecialEnemyCount) return;
             Instantiate(regularEnemyprefab, position, Quaternion.identity);
             currentSpecialCount++;
+        }
+        else
+        {
+
+            if (currentRegularCount >= maxSpecialEnemyCount) return;
+            Instantiate(regularEnemyprefab, position, Quaternion.identity);
+            currentRegularCount++;
+        }
     
     }
     //敵が死んだときに「敵自身から」呼ばれる関数
