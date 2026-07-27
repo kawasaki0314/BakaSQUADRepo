@@ -113,7 +113,7 @@ public class levelupplayer : MonoBehaviour
     {
         currentexp -= maxexp;
         currentlevel++;
-        hp += 25;
+        hp += 10;
 
         int randomIndex = Random.Range(0, 5);
 
@@ -287,7 +287,7 @@ public class levelupplayer : MonoBehaviour
         if (other.CompareTag("HeelItem"))
         {
             Debug.Log("飯だ！うめぇ");
-            heal(500);
+            heal(250);
             Destroy(other.gameObject);
         }
     }

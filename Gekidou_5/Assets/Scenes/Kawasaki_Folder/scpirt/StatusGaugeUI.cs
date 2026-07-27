@@ -1,36 +1,48 @@
 ﻿using UnityEngine;
-using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
+using TMPro; // ★ ImageからTextMeshProUGUIに変更するために追加
 
 public class StatusGaugeUI : MonoBehaviour
 {
-    [SerializeField] private Image attackGauge;
-    [SerializeField] private Image speedGauge;
-    [SerializeField] private Image bulletGauge;
-    [SerializeField] private Image hpGauge;
-    [SerializeField] private Image fireRateGauge;
+    [Header("レベル表示用テキスト")]
+    [SerializeField] private TextMeshProUGUI attackText;
+    [SerializeField] private TextMeshProUGUI speedText;
+    [SerializeField] private TextMeshProUGUI bulletText;
+    [SerializeField] private TextMeshProUGUI hpText;
+    [SerializeField] private TextMeshProUGUI fireRateText;
 
-    [SerializeField] private StatusGaugeUI gaugeUI;
+    // ※自分自身の「gaugeUI」変数は不要なので削除しています
 
+    // 共通のテキスト更新処理
+    private void UpdateLevelText(TextMeshProUGUI targetText, int level)
+    {
+        if (targetText == null) return;
+
+        // レベル0の時は非表示（または "×0" と出したい場合は `$"×{level}"` だけにする）
+            targetText.text = $"+{level}";
+    }
 
     public void UpdateAttack(int value)
     {
-        attackGauge.fillAmount = value/10f;
+        UpdateLevelText(attackText, value);
     }
-    public void UpdateSpeed(float value)
+
+    public void UpdateSpeed(int value) // 引数をintに合わせてもOKです
     {
-        speedGauge.fillAmount = value / 10f;
+        UpdateLevelText(speedText, (int)value);
     }
+
     public void UpdateBullet(int value)
     {
-        bulletGauge.fillAmount = value / 10f;
+        UpdateLevelText(bulletText, value);
     }
+
     public void UpdateHP(int value)
     {
-        hpGauge.fillAmount = value / 10f;
+        UpdateLevelText(hpText, value);
     }
+
     public void UpdateFireRate(float value)
     {
-        fireRateGauge.fillAmount = value / 10f;
+        UpdateLevelText(fireRateText, (int)value);
     }
 }
