@@ -419,12 +419,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::AIHoming3
   speed: 3
-  attackPower: 1
-  attackInterval: 1
+  attackPower: 0
+  attackInterval: 0
   attackTimer: 0
   enemyBulletPrefab: {fileID: 551301137742484396, guid: bc2b59f3574d5d443afcbd0ae3399c80, type: 3}
-  shotInteval: 2
-  bulletSpeed: 5
+  shotInteval: 3
+  bulletSpeed: 3
 --- !u!114 &-1459906429618195703
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -113,6 +113,7 @@ public class levelupplayer : MonoBehaviour
     {
         currentexp -= maxexp;
         currentlevel++;
+        hp += 25;
 
         int randomIndex = Random.Range(0, 5);
 
@@ -157,8 +158,8 @@ public class levelupplayer : MonoBehaviour
                 break;
 
             case 3: // HP上限
-                maxHP += 20;
-                hp += 20;
+                maxHP += 50;
+                hp += 50;
 
                 hpLevel++;
 
@@ -286,7 +287,7 @@ public class levelupplayer : MonoBehaviour
         if (other.CompareTag("HeelItem"))
         {
             Debug.Log("飯だ！うめぇ");
-            heal(20);
+            heal(500);
             Destroy(other.gameObject);
         }
     }
