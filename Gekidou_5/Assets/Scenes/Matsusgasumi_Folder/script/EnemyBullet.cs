@@ -3,7 +3,7 @@
 public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] int damage = 1; //弾の攻撃力
-    [SerializeField] float lifeTime = 5f;  //消滅するまでの時間（秒）
+    [SerializeField] float lifeTime = 3.5f;  //消滅するまでの時間（秒）
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {

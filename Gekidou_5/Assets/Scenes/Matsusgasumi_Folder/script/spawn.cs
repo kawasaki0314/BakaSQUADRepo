@@ -12,6 +12,10 @@ public class spawn : MonoBehaviour
 
     public static spawn Instance;
 
+    //一試合に1回だけにするためのフラグ
+    private bool rareItemSpawned = false;
+    private bool chickenSpawned = false;
+
     void Awake()
     {
         Instance = this;
@@ -19,10 +23,15 @@ public class spawn : MonoBehaviour
 
     void Start()
     {
-        float spawnChamce = Random.Range(0.0f, 100.0f);
-        if (spawnChamce <= 5.0f)
+        //まだ発生していない場合のみ抽選
+        if (!rareItemSpawned)
         {
-            Debug.Log("レアアイテムがスポーンしました！");
+            float spawnChance = Random.Range(0.0f, 100.0f);
+            if (spawnChance <= 5.0f)
+            {
+                Debug.Log("レアアイテムがスポーンしました！");
+                rareItemSpawned = true; // 一度発生したら二度と発生しない
+            }
         }
     }
 
@@ -35,16 +44,17 @@ public class spawn : MonoBehaviour
     {
         Debug.Log("敵が倒された位置: " + deadPosition);
 
-        float chickenChance = Random.Range(0.0f, 100.0f);
-        if (chickenChance <= chickenSpawnRate)
+        //まだ出現していない場合のみ抽選
+        if (!chickenSpawned)
         {
-            Vector3 spawnPos = GetPositionAwayFromPlayer(deadPosition);
-            Instantiate(chickenPrefab, spawnPos, Quaternion.identity);
-            Debug.Log("隠し敵(chicken)が出現しました！");
-        }
-        else
-        {
-
+            float chickenChance = Random.Range(0.0f, 100.0f);
+            if (chickenChance <= chickenSpawnRate)
+            {
+                Vector3 spawnPos = GetPositionAwayFromPlayer(deadPosition);
+                Instantiate(chickenPrefab, spawnPos, Quaternion.identity);
+                Debug.Log("隠し敵(chicken)が出現しました！");
+                chickenSpawned = true; // 一度出現したら以降は抽選しない
+            }
         }
     }
 
