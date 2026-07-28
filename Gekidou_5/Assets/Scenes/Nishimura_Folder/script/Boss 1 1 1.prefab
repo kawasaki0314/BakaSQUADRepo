@@ -1039,7 +1039,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 833a09f1099d01046a8faf06f842abb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::BossHp
-  bossHp: 8000
+  bossHp: 2500
 --- !u!95 &925115298631466691
 Animator:
   serializedVersion: 7
